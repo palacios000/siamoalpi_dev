@@ -12,6 +12,7 @@ public/site/ftpsync.settings
 public/site/config.php
 public/site/ftpsync.settings
 public/site/.htaccess
+public/site/ready.php
 crb_code
 crb_code/*
 _docs

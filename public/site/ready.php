@@ -5,17 +5,17 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 	$session->redirect($config->urls->root . 'registrazione'); 
 }
 
-// // replace PW login form with login-register.php page
-// $wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
-// 	$session = $this->wire('session');
-// 	$config = $this->wire('config');
-// 	$input = $this->wire('input');
-// 	// inserisco la regola del get, altrimenti non mi funziona in localhost
-// 	// non va
-// 	// if (!isset($input->get->localhost)) {
-// 		$session->redirect($config->urls->root . 'registrazione'); 
-// 	// }
-// });
+// replace PW login form with login-register.php page
+$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
+	$session = $this->wire('session');
+	$config = $this->wire('config');
+	$input = $this->wire('input');
+	// inserisco la regola del get, altrimenti non mi funziona in localhost
+	// non va
+	// if (!isset($input->get->localhost)) {
+		$session->redirect($config->urls->root . 'registrazione'); 
+	// }
+});
 
 
 
@@ -35,6 +35,8 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 
 
 	/* Soluzione per controllare gli eventi da generare in caso che un catalogatore salvi/modifichi pagine appartenenti ad un gruppo di lavoro a cui non appartiene'. */   
+
+
 	$wire->addHookAfter('Pages::saveReady', function($event) {
 
 	  $user = wire('user');
@@ -42,6 +44,7 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 
 	  if ($page->template == "gestionale_scheda" && $user->hasRole('operatore') && $page->parent->name != "trash") {
 
+		/* sospeso 03/2022
 		if ($user->ente->id != $page->parent->id) {
 
 			// 1 notifica admin
@@ -64,13 +67,14 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 			// 4 blocca la pagina
 			// $page->addStatus("locked"); // non so perche' ma non va...
 		}
+		*/
+
 	  	/* Scheda: pubblica sempre, anche quando viene premuto salva (e non pubblica) */
 	  	if ($page->isUnpublished()) {
 	  		$page->removeStatus('unpublished');
 	  	}
 
 	  }
-
   	});
 
 
