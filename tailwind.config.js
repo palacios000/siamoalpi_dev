@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        '2xl': '1920px',
         'xl': '1440px',
-        '2xl': '1920'
       },
       fontSize: {
         // come ti dicevo, questi paramentri da rifare
@@ -34,6 +34,9 @@ module.exports = {
       colors:{
         'verde-sa': {  DEFAULT: '#0E9B7E',  '50': '#6FF2D7',  '100': '#5CF0D2',  '200': '#37EDC7',  '300': '#15E6BB',  '400': '#11C09C',  '500': '#0E9B7E',  '600': '#096854',  '700': '#05342A',  '800': '#000101',  '900': '#000000'},
         'blu-sa': {  DEFAULT: '#273583',  '50': '#8693DB',  '100': '#7785D6',  '200': '#5769CD',  '300': '#3A4EC2',  '400': '#3042A2',  '500': '#273583',  '600': '#1A2458',  '700': '#273a48',  '800': '#000101',  '900': '#000000'},
+        'grigio-sa': '#231f20',
+        'marrone-sa': '#1c0205',
+        'grigio-scuro-sa': '#1f2320',
       },
       rotate:{
         '270': '270deg',
@@ -49,5 +52,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [ 
+    require('@tailwindcss/typography'),
+  ],
 }
