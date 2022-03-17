@@ -205,7 +205,7 @@ body.landing-home .landing-body a:hover{
         spacing: ; /*0.02em*/
     }
 .h5-sa {
-        font-family: 'MorionBeta';
+        font-family: 'Morion';
         font-size: 4.7rem; /*94px*/
         line-height: 5.25rem; /*105px*/
         spacing: ; /*em*/
@@ -1076,10 +1076,6 @@ html{
 .bg-blu-sa-500{
 			--tw-bg-opacity: 1;
 			background-color: rgb(39 53 131 / var(--tw-bg-opacity));
-}
-.bg-red-500{
-			--tw-bg-opacity: 1;
-			background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 .stroke-current{
 			stroke: currentColor;

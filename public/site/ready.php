@@ -6,7 +6,7 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 }
 
 // replace PW login form with login-register.php page
-$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
+/*$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
 	$session = $this->wire('session');
 	$config = $this->wire('config');
 	$input = $this->wire('input');
@@ -16,7 +16,7 @@ $wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event)
 		$session->redirect($config->urls->root . 'registrazione'); 
 	// }
 });
-
+*/
 
 
 
