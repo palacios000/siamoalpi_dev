@@ -4,9 +4,9 @@
 		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="../site/templates/styles/uikit.css" /> -->
-		<link rel="stylesheet" href="../site/templates/styles/main.css" />
-		<link rel="shortcut icon" href="../site/templates/pictures/favicon.png" />
+		<!-- <link rel="stylesheet" href="<?= $config->urls->templates?>styles/uikit.css" /> -->
+		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
+		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -20,9 +20,9 @@
       <!-- Slanted Header div -->
       <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
         <!-- Background image -->
-        <img class="object-cover overflow-hidden max-h-fit"  src="../site/templates/pictures/blog/blog.jpg" aslt="Old lady">
+        <img class="object-cover overflow-hidden max-h-fit"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" aslt="Old lady">
         <!-- Logo -->
-        <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="../site/templates/pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+        <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
 
         <!-- Menu Icon -->
         <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -91,7 +91,7 @@
       <!-- Footer div -->
       <div class="slanted-tr-l pt-2.5 pb-25 z-50 before:-z-10 relative flex bg-verde-sa text-white">
         <!-- Logo -->
-        <img class="w-82 ml-1"  src="../site/templates/pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+        <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
     
         <!-- Right hand grid -->
         <div class="flex h-fit ml-auto pt-5">

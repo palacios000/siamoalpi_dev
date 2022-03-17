@@ -2,13 +2,6 @@
 /* questo file viene importato da tailwind.css, che si trova nel root del progetto */
 
 
-
-#credits p.credits{
-	bottom: 2rem;
-	padding-top: 17.3rem;
-
-}
-
 /* ALGOLIA */
     #hits{
     	button:disabled{
