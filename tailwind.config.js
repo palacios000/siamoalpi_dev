@@ -6,6 +6,17 @@ module.exports = {
 	'public/site/templates/**/*.js',
   ],
   theme: {
+    //Base fontSize override
+    fontSize: {
+      sm: ['18px', {
+        letterSpacing: '0.01em',
+        lineHeight: '25px',
+      }],
+      base: ['20px', {
+        letterSpacing: '0.01em',
+        lineHeight: '28px',
+      }],    
+    },
     extend: {
       screens: {
         '2xl': '1920px',
@@ -17,7 +28,12 @@ module.exports = {
         '4xl': '2rem',
         '5xlb': ['2.8rem', '3.2rem' ],
         '8xl': ['5.5rem', '1.1em'],
-        'base': ['1rem', '1.35rem']
+        //'base': ['1rem', '1.35rem']
+        'h1': '1.15rem', //23px
+        'h2': '1.65rem', //33px
+        'h3': '2.4rem', //48px
+        'h4': '3.1rem', //62px
+        'h5': '4.7rem', //94px
       },
       fontFamily: {
         'sans': ['Moderat'],
@@ -25,10 +41,29 @@ module.exports = {
         'serif': ['Morion'],
       },
       spacing: {
+        '5.7': '1.4em',
+        '13': '3.25rem',
+        '18': '4.5rem',
+        '21': '5.25rem',
+        '22': '5.5rem',
+        '23': '5.75rem',
+        '25': '6.25rem',
+        '26': '6.5rem',
+        '27': '6.75rem',
+        '29': '7.25rem',
         '30': '7.5rem',
         '97': '28rem',
       },
+      letterSpacing: {
+        '0': '0em',
+        '01': '0.01em',
+        '02': '0.02em',
+        '03': '0.03em',
+        '04': '0.04em',
+        '05': '0.05em',
+      },
       width: {
+        '82': '22rem',
         '99': '45rem',
       },
       colors:{
@@ -37,11 +72,19 @@ module.exports = {
         'grigio-sa': '#231f20',
         'marrone-sa': '#1c0205',
         'grigio-scuro-sa': '#1f2320',
+        'blu-scuro-sa': '#2d3f59',
       },
       rotate:{
         '270': '270deg',
       },
       lineHeight: {
+        //New custom line heights
+        'tightest-sa': '1.9rem', //38px
+        'tight-sa': '2rem', //40px
+        'snug-sa': '2.65rem', //53px
+        'relaxed-sa': '3.15rem', //63px
+        'loose-sa': '5.25rem', //105px
+
         // anche qui, da rifare...
         'snug': '1.4rem',
         'snug1': '2.4rem',
