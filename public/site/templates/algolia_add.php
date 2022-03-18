@@ -15,7 +15,7 @@
  * coi valori importati precedentemente dal Sirbec. Per questo aggiorno le schede che sono state
  * sincronizzate AND geo taggate
  *  
- * Lo script php di algolia e' inserito tramite Composer
+ * Lo script php di algolia e' inserito tramite Composer nel root di ProcessWire
 */
 
 // 0 controlla lo stopper se e' attivo, se lo e' blocca tutto
@@ -29,11 +29,13 @@
 	$selector = "template=gestionale_scheda, immagini.count>=1";
 
 	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 2593 eliminata
-	$selector .= ", stato_avanzamento!=2593";
+	$selector .= ", stato_avanzamento=1111|1112";
 	if (!$page->counter->reset) {
-		// $debugTimestamp = $page->timestamp - (60 * 60 * 2);
-		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; // PRODUCTION
-		$selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1) ";
+		// PRODUCTION
+		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; 
+		// TEMP
+		$selector .= ", (created|modified>=$page->timestamp) ";
+		// $selector .= ", limit=2 ";
 	}
 	// DEBUG only
 	// $selector .= ", limit=50 ";
@@ -69,10 +71,14 @@
 							$immagineUrl = $scheda->immagini->first->width($fotoFinalWidth)->httpUrl;
 						}
 
-				// tema
+				// tema & temi raggruppati
 					$temi = array();
+					$temi_insieme = array();
 						foreach ($scheda->tema as $tema) {
 							$temi[] = $tema->title;
+							foreach ($tema->tema_insieme as $insieme) {
+								$temi_insieme[] = $insieme->title;
+							}
 						}
 
 				// tags
@@ -129,6 +135,7 @@
 					$record['url'] = 'https://siamoalpi.it/archivio/scheda/?id='.$scheda->id ;
 					$record['ente'] = $scheda->parent->title;
 					$record['temi'] = $temi ;
+					$record['insieme'] = $temi_insieme ;
 					$record['tags'] = $tags ;
 					$record['voto'] = $voto ;
 					$record['datazione'] = intval($annox) ;
@@ -138,11 +145,12 @@
 			$jsonBuild[] = $record;
 
 			// modifica status scheda da sync con sirbec
-				if ($scheda->sync->sirbec) {
-					$scheda->of(false);
-					$scheda->sync->sirbec = '';
-					$scheda->save();
-				}
+				// non ne vedo il motivo...
+				// if ($scheda->sync->sirbec) {
+				// 	$scheda->of(false);
+				// 	$scheda->sync->sirbec = '';
+				// 	$scheda->save();
+				// }
 		}
 
 		$nSchedePronte = count($jsonBuild);
@@ -217,6 +225,16 @@
 		$page->timestamp = time();
 		$page->counter->records = $nSchedePronte;
 		$page->save();
+
+		// e mandami un'email
+		if ($nSchedePronte) {
+			$mail = wireMail();
+			$mail->sendSingle(true);
+			$mail->to('admin@siamoalpi.it'); 
+			$mail->subject("Algolia sync OK - schede: $nSchedePronte");
+			$mail->body("Sinicronizzate $nSchedePronte schede");
+			$mail->send();
+		}
 	}
 
 // 4. manda tutto ad algolia

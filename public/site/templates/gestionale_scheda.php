@@ -28,6 +28,7 @@ echo  '
 	|=========================|==========|===============|
 	| title                   |          |               |
 	| tema                    | PageRef  |               |
+	| tema_insieme            | PageRef  |               |
 	| stato_avanzamento       | PageRef  |               |
 	| tags                    | PageRef  |               |
 	| codice_esportato        | text     | Codice Sirbec |

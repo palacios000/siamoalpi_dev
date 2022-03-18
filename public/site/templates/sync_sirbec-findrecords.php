@@ -1,8 +1,19 @@
 <?php 
 // interrompi l'haversting quando Sirbec non mi da' piu' il resumption token
     if($page->counter->cicli >= 1 && !$page->codice){
+        // mandami una notifica 
+        $mail = wireMail();
+        $mail->sendSingle(true);
+        $mail->to('admin@siamoalpi.it'); 
+        $mail->subject("Sirbec harvesting completato in {$page->counter->cicli} cicli ");
+        $mail->body("Controllate {$page->counter->records} schede Sirbec. Si ricomincia da capo");
+        $mail->send();
+
         $page->of(false);
-        $page->counter->stop = 1;
+        $page->counter->reset = 0;
+        $page->counter->cicli = 0;
+        $page->counter->records = 0;
+        // $page->counter->stop = 1;
         $page->save('counter');
     }
 // resetta a comando
@@ -59,7 +70,13 @@ if (!$page->counter->stop) {
             if ($identifier) {
                 $scheda = $pages->findOne("template=gestionale_scheda, stato_avanzamento=1112, sync.sirbec!=1, codice_esportato=$identifier");
                 if ($scheda->id) {
-                    //echo "--- scheda:" . $scheda->title ."<br>";
+                    // mandami una notifica e controlla l'importazione
+                    $mail = wireMail();
+                    $mail->sendSingle(true);
+                    $mail->to('admin@siamoalpi.it'); 
+                    $mail->subject("Scheda SA trovata su SIRBeC!, pagina: $scheda->name");
+                    $mail->body("$scheda->title (id: $scheda->id) - controlla sincronizzazione Sirbec");
+                    $mail->send();
 
                     // 2 .inzia a prendere i dati
 

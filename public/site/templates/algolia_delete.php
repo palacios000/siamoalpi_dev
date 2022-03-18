@@ -1,7 +1,7 @@
 <?php 
 
 /** Cancella le schede con stato di lavorazione ELIMINA
- * 
+ * Cron impostato esecuzione una volta a settimana
 */
 
 	$delRecords = false;
