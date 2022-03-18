@@ -7,12 +7,22 @@
 
 @layer base {
 	@font-face {
-		font-family: Morion;
+		font-family: Morion-Semibold;
 		src:	url('fonts/Morion-Semibold.eot'); /* IE9 Compat Modes */
 		src:	url('fonts/Morion-Semibold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
 				url('fonts/Morion-Semibold.woff2') format('woff2'), /* Super Modern Browsers */
 				url('fonts/Morion-Semibold.woff') format('woff'); /* Pretty Modern Browsers */
 		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: Morion;
+		src:	url('fonts/Morion-Regular.eot'); /* IE9 Compat Modes */
+		src:	url('fonts/Morion-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('fonts/Morion-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+				url('fonts/Morion-Regular.woff') format('woff'); /* Pretty Modern Browsers */
+		font-weight: 500;
 		font-style: normal;
 		font-display: swap;
 	}

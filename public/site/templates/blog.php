@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="it">
-	<head>
-		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="<?= $config->urls->templates?>styles/uikit.css" /> -->
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
-		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-		<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-TxKWSXbsweFt0o2WqfkfJRRNVaPdzXJ/YLqgStggBVRREXkwU7OKz+xXtqOU4u8+" crossorigin="anonymous"> -->
-
-  </head>
-
-  <body class="max-w-screen-xl mx-auto bg-black/80 w-xl" stsyle="width: 1440px;">
+<?php require 'inc/head.php' ?>
+  <body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
     <div class="overflow-hidden">
       <!-- Slanted Header div -->
       <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
         <!-- Background image -->
-        <img class="object-cover overflow-hidden max-h-fit"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" aslt="Old lady">
+        <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" alt="Old lady">
         <!-- Logo -->
         <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
 
@@ -33,13 +18,13 @@
       <!-- Main content div  -->
       <div class="slanted-tr-s relative pb-44 pt-1 bg-white z-0 before:-z-10">
         <!-- Title -->
-        <h1 class="h5-sa uppercase underline underline-offset-2 pl-12 pt-12 pb-5 w-3/5">
+        <h1 class="h5-sa 2xl:text-h6 uppercase underline underline-offset-2 pl-12 2xl:pl-24 pt-12 pb-5 w-3/5 underline-offset-8">
           Le tradizioni siamo noi
         </h1>
 
-        <div class="px-12 lg:px-56 mx-auto">
+        <div class="px-12 2xl:px-72 lg:px-56 mx-auto">
           <!-- First text section -->
-          <div class="py-18">
+          <div class="py-18 text-base 2xl:text-h1">
             Duis nec magna nulla. Etiam vulputate semper sem, nec euismod purus vestibulum ac. Ut sed mollis risus. Nunc convallis porttitor velit in accumsan. Nam id mauris blandit, sodales libero sit amet, blandit ex. Sed in sodales mi. Etiam vitae consequat risus. Aliquam in sem convallis, sollicitudin tellus a, luctus tellus. Nulla facilisi.
             <br><br>
             Quisque tincidunt maximus lacinia. Vivamus eu sem tortor. In hac habitasse platea dictumst. Donec molestie velit nec mattis feugiat. Duis ut malesuada ex. Vestibulum posuere fermentum vestibulum. Aenean id blandit dui, nec faucibus mi. Maecenas non euismod nisl. Cras at tellus egestas, vehicula augue eu, pharetra neque. In ut quam efficitur, tristique sapien at, maximus erat. Maecenas quis urna vel ligula laoreet volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
@@ -89,46 +74,7 @@
       </div>
 
       <!-- Footer div -->
-      <div class="slanted-tr-l pb-24 z-50 before:-z-10 relative flex bg-verde-sa text-white">
-        <!-- Logo -->
-        <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
-    
-        <!-- Right hand grid -->
-        <div class="flex basis-1/2 h-fit ml-auto pt-5 mr-9">
-          <!-- Socials -->
-          <div class="mr-6">
-            <p>
-              Segui lo sviluppo del progetto sui nostri canali social
-            </p>
-            <!-- Social media Icons -->
-            <div class="grid grid-cols-2 w-fit pt-4 text-blu-sa">
-              <!-- Instagram -->
-              <svg class="w-8 h-8" fill="currentColor" viewBox="2 2 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-              <!-- Facebook -->
-              <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="2 2 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Iniziativa di.. -->
-          <div class="shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-1 pr-0 mb-4">
-            <p>Un'iniziativa di</p>
-            <!-- Provincia di Sondrio e Società economica Valtellina -->
-            <img class="pt-5 h-20 pr-4" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
-          </div>
-
-          <!-- Finanziata da -->
-          <div class="basis-2/5 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-2 pr-5 mb-4">
-            <p>Finanziata da</p>
-            <!-- Fondazione CARIPLO Logo -->
-            <img class="pt-6 h-20 mb-3" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-fondazione-cariplo.png" ?>" alt="Fondazione Cariplo">
-          </div>
-        </div>
-
-      </div>
+      <?php require 'inc/footer.php' ?>
     </div>
 
 
