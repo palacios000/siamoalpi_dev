@@ -14,7 +14,7 @@
 
   </head>
 
-  <body class="max-w-screen-xl mx-auto bg-black/80">
+  <body class="max-w-screen-xl mx-auto bg-black/80 w-xl" stsyle="width: 1440px;">
 
     <div class="overflow-hidden">
       <!-- Slanted Header div -->
@@ -30,7 +30,7 @@
         </svg>
       </div>
 
-      <!-- Main content div -->
+      <!-- Main content div  -->
       <div class="slanted-tr-s relative pb-44 pt-1 bg-white z-0 before:-z-10">
         <!-- Title -->
         <h1 class="h5-sa uppercase underline underline-offset-2 pl-12 pt-12 pb-5 w-3/5">
@@ -68,15 +68,15 @@
       </div>
 
       <!-- Grid div -->
-      <div class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pt-18 pb-32 bg-black">
+      <div class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pt-16 pb-32 bg-black">
         <!-- Content container -->
-        <div class="mx-auto w-fit pb-18">
+        <div class="mx-12 w-fit pb-16">
           <!-- Title -->
           <div class="text-white text-left font-serif text-h2 pb-9">
             <span class="text-verde-sa">130</span> immagini correlate
           </div>
           <!-- Picture masonry grid -->
-          <img class="mx-auto" src="http://via.placeholder.com/1336x405" alt="">
+          <img class="mx-auto" src="http://via.placeholder.com/1336x400" alt="">
         </div>
 
         <!-- Plus icon -->
@@ -89,12 +89,12 @@
       </div>
 
       <!-- Footer div -->
-      <div class="slanted-tr-l pt-2.5 pb-25 z-50 before:-z-10 relative flex bg-verde-sa text-white">
+      <div class="slanted-tr-l pb-24 z-50 before:-z-10 relative flex bg-verde-sa text-white">
         <!-- Logo -->
         <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
     
         <!-- Right hand grid -->
-        <div class="flex h-fit ml-auto pt-5">
+        <div class="flex basis-1/2 h-fit ml-auto pt-5 mr-9">
           <!-- Socials -->
           <div class="mr-6">
             <p>
@@ -114,16 +114,14 @@
           </div>
 
           <!-- Iniziativa di.. -->
-          <div class="basis-2/5 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-2 ">
+          <div class="shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-1 pr-0 mb-4">
             <p>Un'iniziativa di</p>
-            <!-- Provincia di Sondrio -->
-            <img src="" alt="">
-            <!-- Società economica Valtellina -->
-            <img class="pt-6 h-20 " src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
+            <!-- Provincia di Sondrio e Società economica Valtellina -->
+            <img class="pt-5 h-20 pr-4" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
           </div>
 
           <!-- Finanziata da -->
-          <div class="basis-2/5 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-2 pr-22">
+          <div class="basis-2/5 border-l border-blu-scuro-sa text-blu-scuro-sa footer-xxs uppercase pl-2 pr-5 mb-4">
             <p>Finanziata da</p>
             <!-- Fondazione CARIPLO Logo -->
             <img class="pt-6 h-20 mb-3" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-fondazione-cariplo.png" ?>" alt="Fondazione Cariplo">
