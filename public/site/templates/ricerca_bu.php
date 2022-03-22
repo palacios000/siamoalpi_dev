@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-	<head>
-		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="<?php echo $config->urls->templates?>styles/uikit.css" /> -->
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
-
-		<link rel="shortcut icon" href="<?php echo $config->urls->templates?>pictures/favicon.png" />
-
-		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-
-		<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-TxKWSXbsweFt0o2WqfkfJRRNVaPdzXJ/YLqgStggBVRREXkwU7OKz+xXtqOU4u8+" crossorigin="anonymous"> -->
-
-		<?php //echo $page->seo; ?>
-	
-
-	<!-- </head> -- la chiusa HEAD va nel template --> 
-
-
+<?php require "inc/landing_head.php" ?>
 <!-- algolia -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
@@ -30,18 +9,18 @@
 
 </head>
 <body class='bg-verde-sa antialiased'>
-	<div class="uk-grid">
-		<section class="uk-width-2-3 ">
+	<div class="flex flex-column">
+		<section class=" w-3/4 ">
 			<div class="bg-white ">
 				<h1 class="text-3xl py-8 px-5">Ricerca contenuti [Prova UIkit]</h1>
 				<div id="searchbox" class="p-5"></div>
 				<div id="stats" class="p-5 text-sm"></div>
 				
-				<div id="hits" class="uk-padding-small" uk-grid="masonry: true"></div>
+				<div id="hits" class="p-5"></div>
 			</div>
 			
 		</section>
-		<section class="uk-width-1-3">
+		<section class="w-1/4">
 			<div id="clear-filter"></div>
 			<h2 class="mt-4 text-white px-4">filtri</h2>
 			<div id="refinement-list" class="px-8">
@@ -81,12 +60,11 @@
 
 				if (isFirstRender) {
 					const ul = document.createElement('div');
-					ul.classList.add('uk-child-width-1-3', 'uk-grid');
-					ul.setAttribute("uk-grid", "masonry: true");
+					ul.classList.add('tabella', 'grid', 'grid-cols-4', 'gap-4');
 
 					// next button - mostra altre schede
 						const nextButton = document.createElement('button');
-						nextButton.classList.add('next-button', 'bg-verde-sa', 'text-white', 'p-3', 'uk-width-1-1');
+						nextButton.classList.add('next-button', 'bg-verde-sa', 'text-white', 'p-3');
 						nextButton.textContent = 'Mostra altro';
 						nextButton.addEventListener('click', () => {
 							showMore();
@@ -116,8 +94,8 @@
 							showButton.classList.add('hidden');
 						});
 
-					//widgetParams.container.appendChild(hideButton);
-					//widgetParams.container.appendChild(showButton);
+					widgetParams.container.appendChild(hideButton);
+					widgetParams.container.appendChild(showButton);
 					widgetParams.container.appendChild(ul);
 					widgetParams.container.appendChild(nextButton);
 
@@ -131,7 +109,6 @@
 						.map(
 							item =>
 								`
-								<div>
 								<a href='${item.url}'>
 								<div class='algCard '>
 									<div>
@@ -145,8 +122,7 @@
 
 								</div>
 								</div>
-								</a>
-								</div>`
+								</a>`
 						)
 						.join('')}
 				`;
@@ -216,7 +192,6 @@
 
 	</script>
 
-	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit-icons.min.js"></script> -->
+
 </body>
 </html>

@@ -58,18 +58,24 @@
 						$optionsVariations = array('width' => $fotoFinalWidth);
 						$nVariations = $scheda->immagini->first->getVariations($optionsVariations);
 						if ( count($nVariations) === 1) {
-							$immagineUrl = $nVariations->first->httpUrl;
+							$immagine = $nVariations->first;
 						}else{
-							$immagineUrl = $scheda->immagini->first->width($fotoFinalWidth)->httpUrl;
+							$immagine = $scheda->immagini->first->width($fotoFinalWidth);
 						}*/
 
 					// TEMP (liste mi da' 260 per vertical e 260 orizzontali... non penso noi dovremo distinguere tra i due casi. Per ora prendo quello che c'e').
 						$nVariations = $scheda->immagini->first->getVariations();
 						if (count($nVariations) >= 1) {
-							$immagineUrl = $nVariations->last->httpUrl;
+							$immagine = $nVariations->last;
 						}else{
-							$immagineUrl = $scheda->immagini->first->width($fotoFinalWidth)->httpUrl;
+							$immagine = $scheda->immagini->first->width($fotoFinalWidth);
 						}
+
+					// output HTTP URL
+						$immagineUrl = $immagine->httpUrl;	
+
+					// tell me image ratio
+						//$ratio = $immagine->width / $immagine->height;
 
 				// tema & temi raggruppati
 					$temi = array();
@@ -131,7 +137,7 @@
 					$record['objectID'] = "sa".$scheda->id ;
 					$record['titolo'] = $sanitizer->markupToLine($scheda->title) ;
 					$record['descrizione'] = $sanitizer->markupToLine($scheda->descrizione) ;
-					$record['immagine'] = $immagineUrl ;
+					$record['immagine'] = $immagineUrl;
 					$record['url'] = 'https://siamoalpi.it/archivio/scheda/?id='.$scheda->id ;
 					$record['ente'] = $scheda->parent->title;
 					$record['temi'] = $temi ;
