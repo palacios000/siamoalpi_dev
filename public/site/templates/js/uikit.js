@@ -4903,8 +4903,8 @@
         },
 
         data: {
-            margin: 'uk-grid-margin',
-            clsStack: 'uk-grid-stack',
+            margin: 'mt-8',
+            clsStack: 'mt-8',
             masonry: false,
             parallax: 0
         },

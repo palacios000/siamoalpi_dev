@@ -11,15 +11,24 @@
 
 		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-		<!-- algolia -->
-		<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
 
-		<!-- algolia pre connect -->
-		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
+		<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-TxKWSXbsweFt0o2WqfkfJRRNVaPdzXJ/YLqgStggBVRREXkwU7OKz+xXtqOU4u8+" crossorigin="anonymous"> -->
 
-	</head>
+		<?php //echo $page->seo; ?>
+	
 
+	<!-- </head> -- la chiusa HEAD va nel template --> 
+
+
+<!-- algolia -->
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+
+<!-- algolia pre connect -->
+<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
+
+
+</head>
 <body class='bg-verde-sa antialiased'>
 	<div class="flex flex-column">
 		<section class="w-3/4 ">
@@ -108,8 +117,8 @@
 							showButton.classList.add('hidden');
 						});
 
-					widgetParams.container.appendChild(hideButton);
-					widgetParams.container.appendChild(showButton);
+					//widgetParams.container.appendChild(hideButton);
+					//widgetParams.container.appendChild(showButton);
 					widgetParams.container.appendChild(ul);
 					widgetParams.container.appendChild(nextButton);
 
@@ -125,17 +134,17 @@
 								`
 								<div>
 								<a href='${item.url}'>
-								<div class='p-8'>
+								<div class='algCard '>
 									<div>
-										<img class='object-cover w-full' src='${item.immagine}'>
-									</div>
-									<div class='max-h-36 overflow-hidden'>
+										<img src='${item.immagine}'>
+								</div>
+								<div class='max-h-36 overflow-hidden'>
 									
 										<h2 class='font-bold titoloFoto'>
 										${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 										</h2>
 
-									</div>
+								</div>
 								</div>
 								</a>
 								</div>`
@@ -200,6 +209,8 @@
 				    },
 				}),
 
+
+
 			]);
 
 		search.start();
@@ -207,5 +218,6 @@
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit-icons.min.js"></script> -->
 </body>
 </html>

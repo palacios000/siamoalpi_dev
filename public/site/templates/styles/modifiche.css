@@ -19,6 +19,15 @@
     	display: inline;
     }*/
 
+    /* mansory uk-kit classes */
+    .uk-flex-top {
+      align-items: flex-start;
+    }
+    .uk-flex-wrap-top {
+      align-content: flex-start;
+    }
+
+
 
 /* Blog page start */
 
