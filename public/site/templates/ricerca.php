@@ -30,18 +30,18 @@
 
 </head>
 <body class='bg-verde-sa antialiased'>
-	<div class="uk-grid">
-		<section class="uk-width-2-3 ">
+	<div class="flex flex-column">
+		<section class="w-3/4 ">
 			<div class="bg-white ">
 				<h1 class="text-3xl py-8 px-5">Ricerca contenuti [Prova UIkit]</h1>
 				<div id="searchbox" class="p-5"></div>
 				<div id="stats" class="p-5 text-sm"></div>
 				
-				<div id="hits" class="uk-padding-small" uk-grid="masonry: true"></div>
+				<div id="hits" class="" ></div>
 			</div>
 			
 		</section>
-		<section class="uk-width-1-3">
+		<section class="w-1/4">
 			<div id="clear-filter"></div>
 			<h2 class="mt-4 text-white px-4">filtri</h2>
 			<div id="refinement-list" class="px-8">
@@ -81,7 +81,8 @@
 
 				if (isFirstRender) {
 					const ul = document.createElement('div');
-					ul.classList.add('uk-child-width-1-3', 'uk-grid');
+					// ul.classList.add('uk-child-width-1-3', 'uk-grid');
+					ul.classList.add('grid', 'grid-cols-3');
 					ul.setAttribute("uk-grid", "masonry: true");
 
 					// next button - mostra altre schede
