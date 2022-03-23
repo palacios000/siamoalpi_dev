@@ -20,6 +20,67 @@
 
 	</head>
 
+
+
+	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
+
+	  <div class="overflow-hidden">
+	    <!-- menu & header -->
+	    <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
+	      <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/bg/siamo-alpi-head-small-1.jpg" alt="BG">
+	      <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+
+	      <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+	            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+	      </svg>
+	    </div>
+
+	    <!-- ricerca  -->
+	    <div class="slanted-tr-s relative pb-44 pt-1 bg-white z-0 before:-z-10">
+	    	<div class="flex flex-column justify-between">
+	    		<div id="stats"></div>
+	    		<div id="searchbox"></div>
+	    	</div>
+	    	<div id="clear-filter"></div>
+	    	<div id="temiricerca"></div>
+	    </div>
+
+	    <!-- Grid hits -->
+	    <div class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pt-16 pb-32 bg-black">
+	      <!-- Content container -->
+	      <div class="mx-12 w-fit pb-16">
+	        <!-- Title 
+	        <div class="text-white text-left font-serif text-h2 pb-9">
+	          <span class="text-verde-sa">130</span> immagini correlate
+	        </div> -->
+	        <div id="hits" class="" ></div>
+	      </div>
+
+	      <!-- Plus icon -->
+	      <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+	        <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
+	        <circle cx="10" cy="10" r="8" fill="none" stroke-width="0.2" stroke="white"/>
+
+	      </svg>
+	      
+	    </div>
+
+	    <!-- Footer div -->
+	    <?php require 'inc/footer.php' ?>
+	  </div>
+
+
+	</body>
+
+
+
+
+
+
+<!-- 
+
+
+
 <body class='bg-verde-sa antialiased'>
 	<div class="flex flex-column">
 		<section class="w-3/4 ">
@@ -46,7 +107,7 @@
 		</section>
 	</div>
 
-
+ -->
 
 <!-- algolia search -->
 	<script>
@@ -60,7 +121,7 @@
 
 
 		// 1. Create CUSTOM render function
-			// https://www.algolia.com/doc/api-reference/widgets/infinite-hits/js/#full-example
+			// Custom HITS - 	https://www.algolia.com/doc/api-reference/widgets/infinite-hits/js/#full-example
 			const renderInfiniteHits = (renderOptions, isFirstRender) => {
 				const {
 					hits,
@@ -73,7 +134,7 @@
 				if (isFirstRender) {
 					const ul = document.createElement('div');
 					// ul.classList.add('uk-child-width-1-3', 'uk-grid');
-					ul.classList.add('grid', 'grid-cols-3');
+					ul.classList.add('grid', 'grid-cols-4');
 					ul.setAttribute("uk-grid", "masonry: true");
 
 					// next button - mostra altre schede
@@ -144,9 +205,54 @@
 				`;
 			};
 
+			// Custom MENU -	 https://www.algolia.com/doc/api-reference/widgets/menu/js/#full-example
+			// 1. Create a render function
+			const renderMenu = (renderOptions, isFirstRender) => {
+			  const {
+			    items,
+			    refine,
+			    createURL,
+			    widgetParams,
+			  } = renderOptions;
+
+			  if (isFirstRender) {
+			    const ul = document.createElement('ul');
+			    widgetParams.container.appendChild(ul);
+			  }
+
+			  widgetParams.container.querySelector('ul').innerHTML = items
+			    .map(
+			      item => `
+			        <li>
+			          <a
+			            href="${createURL(item.value)}"
+			            data-value="${item.value}"
+			            style="font-weight: ${item.isRefined ? 'bold' : ''}"
+			          >
+			            ${item.label} (${item.count})
+			          </a>
+			        </li>
+			      `
+			    )
+			    .join('');
+
+			  [...widgetParams.container.querySelectorAll('a')].forEach(element => {
+			    element.addEventListener('click', event => {
+			      event.preventDefault();
+			      refine(event.currentTarget.dataset.value);
+			    });
+			  });
+
+			};
+
+
 		// 2. Create the custom widget
 			const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
 				renderInfiniteHits
+			);
+
+			const customMenu = instantsearch.connectors.connectMenu(
+			  renderMenu
 			);
 
 
@@ -156,6 +262,14 @@
 				// hits - risultati
 				customInfiniteHits({
 					container: document.querySelector('#hits')
+				}),
+
+				customMenu({
+				  container: document.querySelector('#temiricerca'),
+				  attribute: 'insieme',
+				  showMoreLimit: 30,
+				  sortBy:['count:desc'],
+  				  searchable: false,
 				}),
 
 				// searchbox
@@ -177,7 +291,8 @@
 					 },
 				}),
 
-				instantsearch.widgets.refinementList({
+				// refinement -- filtra solo in base ai risultati di ricerca
+/*				instantsearch.widgets.refinementList({
 				  container: '#refinement-list',
 				  attribute: 'tags',
 				  limit: 15,
@@ -185,11 +300,15 @@
 				  searchable: true,
 				  searchablePlaceholder: 'Cerca tra i tags',
 				}),
-
-				instantsearch.widgets.menu({
-				  container: '#temiricerca',
-				  attribute: 'temi',
-				}),
+*/
+				// instantsearch.widgets.menu({
+				//   container: '#temiricerca',
+				//   attribute: 'insieme',
+				//   limit: 20,
+				//   sortBy:['count:desc'],
+				//   searchable: false,
+				//   showMore: false
+				// }),
 
 					
 				
