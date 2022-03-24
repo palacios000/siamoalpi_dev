@@ -54,6 +54,8 @@ module.exports = {
         '27': '6.75rem',
         '29': '7.25rem',
         '30': '7.5rem',
+        '34': '8.5rem',
+        '46': '11.5rem',
         '97': '28rem',
       },
       letterSpacing: {
@@ -65,6 +67,7 @@ module.exports = {
         '05': '0.05em',
       },
       width: {
+        '76': '19rem',
         '82': '22rem',
         '99': '45rem',
       },
@@ -86,16 +89,13 @@ module.exports = {
         'snug-sa': '2.65rem', //53px
         'relaxed-sa': '3.15rem', //63px
         'loose-sa': '5.25rem', //105px
-
-        // anche qui, da rifare...
-        // @PERLA questi parametri sono miei? Se si' cancella
-        'snug': '1.4rem',
-        'snug1': '2.4rem',
-        '12': '2.7rem',
-        // @PERLA end
       },
       translate: {
         '5/6': '83.333333%',
+      },
+      textDecorationThickness: {
+        '2.5': '2.5px',
+        3: '3px',
       }
     },
   },
