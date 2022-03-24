@@ -5,7 +5,7 @@
       <!-- Slanted Header div -->
       <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
         <!-- Background image -->
-        <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" alt="Old lady">
+        <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" alt="Old lady">
         <!-- Logo -->
         <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
 
