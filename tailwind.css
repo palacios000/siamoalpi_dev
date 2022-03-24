@@ -81,5 +81,11 @@
 	.h5-sa {
 	  @apply text-h5 leading-loose-sa tracking-tight font-serif font-extralight;
 	}
-
+	
+	.bottone-verde {
+	  @apply uppercase text-white bg-verde-sa w-fit px-5 py-3 text-sm font-semibold;
+	}
+	.bottone-blu {
+	  @apply uppercase text-white bg-blu-sa w-fit px-5 py-3 text-sm font-semibold;
+	}
   }
