@@ -83,9 +83,9 @@
 	}
 	
 	.bottone-verde {
-	  @apply uppercase text-white bg-verde-sa w-fit px-5 py-3 text-sm font-semibold;
+	  @apply uppercase text-white bg-verde-sa w-fit px-4 py-3 text-sm font-semibold tracking-widest;
 	}
 	.bottone-blu {
-	  @apply uppercase text-white bg-blu-sa w-fit px-5 py-3 text-sm font-semibold;
+	  @apply uppercase text-white bg-blu-sa w-fit px-5 py-3 text-sm font-semibold tracking-widest;
 	}
   }
