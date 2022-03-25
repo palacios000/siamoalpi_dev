@@ -48,10 +48,16 @@
 
 		$jsonBuild = array();
 
+		// prepara gli array per il $supporto
+		$supp_audio = array('mp3', 'ogg');
+		$supp_video = array('mp4', 'webm');
+		$supp_docs = array('pdf', 'doc', 'docx', 'xls', 'xlsx');
+
 		foreach ($schede as $scheda) {
 			$record = array();
 				
 				// immagine 
+					$immagineUrl = '';
 					// check if there is our variation
 					// PRODUCTION
 						/* 
@@ -63,7 +69,7 @@
 							$immagine = $scheda->immagini->first->width($fotoFinalWidth);
 						}*/
 
-					// TEMP (liste mi da' 260 per vertical e 260 orizzontali... non penso noi dovremo distinguere tra i due casi. Per ora prendo quello che c'e').
+					// TEMP (list mi da' 260 per vertical e 260 orizzontali... non penso noi dovremo distinguere tra i due casi. Per ora prendo quello che c'e').
 						$nVariations = $scheda->immagini->first->getVariations();
 						if (count($nVariations) >= 1) {
 							$immagine = $nVariations->last;
@@ -132,12 +138,29 @@
 					$geo = (object) array('lat'=> floatval($scheda->mappa->lat), 'lng'=> floatval($scheda->mappa->lng));
 					$comune = $scheda->luogo->comune;
 
+				// supporto - per forza almeno immagine
+					$supporto = array('immagine');
+					if (count($scheda->file)) {
+						foreach ($scheda->file as $checkFile) {
+							if (in_array($checkFile->ext(), $supp_audio)) {
+								$supporto[] = 'audio';
+							}
+							if (in_array($checkFile->ext(), $supp_video)) {
+								$supporto[] = 'video';
+							}
+							if (in_array($checkFile->ext(), $supp_docs)) {
+								$supporto[] = 'documento';
+							}
+						}
+					}
+
 				
 				// prepare il json
 					$record['objectID'] = "sa".$scheda->id ;
 					$record['titolo'] = $sanitizer->markupToLine($scheda->title) ;
 					$record['descrizione'] = $sanitizer->markupToLine($scheda->descrizione) ;
 					$record['immagine'] = $immagineUrl;
+					$record['supporto'] = $supporto;
 					$record['url'] = 'https://siamoalpi.it/archivio/scheda/?id='.$scheda->id ;
 					$record['ente'] = $scheda->parent->title;
 					$record['temi'] = $temi ;

@@ -35,14 +35,31 @@
 	      </svg>
 	    </div>
 
+	    <section id="algolia" x-data="{ temi: false, solofoto: true }">
 	    <!-- ricerca  -->
-	    <div class="slanted-tr-s relative pb-44 pt-1 bg-white z-0 before:-z-10">
-	    	<div class="flex flex-column justify-between">
-	    		<div id="stats"></div>
-	    		<div id="searchbox"></div>
+	    <div class="slanted-tr-s relative pb-20 pt-1 bg-white z-0 before:-z-10">
+	    	<div class="px-12 w-full ">
+	    	<div class="flex justify-between">
+	    		<button x-on:click="solofoto = ! solofoto" class="">solo foto</button>
+	    		<div class="w-1/3" id="stats"></div>
+	    		<div class="w-2/3">
+	    			<ul class="py-4">
+	    				<li class="inline ">Ricerca per:</li>
+	    				<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3">Temi</button></li>
+	    				<li class="inline uppercase font-sansBold pl-3">Anni</li>
+	    				<li class="inline uppercase font-sansBold pl-3">Mappa</li>
+	    				<li class="inline uppercase font-sansBold pl-3">Avanzata</li>
+	    			</ul>
+		    		<div class="w-full" id="searchbox"></div>
+	    		</div>
 	    	</div>
-	    	<div id="clear-filter"></div>
-	    	<div id="temiricerca"></div>
+		    </div>
+	    	<div x-show="temi">
+	    		<div class="w-1/2 mx-auto pt-4">
+			    	<div id="clear-filter"></div>
+			    	<div class="uppercase font-serif text-h1" id="temiricerca"></div>
+	    		</div>
+	    	</div>
 	    </div>
 
 	    <!-- Grid hits -->
@@ -54,60 +71,16 @@
 	          <span class="text-verde-sa">130</span> immagini correlate
 	        </div> -->
 	        <div id="hits" class="" ></div>
-	      </div>
-
-	      <!-- Plus icon -->
-	      <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-	        <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
-	        <circle cx="10" cy="10" r="8" fill="none" stroke-width="0.2" stroke="white"/>
-
-	      </svg>
-	      
+	      </div>	      
 	    </div>
+	    </section>
 
 	    <!-- Footer div -->
 	    <?php require 'inc/footer.php' ?>
 	  </div>
 
-
 	</body>
 
-
-
-
-
-
-<!-- 
-
-
-
-<body class='bg-verde-sa antialiased'>
-	<div class="flex flex-column">
-		<section class="w-3/4 ">
-			<div class="bg-white ">
-				<h1 class="text-3xl py-8 px-5">Ricerca contenuti [Prova UIkit]</h1>
-				<div id="searchbox" class="p-5"></div>
-				<div id="stats" class="p-5 text-sm"></div>
-				
-				<div id="hits" class="" ></div>
-			</div>
-			
-		</section>
-		<section class="w-1/4">
-			<div id="clear-filter"></div>
-			<h2 class="mt-4 text-white px-4">filtri</h2>
-			<div id="refinement-list" class="px-8">
-				
-			</div>
-
-			<h2 class="mt-4 text-white px-4">Temi di ricerca</h2>
-			<div id="temiricerca" class="px-8">
-				
-			</div>
-		</section>
-	</div>
-
- -->
 
 <!-- algolia search -->
 	<script>
@@ -139,8 +112,8 @@
 
 					// next button - mostra altre schede
 						const nextButton = document.createElement('button');
-						nextButton.classList.add('next-button', 'bg-verde-sa', 'text-white', 'p-3', 'uk-width-1-1');
-						nextButton.textContent = 'Mostra altro';
+						nextButton.classList.add('next-button', 'text-white', 'p-3', 'mx-auto', 'block', 'hover:text-verde-sa');
+						nextButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width=".5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
 						nextButton.addEventListener('click', () => {
 							showMore();
 						});
@@ -169,8 +142,8 @@
 							showButton.classList.add('hidden');
 						});
 
-					widgetParams.container.appendChild(hideButton);
-					widgetParams.container.appendChild(showButton);
+					//widgetParams.container.appendChild(hideButton);
+					//widgetParams.container.appendChild(showButton);
 					widgetParams.container.appendChild(ul);
 					widgetParams.container.appendChild(nextButton);
 
@@ -179,6 +152,7 @@
 
 				widgetParams.container.querySelector('.next-button').disabled = isLastPage;
 
+
 				widgetParams.container.querySelector('div').innerHTML = `
 					${hits
 						.map(
@@ -186,13 +160,13 @@
 								`
 								<div>
 								<a href='${item.url}'>
-								<div class='p-8'>
+								<div class='p-4'>
 									<div>
 										<img class='object-cover w-full' src='${item.immagine}'>
 									</div>
-									<div class='max-h-36 overflow-hidden'>
+									<div class='max-h-36 pt-3 overflow-hidden'>
 									
-										<h2 class='font-bold titoloFoto'>
+										<h2 x-show="solofoto" class='font-bold titoloFoto text-white'>
 										${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 										</h2>
 
@@ -223,13 +197,13 @@
 			  widgetParams.container.querySelector('ul').innerHTML = items
 			    .map(
 			      item => `
-			        <li>
+			        <li class='inline'>
 			          <a
 			            href="${createURL(item.value)}"
 			            data-value="${item.value}"
 			            style="font-weight: ${item.isRefined ? 'bold' : ''}"
 			          >
-			            ${item.label} (${item.count})
+			            ${item.label} <span class='text-verde-sa'>${item.count}</span> /
 			          </a>
 			        </li>
 			      `
@@ -242,7 +216,6 @@
 			      refine(event.currentTarget.dataset.value);
 			    });
 			  });
-
 			};
 
 
@@ -277,6 +250,13 @@
 					container: '#searchbox',
 					searchAsYouType: false,
 					autofocus: false,
+					showReset: false,
+					placeholder: 'Cerca nell\'archivio',
+					cssClasses: {
+					  form: ['relative', 'h-8', 'w-fit', 'bg-gray-300'],
+					  input: ['bg-neutral-100'],
+					  submit: ['absolute', 'h-8', 'w-8', 'right-0', 'top-2']
+					},
 				}),
 
 				// n. risultati
@@ -328,3 +308,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 </body>
 </html>
+
+
+<!-- 
+svg bottone +, riga troppo sottile
+<svg class="h-16 w-16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 88.9 91.5" style="enable-background:new 0 0 88.9 91.5" xml:space="preserve"><path style="fill:#fff" d="M63.5 44.2H45.6V26.3h-3.3v17.9H24.4v3.2h17.9v17.9h3.3V47.4h17.9z"/><defs><path id="a" d="M6.3 7.6h76.4V84H6.3z"/></defs><clipPath id="b"><use xlink:href="#a" style="overflow:visible"/></clipPath><path d="M44.4 83.6c20.9 0 37.8-16.9 37.8-37.8S65.3 8 44.4 8 6.7 24.9 6.7 45.8c0 20.8 16.9 37.8 37.7 37.8z" style="clip-path:url(#b);fill:none;stroke:#fff;stroke-width:.806"/></svg>
+
+rimpiazzata con heroicons
+
+ -->
