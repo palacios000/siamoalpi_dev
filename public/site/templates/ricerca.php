@@ -4,8 +4,8 @@
 		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="<?php echo $config->urls->templates?>styles/uikit.css" /> -->
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
+		<link rel="stylesheet" href="https://siamoalpi.it/site/templates/styles/main.css" />
+		<!-- <link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" /> -->
 
 		<link rel="shortcut icon" href="<?php echo $config->urls->templates?>pictures/favicon.png" />
 
@@ -21,56 +21,56 @@
 	</head>
 
 
-
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden">
+	  <div class="overflow-hidden" x-data="{ temi: false }">
 	    <!-- menu & header -->
-	    <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
+	    <div class="slanted-header relative bg-marrone-sa text-white h-fit ">
 	      <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/bg/siamo-alpi-head-small-1.jpg" alt="BG">
 	      <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+
+	      <div class="absolute top-10 right-30 w-2/3 flex justify-end">
+	      	<div class="flex flex-col w-2/3">
+	      		
+    		<div class="text-black" id="searchbox"></div>
+    			
+				<ul class="py-4 text-sm text-right pr-4">
+					<li class="inline ">Ricerca per:</li>
+					<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3" :class="underline">Temi</button></li>
+					<li class="inline uppercase font-sansBold pl-3">Anni</li>
+					<li class="inline uppercase font-sansBold pl-3">Mappa</li>
+					<li class="inline uppercase font-sansBold pl-3">Avanzata</li>
+				</ul>
+	      	</div>
+	      </div>
 
 	      <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
 	            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
 	      </svg>
 	    </div>
 
-	    <section id="algolia" x-data="{ temi: false, solofoto: true }">
-	    <!-- ricerca  -->
-	    <div class="slanted-tr-s relative pb-20 pt-1 bg-white z-0 before:-z-10">
-	    	<div class="px-12 w-full ">
-	    	<div class="flex justify-between">
-	    		<button x-on:click="solofoto = ! solofoto" class="">solo foto</button>
-	    		<div class="w-1/3" id="stats"></div>
-	    		<div class="w-2/3">
-	    			<ul class="py-4">
-	    				<li class="inline ">Ricerca per:</li>
-	    				<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3">Temi</button></li>
-	    				<li class="inline uppercase font-sansBold pl-3">Anni</li>
-	    				<li class="inline uppercase font-sansBold pl-3">Mappa</li>
-	    				<li class="inline uppercase font-sansBold pl-3">Avanzata</li>
-	    			</ul>
-		    		<div class="w-full" id="searchbox"></div>
-	    		</div>
-	    	</div>
-		    </div>
-	    	<div x-show="temi">
-	    		<div class="w-1/2 mx-auto pt-4">
-			    	<div id="clear-filter"></div>
-			    	<div class="uppercase font-serif text-h1" id="temiricerca"></div>
-	    		</div>
-	    	</div>
-	    </div>
+	    <section>
 
 	    <!-- Grid hits -->
-	    <div class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pt-16 pb-32 bg-black">
+	    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pb-32 bg-black">
 	      <!-- Content container -->
 	      <div class="mx-12 w-fit pb-16">
+	    	<!-- #algolia, temi -->
+	    	<div x-show="temi">
+	    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
+			    	<!-- <div id="clear-filter"></div> -->
+			    	<h2 class="text-verde-sa mb">Temi</h2>
+			    	<div id="temiricerca" class="text-white"></div>
+	    		</div>
+	    	</div>
+
+    		<button x-on:click="solofoto = ! solofoto" class="text-white">solo foto</button>
+    		<div class="w-1/2 text-white font-serif text-h2 pb-9" id="stats"></div>
 	        <!-- Title 
 	        <div class="text-white text-left font-serif text-h2 pb-9">
 	          <span class="text-verde-sa">130</span> immagini correlate
 	        </div> -->
-	        <div id="hits" class="" ></div>
+	        <div id="hits" class="-mx-4" ></div>
 	      </div>	      
 	    </div>
 	    </section>
@@ -79,7 +79,6 @@
 	    <?php require 'inc/footer.php' ?>
 	  </div>
 
-	</body>
 
 
 <!-- algolia search -->
@@ -201,9 +200,8 @@
 			          <a
 			            href="${createURL(item.value)}"
 			            data-value="${item.value}"
-			            style="font-weight: ${item.isRefined ? 'bold' : ''}"
 			          >
-			            ${item.label} <span class='text-verde-sa'>${item.count}</span> /
+			            <span class="${item.isRefined ? 'underline underline-offset-4' : ''}">${item.label}</span> <span class='text-verde-sa px-1'>${item.count}</span> <span class='px-1'>/</span>
 			          </a>
 			        </li>
 			      `
@@ -250,12 +248,13 @@
 					container: '#searchbox',
 					searchAsYouType: false,
 					autofocus: false,
-					showReset: false,
+					showReset: true,
 					placeholder: 'Cerca nell\'archivio',
 					cssClasses: {
-					  form: ['relative', 'h-8', 'w-fit', 'bg-gray-300'],
-					  input: ['bg-neutral-100'],
-					  submit: ['absolute', 'h-8', 'w-8', 'right-0', 'top-2']
+					  form: ['relative', 'h-8', 'opacity-75', 'hover:opacity-100', ],
+					  input: ['bg-neutral-100', 'rounded-full', 'pl-8', 'w-full' ],
+					  submit: ['absolute', 'h-8', 'w-8', 'right-2', 'top-1.5', 'hover:fill-verde-sa', ],
+					  reset: ['absolute', 'h-8', 'w-8', 'left-2', 'top-1.5', 'hover:fill-verde-sa', 'text-center' ]
 					},
 				}),
 
@@ -292,12 +291,13 @@
 
 					
 				
+				/* per ora non mi serve...
 				instantsearch.widgets.clearRefinements({
 				  container: '#clear-filter',
 				  templates: {
 				      resetLabel: 'Rimuovi filtri',
 				    },
-				}),
+				}),*/
 
 			]);
 

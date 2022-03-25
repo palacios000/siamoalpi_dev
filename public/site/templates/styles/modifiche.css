@@ -1,25 +1,10 @@
 /* *** modifiche ed aggiunte da apportare a tailwind *** */
 /* questo file viene importato da tailwind.css, che si trova nel root del progetto */
 
+.border
 
 /* ALGOLIA */
-    /*#hits{
-    	button:disabled{
-    	background-color: #999;
-    	cursor: not-allowed;
-    	}
-    }*/
-    /*.ais-SearchBox-input{
-    	border:  gray 1px solid;
-    }*/
-
-    /*.algCard{
-    	width: 400px;
-    	border:  1px solid red;
-    	display: inline;
-    }*/
-
-    /* mansory uk-kit classes */
+    /* mansory uk-kit classes per #hits */
     .uk-flex-top {
       align-items: flex-start;
     }
@@ -27,144 +12,8 @@
       align-content: flex-start;
     }
 
-
-
-/* Blog page start */
-
-/* 3 versions of slanted bottom divs: 
-	s->2.8° m->4° l->5.2° 
-    z-index must be assigned with tailwind classes:
-    ::before and ::after classes must have lower z-index
-*/
-
-    /* Top left cut corner 2.8° */
-    .slanted-tl-s {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tl-s::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top left;
-    transform: skewY(-2.8deg);
-    }
-
-    /* Bottom left cut corner 4° */
-    .slanted-tl-m {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tl-m::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top left;
-    transform: skewY(-4deg);
-    }
-
-    /* Bottom left cut corner 5.2° */
-    .slanted-tl-l {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tl-l::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top left;
-    transform: skewY(-5.2deg);
-    }
-
-    /* Top right cut corner 2.8° */
-
-    .slanted-tr-s {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tr-s::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top right;
-    transform: skewY(2.8deg);
-    }
-
-    /* Top right cut corner 4°*/
-
-    .slanted-tr-m {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tr-m::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top right;
-    transform: skewY(4deg);
-    }
-
-    /* Top right cut corner 5.2°*/
-
-    .slanted-tr-l {
-	position: relative;
-	width: 100%;
-    box-sizing: border-box;
-    }
-
-    .slanted-tr-l::before {
-    content: '';
-	position: absolute;
-	width: 100%;
-	height: 150%;
-	background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top right;
-    transform: skewY(5.2deg);
-    }
-
-
-/* Blog page end */
+    /*search box*/
+    button.ais-SearchBox-submit svg{
+      width: 25px;
+      height: 25px;
+    } 
