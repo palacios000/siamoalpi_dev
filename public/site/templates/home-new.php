@@ -5,16 +5,16 @@
     <div class="overflow-hidden">
         <!-- FIX A TAG NOT CLICKABLE IN HEADER -->
         <!-- Slanted Header div -->
-        <div class="slanted-br-m relative text-white h-fit -z-20">
+        <div class="slanted-br-m relative text-white h-fit">
             <!-- Background image -->
             <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/head/siamo-alpi-head-1.jpg" alt="Old lady">
             <!-- Logo -->
-            <a class="absolute top-0 left-0 w-82 mt-5 ml-1.5" href="#">
+            <a class="absolute top-0 left-0 w-82 mt-3 ml-1.5" href="#">
                 <img class=""  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
             </a>
 
             <!-- Menu Icon -->
-            <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <svg class="text-white block h-8 w-8 absolute top-8 right-12" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
             </svg>
         </div>
