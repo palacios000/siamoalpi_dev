@@ -11,6 +11,9 @@ module.exports = {
         '2xl': '1920px',
         'xl': '1440px',
       },
+      fontWeight: {
+        boldest: '950',
+      },
       fontSize: {
         sm: ['18px', {
           letterSpacing: '0.01em',

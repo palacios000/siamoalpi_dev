@@ -79,13 +79,14 @@
 	  @apply text-h4 leading-relaxed-sa tracking-02 font-serif;
 	}
 	.h5-sa {
-	  @apply text-h5 leading-loose-sa tracking-tight font-serif font-extralight;
+	  @apply text-h5 leading-loose-sa tracking-tight font-serif;
 	}
 	
 	.bottone-verde {
-	  @apply uppercase text-white bg-verde-sa w-fit px-4 py-3 text-sm font-semibold tracking-widest;
+	  @apply uppercase text-white bg-verde-sa w-fit px-3.5 py-3 text-sm font-boldest tracking-widest;
 	}
 	.bottone-blu {
-	  @apply uppercase text-white bg-blu-sa w-fit px-5 py-3 text-sm font-semibold tracking-widest;
+	  @apply uppercase text-white bg-blu-sa w-fit px-3.5 py-3 text-sm font-boldest tracking-widest;
 	}
+
   }
