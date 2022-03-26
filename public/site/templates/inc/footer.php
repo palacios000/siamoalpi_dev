@@ -1,6 +1,8 @@
 <footer class="slanted-tr-l pb-24 2xl:pt-24 z-50 before:-z-10 relative flex bg-verde-sa text-white justify-items-end">
   <!-- Logo -->
-  <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+  <a class="block w-fit h-fit" href="#">
+    <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+  </a>
 
   <!-- Right hand grid -->
   <div class="flex basis-1/2 h-fit ml-auto pt-5 mr-9">
