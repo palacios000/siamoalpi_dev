@@ -1,3 +1,11 @@
+<?php 
+// logica per reindirizzamento search form 
+// ULR: http://localhost:3000/siamoalpi/public/ricerca-test/?siamoAlpi%5Bquery%5D=alpe -->
+if ($input->post->cerca) {
+    $url = "http://localhost:3000/siamoalpi/public/ricerca-test/?siamoAlpi%5Bquery%5D=".$input->post->cerca;
+    $session->redirect($url);
+}
+?>
 <?php require 'inc/head.php' ?>
   <body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto" >
 
@@ -5,21 +13,23 @@
     <div class="overflow-hidden">
         <!-- FIX A TAG NOT CLICKABLE IN HEADER -->
         <!-- Slanted Header div -->
-        <div class="slanted-br-m relative text-white h-fit -z-20">
+        <div class="slanted-br-m relative text-white h-fit">
             <!-- Background image -->
-            <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/head/siamo-alpi-head-1.jpg" alt="Old lady">
+            <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/head/siamo-alpi-head-1.jpg" alt="">
             <!-- Logo -->
-            <a class="absolute top-0 left-0 w-82 mt-5 ml-1.5" href="#">
+            <a class="absolute top-0 left-0 w-82 mt-3 ml-1.5" href="#">
                 <img class=""  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
             </a>
 
             <!-- Menu Icon -->
-            <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <svg class="text-white block h-8 w-8 absolute top-8 right-12" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
             </svg>
         </div>
         
         <!-- Slanted Search div -->
+
+
         <div class="slanted-tl-m z-20 before:-z-10 pt-12 pb-29 bg-verde-sa">
             <!-- Grid to contain both elements -->
             <div class="flex mx-auto w-full">
@@ -28,12 +38,10 @@
                     Ricerca tra oltre 12300 immagini e documenti
                 </div>
                 <!-- Search bar -->
-                <div class="w-full flex text-gray-800 bg-white h-16 text-right mr-11 mt-2">
-                    <div class="h2-sa pr-5 py-4 w-full ">
-                      inizia qui la tua ricerca
+                <div class="w-full flex text-gray-800 h-16 text-right mr-11 mt-2">
+                    <div class="h2-sa w-full ">
+                      <form method="post" action="<?php $pages->findOne("template=ricerca")->url ?>?siamoAlpi%5Bquery%5D=" role="search" class="ais-SearchBox-form relative h-8 opacity-75 hover:opacity-100" novalidate=""><input name="cerca" class="ais-SearchBox-input bg-neutral-100 rounded-full pl-8 w-full" type="search" placeholder="Inizia la tua ricerca" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" maxlength="512"><button class="ais-SearchBox-submit absolute h-8 w-8 right-2 top-1.5 hover:fill-verde-sa" type="submit" title="Submit the search query."><svg class="ais-SearchBox-submitIcon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"> <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path> </svg></button><button class="ais-SearchBox-reset absolute h-8 w-8 left-2 top-1.5 hover:fill-verde-sa text-center" type="reset" title="Clear the search query." hidden=""><svg class="ais-SearchBox-resetIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="10" height="10"> <path d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"></path> </svg></button><span class="ais-SearchBox-loadingIndicator" hidden=""><svg class="ais-SearchBox-loadingIcon" width="16" height="16" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#444"> <g fill="none" fillrule="evenodd"> <g transform="translate(1 1)" strokewidth="2"> <circle strokeopacity=".5" cx="18" cy="18" r="18"></circle> <path d="M36 18c0-9.94-8.06-18-18-18"> <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform> </path> </g> </g> </svg></span></form>
                     </div>
-                    <!-- Search Icon -->
-                   <svg class="w-16 h-16" fill="currentColor" viewBox="-3 -6 35 35" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
                 </div>
             </div>
 

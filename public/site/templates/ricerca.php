@@ -63,15 +63,19 @@
 	    	<!-- #algolia, temi -->
 	    	<div x-show="temi">
 	    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-			    	<!-- <div id="clear-filter"></div> -->
 			    	<h2 class="text-verde-sa mb">Temi</h2>
 			    	<div id="temiricerca" class="text-white"></div>
 	    		</div>
 	    	</div>
 
+	    	<div id="tags" class="text-black bg-white h-8 "></div>
+
     			
     		<div class="grid grid-cols-2 pt-4">
-	    		<div class="w-1/2 text-white font-serif text-h2" id="stats"></div>
+    			<div>
+		    		<div id="stats" class="text-white font-serif text-h2"></div>
+		    		<div id="clear-filter" class="text-white"></div>
+	    		</div>
 	    		<div class="text-right">
 	    			<!-- griglia 1 -->
 		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-white" x-show="solofoto" ><svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
@@ -83,7 +87,12 @@
 	    		</div>
     		</div>
 
-	        <div id="hits" class="pt-2 -mx-4" ></div>
+	        <div id="hits" class="pt-2 -mx-4 relative" >
+	        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
+	        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"> <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path> </svg>
+	        	torna su</a>
+	        	
+	        </div>
 	      </div>	      
 	    </div>
 	    </section>
@@ -124,38 +133,12 @@
 
 					// next button - mostra altre schede
 						const nextButton = document.createElement('button');
-						nextButton.classList.add('next-button', 'text-white', 'p-3', 'mx-auto', 'block', 'hover:text-verde-sa');
+						nextButton.classList.add('next-button', 'text-white', 'p-3', 'mx-auto', 'block', 'hover:text-verde-sa', 'hover:rotate-90', 'transition');
 						nextButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width=".5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
 						nextButton.addEventListener('click', () => {
 							showMore();
 						});
 
-					// show/hide content
-						const hideButton = document.createElement('button');
-						const showButton = document.createElement('button');
-						const hideme = document.getElementsByClassName('titoloFoto');
-						var i;
-						hideButton.classList.add('bg-verde-sa', 'text-white', 'p-1');
-						showButton.classList.add('bg-verde-sa', 'text-white', 'p-1', 'hidden');
-						hideButton.textContent = 'nascondi titolo';
-						showButton.textContent = 'mostra titolo';
-						hideButton.addEventListener('click', () => {
-							for (i = 0; i < hideme.length; i++) {
-								hideme[i].classList.add('hidden');
-							};
-							hideButton.classList.add('hidden');
-							showButton.classList.remove('hidden');
-						});
-						showButton.addEventListener('click', () => {
-							for (i = 0; i < hideme.length; i++) {
-								hideme[i].classList.remove('hidden');
-							};
-							hideButton.classList.remove('hidden');
-							showButton.classList.add('hidden');
-						});
-
-					//widgetParams.container.appendChild(hideButton);
-					//widgetParams.container.appendChild(showButton);
 					widgetParams.container.appendChild(ul);
 					widgetParams.container.appendChild(nextButton);
 
@@ -172,14 +155,17 @@
 								`
 								<div>
 								<a href='${item.url}'>
-								<div class='p-4'>
-									<div>
+								<div class='p-2'>
+									<div class='relative boder border-8 border-black hover:border-verde-sa transition-all duration-300 '>
 										<img class='object-cover w-full' src='${item.immagine}'>
+										<div x-show='!solofoto' class='absolute w-full h-full inset-0 px-4 py-2 text-white font-bold bg-black opacity-0 hover:opacity-70 transition duration-300 '>${instantsearch.highlight({ attribute: 'titolo', hit: item })}
+											<span class='bottone-bianco-trasparente block absolute bottom-0 left-0 p-4 opacity-100'>Scopri</span>
+										</div>
+
 									</div>
 									<div class='max-h-36 pt-3 overflow-hidden'>
-									
-										<h2 x-show="solofoto" class='font-bold titoloFoto text-white'>
-										${instantsearch.highlight({ attribute: 'titolo', hit: item })}
+										<h2 x-show='solofoto' class='font-bold titoloFoto text-white'>
+											${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 										</h2>
 
 									</div>
@@ -295,7 +281,7 @@
 				  container: document.querySelector('#temiricerca'),
 				  attribute: 'insieme',
 				  showMoreLimit: 30,
-				  sortBy:['count:desc'],
+				  sortBy:['name'],
   				  searchable: false,
 				}),
 
@@ -306,7 +292,7 @@
 				// searchbox
 				instantsearch.widgets.searchBox({
 					container: '#searchbox',
-					searchAsYouType: false,
+					searchAsYouType: true,
 					autofocus: false,
 					showReset: true,
 					placeholder: 'Cerca nell\'archivio',
@@ -340,24 +326,28 @@
 				  searchablePlaceholder: 'Cerca tra i tags',
 				}),
 */
-				// instantsearch.widgets.menu({
-				//   container: '#temiricerca',
-				//   attribute: 'insieme',
-				//   limit: 20,
-				//   sortBy:['count:desc'],
-				//   searchable: false,
-				//   showMore: false
-				// }),
+				instantsearch.widgets.menu({
+				  container: '#tags',
+				  attribute: 'tags',
+				  sortBy:['count:desc'],
+				  searchable: false,
+				  showMore: false
+				}),
 
 					
 				
-				/* per ora non mi serve...
+				// https://www.algolia.com/doc/api-reference/widgets/clear-refinements/js/
 				instantsearch.widgets.clearRefinements({
 				  container: '#clear-filter',
 				  templates: {
-				      resetLabel: 'Rimuovi filtri',
+				      resetLabel: '<svg class="stroke-verde-sa inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> <span class="inline">Rimuovi filtri</span>',
 				    },
-				}),*/
+				  cssClasses: {
+				  	root: 'h-8',
+				  	button: ['h-4', 'w-4'],
+				  	disabledButton: 'invisible',
+				  }
+				}),
 
 			]);
 

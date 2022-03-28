@@ -3,15 +3,18 @@
 
     <div class="overflow-hidden">
       <!-- Slanted Header div -->
-      <div class="slanted-header relative bg-marrone-sa text-white h-fit -z-20">
+      <div class="slanted-br-m relative text-white h-fit">
         <!-- Background image -->
         <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" alt="Old lady">
         <!-- Logo -->
-        <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+        <a class="absolute top-0 left-0 w-82 mt-3 ml-1.5" href="#">
+            <img class=""  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+        </a>
+
 
         <!-- Menu Icon -->
-        <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+        <svg class="text-white block h-8 w-8 absolute top-8 right-12" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>
       </div>
 
@@ -65,11 +68,7 @@
         </div>
 
         <!-- Plus icon -->
-        <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
-          <circle cx="10" cy="10" r="8" fill="none" stroke-width="0.2" stroke="white"/>
-
-        </svg>
+        <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 25 25" xmlns="http://www.w3.5org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
         
       </div>
 

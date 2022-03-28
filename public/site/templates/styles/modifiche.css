@@ -1,8 +1,6 @@
 /* *** modifiche ed aggiunte da apportare a tailwind *** */
 /* questo file viene importato da tailwind.css, che si trova nel root del progetto */
 
-.border{}
-
 /* ALGOLIA */
     /* mansory uk-kit classes per #hits */
     .uk-flex-top {
@@ -22,3 +20,16 @@
     button.next-button[disabled]{
       visibility: hidden;
     }
+
+/* Scheda-new start*/
+
+    .list-hash {
+        /* list-style-type: '#'; */
+    }
+
+    .list-hash li::before {
+        content: '#';
+        padding-right: 0.4rem;
+    }
+
+/* Scheda-new end */
