@@ -1,7 +1,7 @@
 /* *** modifiche ed aggiunte da apportare a tailwind *** */
 /* questo file viene importato da tailwind.css, che si trova nel root del progetto */
 
-.border
+.border{}
 
 /* ALGOLIA */
     /* mansory uk-kit classes per #hits */
@@ -17,3 +17,8 @@
       width: 25px;
       height: 25px;
     } 
+
+    button.next-button:disabled,
+    button.next-button[disabled]{
+      visibility: hidden;
+    }

@@ -4,8 +4,8 @@
 		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://siamoalpi.it/site/templates/styles/main.css" />
-		<!-- <link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" /> -->
+		<!-- <link rel="stylesheet" href="view-source:https://siamoalpi.it/site/templates/styles/main.css" /> -->
+		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
 
 		<link rel="shortcut icon" href="<?php echo $config->urls->templates?>pictures/favicon.png" />
 
@@ -23,6 +23,11 @@
 
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
+	  <!-- <div class="overflow-hidden" x-data="{ temi: false, temi_sel: false }"> 
+		sotto a "data-value="${item.value}" ho messo quanto segue per attivare temi_sel, ma non funziona,
+		dovrei forse fare una funzione
+	  	x-on:click="temi_sel = ! temi_sel"
+		-->
 	  <div class="overflow-hidden" x-data="{ temi: false }">
 	    <!-- menu & header -->
 	    <div class="slanted-header relative bg-marrone-sa text-white h-fit ">
@@ -36,7 +41,7 @@
     			
 				<ul class="py-4 text-sm text-right pr-4">
 					<li class="inline ">Ricerca per:</li>
-					<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3" :class="underline">Temi</button></li>
+					<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
 					<li class="inline uppercase font-sansBold pl-3">Anni</li>
 					<li class="inline uppercase font-sansBold pl-3">Mappa</li>
 					<li class="inline uppercase font-sansBold pl-3">Avanzata</li>
@@ -64,13 +69,21 @@
 	    		</div>
 	    	</div>
 
-    		<button x-on:click="solofoto = ! solofoto" class="text-white">solo foto</button>
-    		<div class="w-1/2 text-white font-serif text-h2 pb-9" id="stats"></div>
-	        <!-- Title 
-	        <div class="text-white text-left font-serif text-h2 pb-9">
-	          <span class="text-verde-sa">130</span> immagini correlate
-	        </div> -->
-	        <div id="hits" class="-mx-4" ></div>
+    			
+    		<div class="grid grid-cols-2 pt-4">
+	    		<div class="w-1/2 text-white font-serif text-h2" id="stats"></div>
+	    		<div class="text-right">
+	    			<!-- griglia 1 -->
+		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-white" x-show="solofoto" ><svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
+					</button>
+					<!-- griglia 2 -->
+					<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-verde-sa" x-show="!solofoto" ><svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
+
+					</button>
+	    		</div>
+    		</div>
+
+	        <div id="hits" class="pt-2 -mx-4" ></div>
 	      </div>	      
 	    </div>
 	    </section>
@@ -178,8 +191,7 @@
 				`;
 			};
 
-			// Custom MENU -	 https://www.algolia.com/doc/api-reference/widgets/menu/js/#full-example
-			// 1. Create a render function
+			// Custom MENU (temi) -	 https://www.algolia.com/doc/api-reference/widgets/menu/js/#full-example
 			const renderMenu = (renderOptions, isFirstRender) => {
 			  const {
 			    items,
@@ -216,6 +228,48 @@
 			  });
 			};
 
+			// Custom STATS - 	https://www.algolia.com/doc/api-reference/widgets/stats/js/#full-example
+			const renderStats = (renderOptions, isFirstRender) => {
+			  const {
+			    nbHits,
+			    areHitsSorted,
+			    nbSortedHits,
+			    processingTimeMS,
+			    query,
+			    widgetParams,
+			  } = renderOptions;
+
+			  if (isFirstRender) {
+			    return;
+			  }
+
+			  let count = '';
+
+			  if (areHitsSorted) {
+			    if (nbSortedHits > 1) {
+			      count = `<span class='text-verde-sa'>${nbSortedHits}</span> risultati filtrati`;
+			    } else if (nbSortedHits === 1) {
+			      count = `<span class='text-verde-sa'>1</span> risultato filtrato`;
+			    } else {
+			      count = 'Nessun risultato trovato ';
+			    }
+			    count += ` da n. ${nbHits} schede`;
+			  } else {
+			    if (nbHits > 1) {
+			      count += `<span class='text-verde-sa'>${nbHits}</span> risultati`;
+			    } else if (nbHits === 1) {
+			      count += `<span class='text-verde-sa'>1</span> risultato trovato`;
+			    } else {
+			      count += 'Nessun risultato trovato ';
+			    }
+			  }
+
+			  widgetParams.container.innerHTML = `
+			    ${count}
+			    ${query ? `per <q>${query}</q>` : ''}
+			  `;
+			};
+
 
 		// 2. Create the custom widget
 			const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
@@ -225,6 +279,8 @@
 			const customMenu = instantsearch.connectors.connectMenu(
 			  renderMenu
 			);
+
+			const customStats = instantsearch.connectors.connectStats(renderStats);
 
 
 		// 3. Instantiate the custom widget
@@ -243,6 +299,10 @@
   				  searchable: false,
 				}),
 
+				customStats({
+				   container: document.querySelector('#stats'),
+				 }),
+
 				// searchbox
 				instantsearch.widgets.searchBox({
 					container: '#searchbox',
@@ -259,16 +319,16 @@
 				}),
 
 				// n. risultati
-				instantsearch.widgets.stats({
-					container: '#stats',
-					templates: {
-						 text: `
-								 {{#hasNoResults}}Nessun risultato trovato{{/hasNoResults}}
-								 {{#hasOneResult}}1 risultato trovato{{/hasOneResult}}
-								 {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} risultati trovati{{/hasManyResults}}
-						 `,
-					 },
-				}),
+				// instantsearch.widgets.stats({
+				// 	container: '#stats',
+				// 	templates: {
+				// 		 text: `
+				// 				 {{#hasNoResults}}Nessun risultato trovato{{/hasNoResults}}
+				// 				 {{#hasOneResult}}1 risultato trovato{{/hasOneResult}}
+				// 				 {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} risultati trovati{{/hasManyResults}}
+				// 		 `,
+				// 	 },
+				// }),
 
 				// refinement -- filtra solo in base ai risultati di ricerca
 /*				instantsearch.widgets.refinementList({
