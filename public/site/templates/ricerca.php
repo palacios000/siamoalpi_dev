@@ -18,6 +18,8 @@
 		<!-- algolia pre connect -->
 		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
 
+
+
 	</head>
 
 
@@ -68,14 +70,8 @@
 	    		</div>
 	    	</div>
 
-	    	<div id="tags" class="text-black bg-white h-8 "></div>
-
-    			
     		<div class="grid grid-cols-2 pt-4">
-    			<div>
-		    		<div id="stats" class="text-white font-serif text-h2"></div>
-		    		<div id="clear-filter" class="text-white"></div>
-	    		</div>
+	    		<div id="stats" class="text-white font-serif text-h2"></div>
 	    		<div class="text-right">
 	    			<!-- griglia 1 -->
 		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-white" x-show="solofoto" ><svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
@@ -85,14 +81,25 @@
 
 					</button>
 	    		</div>
+    			<div class="flex flex-row gap-x-4">
+		    		
+		    		<div id="clear-filter" class="text-white "></div>
+		    		<div id="current-refinements" class="text-white"></div>
+	    		</div>
+
     		</div>
 
 	        <div id="hits" class="pt-2 -mx-4 relative" >
 	        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
-	        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"> <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path> </svg>
-	        	torna su</a>
+
+	        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+	        	  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+	        	</svg>
+	        	</a>
+
 	        	
 	        </div>
+	        <div id="tags" class="text-black h-8 overflow-hidden invisible"></div>
 	      </div>	      
 	    </div>
 	    </section>
@@ -256,7 +263,6 @@
 			  `;
 			};
 
-
 		// 2. Create the custom widget
 			const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
 				renderInfiniteHits
@@ -267,7 +273,6 @@
 			);
 
 			const customStats = instantsearch.connectors.connectStats(renderStats);
-
 
 		// 3. Instantiate the custom widget
 			search.addWidgets([
@@ -304,47 +309,29 @@
 					},
 				}),
 
-				// n. risultati
-				// instantsearch.widgets.stats({
-				// 	container: '#stats',
-				// 	templates: {
-				// 		 text: `
-				// 				 {{#hasNoResults}}Nessun risultato trovato{{/hasNoResults}}
-				// 				 {{#hasOneResult}}1 risultato trovato{{/hasOneResult}}
-				// 				 {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} risultati trovati{{/hasManyResults}}
-				// 		 `,
-				// 	 },
-				// }),
 
 				// refinement -- filtra solo in base ai risultati di ricerca
-/*				instantsearch.widgets.refinementList({
-				  container: '#refinement-list',
-				  attribute: 'tags',
-				  limit: 15,
-				  showMore: true,
-				  searchable: true,
-				  searchablePlaceholder: 'Cerca tra i tags',
-				}),
-*/
-				instantsearch.widgets.menu({
+				/* per ora non mi serve */
+				instantsearch.widgets.refinementList({
 				  container: '#tags',
 				  attribute: 'tags',
-				  sortBy:['count:desc'],
-				  searchable: false,
-				  showMore: false
 				}),
 
-					
+				// https://www.algolia.com/doc/api-reference/widgets/current-refinements/js/
+				instantsearch.widgets.currentRefinements({
+				  container: '#current-refinements',
+				}),
+
 				
 				// https://www.algolia.com/doc/api-reference/widgets/clear-refinements/js/
 				instantsearch.widgets.clearRefinements({
 				  container: '#clear-filter',
 				  templates: {
-				      resetLabel: '<svg class="stroke-verde-sa inline" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> <span class="inline">Rimuovi filtri</span>',
+				      resetLabel: 'Azzera filtri',
 				    },
 				  cssClasses: {
 				  	root: 'h-8',
-				  	button: ['h-4', 'w-4'],
+				  	// button: ['h-4', 'w-4'],
 				  	disabledButton: 'invisible',
 				  }
 				}),
@@ -355,7 +342,46 @@
 
 	</script>
 
+	    			 <script>
+/*
+	    			 	// https://www.sitepoint.com/get-url-parameters-with-javascript/
+	    			 	function getUrlValues(){
+		    			 	let queryString = window.location.search;
+		    			 	let urlParams = new URLSearchParams(queryString);
+		    			 	let menuTema = urlParams.get('siamoAlpi[menu][insieme]');
+		    			 	let tags = urlParams.getAll('siamoAlpi[refinementList][tags][0]');
+		    			 	let tag  = tags[0];
+		    			 	// non riesco a capire che array e' il tags, riesco solo a prendere il primo [0] ...
+
+		    			 	// console.log(menuTema);
+		    			 	// console.log(tag);
+
+		    			 	let infoz = menuTema + ' - ' + tag;
+		    			 	return infoz;
+
+		    			};
+
+	    			 	window.onload = console.log(getUrlValues());
+
+						// https://phpcoder.tech/detect-url-change-in-javascript-without-refresh/
+	    			 	let lastUrl = window.location.href; 
+	    			 	new MutationObserver(() => {
+	    			 	  const url = window.location.href;
+	    			 	  if (url !== lastUrl) {
+	    			 	    lastUrl = url;
+	    			 	    console.log(getUrlValues());
+	    			 	    // getUrlValues();
+	    			 	  }
+	    			 	}).observe(document, {subtree: true, childList: true});
+	    			 	 
+
+	    			 	  */
+
+	    			 </script>
+
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
+
+
 </body>
 </html>
 
