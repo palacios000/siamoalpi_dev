@@ -11,7 +11,6 @@ if ($input->post->cerca) {
 
     <!-- Content wrapper -->
     <div class="overflow-hidden">
-        <!-- FIX A TAG NOT CLICKABLE IN HEADER -->
         <!-- Slanted Header div -->
         <div class="slanted-br-m relative text-white h-fit">
             <!-- Background image -->
@@ -28,8 +27,6 @@ if ($input->post->cerca) {
         </div>
         
         <!-- Slanted Search div -->
-
-
         <div class="slanted-tl-m z-20 before:-z-10 pt-12 pb-29 bg-verde-sa">
             <!-- Grid to contain both elements -->
             <div class="flex mx-auto w-full">
@@ -44,7 +41,6 @@ if ($input->post->cerca) {
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- White slanted section -->
@@ -69,7 +65,7 @@ if ($input->post->cerca) {
         </div>
 
         <!-- Album tematici section -->
-        <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-16 bg-black text-white">
+        <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
             <!-- Title -->
             <h2 class="h3-sa uppercase text-center">
                 Album tematici
@@ -117,42 +113,32 @@ if ($input->post->cerca) {
             </div>
         </div>
 
-
         <!-- Split banner section -->
-        <div class="pb-10 text-white bg-black">
-            <!-- Writings container -->
-            <!-- <div class="relative bg-red-200 overflow-hiden  za-20 py-36 pl-12 w-full h-fit mb-26">
-                <div class="absolute left-0 bottom-0 -zaa-10 w-1/2 h-full bg-blu-sa -skew-x-1" style="transform: skewX(-0.015turn);">
-                </div>
-                <div class="w-1/2 h-full absolute top-0 left-0 bg-verde-sa -az-10 ">
-                    
-                </div>
-                
-            </div> -->
-            <div class="grid grid-cols-2">
-                <div class="writing-container relative col-span-1 py-36 pl-12 z-20 bg-verde-sa">
-                    <!-- Overtitle -->
-                    <div class="h4-sa uppercase">
-                        Diario
-                    </div>
-    
-                    <!-- Title -->
-                    <h3 class="h5-sa uppercase underline  underline-offset-8 decoration-4 overflow-visible">
-                        Le tradizioni siamo noi
-                    </h3>
-    
-                    <!-- Button -->
-                    <div class="bottone-blu mt-10 ml-1">
-                        Leggi tutto
-                    </div>
-                    <!-- skew border -->
-                    <div class="absolute right-0 bottom-0 -z-10 w-1/2 h-full bg-verde-sa -skew-x-1" >
+        <div class="pb-26 text-white bg-black">
+            <!-- Grid container -->
+            <div class="relative flex w-full">
+                <div class="writing-container inline-block flex-initial basis-3/5 py-36 pl-22 z-20 bg-verde-sa">
+                    <div class="unskew-container flex-col">
+                        <!-- Overtitle -->
+                        <div class="h4-sa mb-2 uppercase">
+                            Diario
+                        </div>
+        
+                        <!-- Title -->
+                        <h3 class="h5-sa uppercase underline underline-offset-18 decoration-4 overflow-visible">
+                            Le tradizioni siamo noi
+                        </h3>
+        
+                        <!-- Button -->
+                        <div class="bottone-blu mt-10 ml-1 mb-1">
+                            Leggi tutto
+                        </div>
                     </div>
                 </div>
     
                 <!-- Picture container -->
-                <div class="my-10 z-10">
-                    <img class="py-10 " src="<?= $config->urls->templates?>pictures/blue-hat.jpg" alt="">
+                <div class="absolute h-full z-10 items-center shrink-0 basis-2/5 right-0">
+                    <img class="py-10 h-full" src="<?= $config->urls->templates?>pictures/blue-hat.jpg" alt="">
                 </div>
             </div>
 
