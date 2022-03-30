@@ -7,7 +7,7 @@ if ($input->post->cerca) {
 }
 ?>
 <?php require 'inc/head.php' ?>
-  <body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto" >
+  <body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80" >
 
     <!-- Content wrapper -->
     <div class="overflow-hidden">
