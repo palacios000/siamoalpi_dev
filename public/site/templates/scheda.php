@@ -60,15 +60,15 @@ require 'inc/head.php'; ?>
               <!-- Tags list-->
               <div class="ml-1">
                   <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white">
-                  <?php foreach ($scheda->tags as $tag) {
-                  	echo "<li>$tag->title</li>";
+                  <?php 
+                  $urlTag = $pages->findOne("template=ricerca")->url . '?siamoAlpi[refinementList][tags][0]=';
+                  	foreach ($scheda->tags as $tag) {
+                  	echo "<li><a href='$urlTag{$tag->name}'>$tag->title</a></li>";
                   } ?>	
                   </ul>
 
-                  <a class="block w-fit" href="#">
-                      <div class="bottone-verde mt-4">
+                  <a class="block w-fit bottone-verde mt-4" href="#">
                           Scheda pdf
-                      </div>
                   </a>
               </div>
           </div>

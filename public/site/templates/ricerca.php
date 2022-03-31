@@ -34,19 +34,19 @@
 	    <!-- menu & header -->
 	    <div class="slanted-header relative bg-marrone-sa text-white h-fit ">
 	      <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/bg/siamo-alpi-head-small-1.jpg" alt="BG">
-	      <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
+	      <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5 hover:opacity-50"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
 
 	      <div class="absolute top-10 right-30 w-2/3 flex justify-end">
 	      	<div class="flex flex-col w-2/3">
 	      		
     		<div class="text-black" id="searchbox"></div>
     			
-				<ul class="py-4 text-sm text-right pr-4">
+				<ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
 					<li class="inline ">Ricerca per:</li>
-					<li class="inline"><button x-on:click="temi = ! temi" class="uppercase font-sansBold pl-3" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
-					<li class="inline uppercase font-sansBold pl-3">Anni</li>
-					<li class="inline uppercase font-sansBold pl-3">Mappa</li>
-					<li class="inline uppercase font-sansBold pl-3">Avanzata</li>
+					<li class="inline"><button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
+					<li class="inline pl-3">Anni</li>
+					<li class="inline pl-3">Mappa</li>
+					<li class="inline pl-3">Avanzata</li>
 				</ul>
 	      	</div>
 	      </div>
@@ -74,19 +74,22 @@
 	    		<div id="stats" class="text-white font-serif text-h2"></div>
 	    		<div class="text-right">
 	    			<!-- griglia 1 -->
-		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-white" x-show="solofoto" ><svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
+		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+		    		:class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
+		    		<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
 					</button>
 					<!-- griglia 2 -->
-					<button x-on:click="solofoto = ! solofoto" class="h-6 w-6 fill-verde-sa" x-show="!solofoto" ><svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
+					<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+					:class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
+					<svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
 
 					</button>
 	    		</div>
-    			<div class="flex flex-row gap-x-4">
-		    		
-		    		<div id="clear-filter" class="text-white "></div>
-		    		<div id="current-refinements" class="text-white"></div>
-	    		</div>
 
+    		</div>
+			<div class="flex flex-row gap-x-4">
+	    		<div id="clear-filter" class="text-white font-sansBold"></div>
+	    		<div id="current-refinements" class="text-white"></div>
     		</div>
 
 	        <div id="hits" class="pt-2 -mx-4 relative" >
@@ -99,7 +102,7 @@
 
 	        	
 	        </div>
-	        <div id="tags" class="text-black h-8 overflow-hidden invisible"></div>
+	        <div id="tags" class="h-8 overflow-hidden invisible"></div>
 	      </div>	      
 	    </div>
 	    </section>
@@ -165,13 +168,13 @@
 								<div class='p-2'>
 									<div class='relative boder border-8 border-black hover:border-verde-sa transition-all duration-300 '>
 										<img class='object-cover w-full' src='${item.immagine}'>
-										<div x-show='!solofoto' class='absolute w-full h-full inset-0 px-4 py-2 text-white font-bold bg-black opacity-0 hover:opacity-70 transition duration-300 '>${instantsearch.highlight({ attribute: 'titolo', hit: item })}
+										<div x-show='solofoto' class='absolute w-full h-full inset-0 px-4 py-2 text-white font-bold bg-black opacity-0 hover:opacity-70 transition duration-300 '>${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 											<span class='bottone-bianco-trasparente block absolute bottom-0 left-0 p-4 opacity-100'>Scopri</span>
 										</div>
 
 									</div>
 									<div class='max-h-36 pt-3 overflow-hidden'>
-										<h2 x-show='solofoto' class='font-bold titoloFoto text-white'>
+										<h2 x-show='!solofoto' class='titoloFoto text-white ml-2'>
 											${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 										</h2>
 
@@ -263,6 +266,56 @@
 			  `;
 			};
 
+			// Custom REFINEMENTS - https://www.algolia.com/doc/api-reference/widgets/current-refinements/js/#full-example
+
+				// Create the render function
+				const createDataAttribtues = refinement =>
+				  Object.keys(refinement)
+				    .map(key => `data-${key}="${refinement[key]}"`)
+				    .join(' ');
+
+				const renderListItem = item => `
+				  <li class='uppercase inline pl-6'>
+				    ${item.label}:
+				    <ul class='inline'>
+				      ${item.refinements
+				        .map(
+				          refinement =>
+				            `<li class='lowercase inline'>
+				              ${refinement.label} 
+				              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline mb-1 h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+				            </li>`
+				        )
+				        .join('')}
+				    </ul>
+				  </li>
+				`;
+
+				const renderCurrentRefinements = (renderOptions, isFirstRender) => {
+				  const { items, refine, widgetParams } = renderOptions;
+
+				  widgetParams.container.innerHTML = `
+				    <ul>
+				      ${items.map(renderListItem).join('')}
+				    </ul>
+				  `;
+
+				  [...widgetParams.container.querySelectorAll('button')].forEach(element => {
+				    element.addEventListener('click', event => {
+				      const item = Object.keys(event.currentTarget.dataset).reduce(
+				        (acc, key) => ({
+				          ...acc,
+				          [key]: event.currentTarget.dataset[key],
+				        }),
+				        {}
+				      );
+
+				      refine(item);
+				    });
+				  });
+				};
+
+
 		// 2. Create the custom widget
 			const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
 				renderInfiniteHits
@@ -273,6 +326,10 @@
 			);
 
 			const customStats = instantsearch.connectors.connectStats(renderStats);
+
+			const customCurrentRefinements = instantsearch.connectors.connectCurrentRefinements(
+			  renderCurrentRefinements
+			);
 
 		// 3. Instantiate the custom widget
 			search.addWidgets([
@@ -294,6 +351,10 @@
 				   container: document.querySelector('#stats'),
 				 }),
 
+				customCurrentRefinements({
+				  container: document.querySelector('#current-refinements'),
+				}),
+
 				// searchbox
 				instantsearch.widgets.searchBox({
 					container: '#searchbox',
@@ -311,27 +372,27 @@
 
 
 				// refinement -- filtra solo in base ai risultati di ricerca
-				/* per ora non mi serve */
+				/* nascosto via css */ // ?siamoAlpi[refinementList][tags][0]=montagna
 				instantsearch.widgets.refinementList({
 				  container: '#tags',
 				  attribute: 'tags',
 				}),
 
 				// https://www.algolia.com/doc/api-reference/widgets/current-refinements/js/
-				instantsearch.widgets.currentRefinements({
-				  container: '#current-refinements',
-				}),
+				// instantsearch.widgets.currentRefinements({
+				//   container: '#current-refinements',
+				// }),
 
 				
 				// https://www.algolia.com/doc/api-reference/widgets/clear-refinements/js/
 				instantsearch.widgets.clearRefinements({
 				  container: '#clear-filter',
 				  templates: {
-				      resetLabel: 'Azzera filtri',
+				      resetLabel: 'RIMUOVI FILTRI',
 				    },
 				  cssClasses: {
-				  	root: 'h-8',
-				  	// button: ['h-4', 'w-4'],
+				  	button: ['border', 'border-verde-sa', 'px-4', 'py-1', 'font-bold' ],
+				  	//button: ['h-4', 'w-4'],
 				  	disabledButton: 'invisible',
 				  }
 				}),
