@@ -1,0 +1,1 @@
+browser-sync start --directory --proxy "localhost/siamoalpi/public/scheda-new" --files "public/site/templates/*.php" "/site/templates/styles/*.css" "public/site/templates/js/*.js" --browser "chrome"   
