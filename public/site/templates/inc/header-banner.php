@@ -24,18 +24,18 @@ $blogNew = $pages->findOne("template=blog")->url;
 
     <?php if ($page->template == 'ricerca'): ?>
     <div class="absolute top-10 right-30 w-2/3 flex justify-end">
-    <div class="flex flex-col w-2/3">
-        
-        <div class="text-black" id="searchbox"></div>
-        
-        <ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
-            <li class="inline ">Ricerca per:</li>
-            <li class="inline"><button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
-            <li class="inline pl-3">Anni</li>
-            <li class="inline pl-3">Mappa</li>
-            <li class="inline pl-3">Avanzata</li>
-        </ul>
-    </div>
+        <div class="flex flex-col w-2/3">
+            
+            <div class="text-black" id="searchbox"></div>
+            
+            <ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
+                <li class="inline ">Ricerca per:</li>
+                <li class="inline"><button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
+                <li class="inline pl-3">Anni</li>
+                <li class="inline pl-3">Mappa</li>
+                <li class="inline pl-3">Avanzata</li>
+            </ul>
+        </div>
     </div>
     <?php endif ?>
 
@@ -50,17 +50,17 @@ $blogNew = $pages->findOne("template=blog")->url;
             aria-modal="true"
             x-id="['modal-title']"
             :aria-labelledby="$id('modal-title')"
-            class="fixed inset-0 overflow-y-auto"
+            class="fixed inset-0 overflow-y-auto z-30" 
         >
             <!-- Overlay -->
-            <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-blu-sa bg-opacity-70 z-20"></div>
+            <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-blu-sa bg-opacity-70 z-30"></div>
 
             <!-- Panel -->
             <!-- qui sotto le stesse impostazioni/classes del body -->
             <div
                 x-show="menu" x-transition
                 x-on:click="menu = false"
-                class="relative min-h-screen max-w-screen-xl 2xl:max-w-screen-2xl mx-auto "
+                class="relative min-h-screen max-w-screen-xl 2xl:max-w-screen-2xl mx-auto z-50"
             >
                 <div
                     x-on:click.stop

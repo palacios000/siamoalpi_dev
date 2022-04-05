@@ -7,7 +7,7 @@
     "build": "postcss tailwind.css -o ./public/site/templates/styles/main.css -w --verbose",
     "copyConfig": "cpx tailwind.config.js ./public/site/templates/js/ ",
     "prod": "NODE_ENV=production postcss tailwind.css -o ./public/site/templates/styles/main.css",
-    "browsersync": "browser-sync start --directory --proxy localhost/siamoalpi/public/home-new --files 'public/site/templates/*.php' 'public/site/templates/inc/*.php' '/site/templates/styles/*.css' 'public/site/templates/js/*.js'",
+    "browsersync": "browser-sync start --directory --proxy localhost/siamoalpi/public/ --files 'public/site/templates/*.php' 'public/site/templates/inc/*.php' '/site/templates/styles/*.css' 'public/site/templates/js/*.js'",
     "vai": "npm-run-all --parallel copyConfig build browsersync"
   },
   "author": "",
