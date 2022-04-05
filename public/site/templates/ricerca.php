@@ -1,110 +1,62 @@
-<!DOCTYPE html>
-<html lang="it">
-	<head>
-		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- <link rel="stylesheet" href="view-source:https://siamoalpi.it/site/templates/styles/main.css" /> -->
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
-
-		<link rel="shortcut icon" href="<?php echo $config->urls->templates?>pictures/favicon.png" />
-
-		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-		<!-- algolia -->
-		<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
-
-		<!-- algolia pre connect -->
-		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
-
-
-
-	</head>
-
-
+<?php require 'inc/head.php' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <!-- <div class="overflow-hidden" x-data="{ temi: false, temi_sel: false }"> 
-		sotto a "data-value="${item.value}" ho messo quanto segue per attivare temi_sel, ma non funziona,
-		dovrei forse fare una funzione
-	  	x-on:click="temi_sel = ! temi_sel"
-		-->
 	  <div class="overflow-hidden" x-data="{ temi: false }">
-	    <!-- menu & header -->
-	    <div class="slanted-header relative bg-marrone-sa text-white h-fit ">
-	      <img class="object-cover overflow-hidden w-full h-full object-cover object-cover"  src="<?= $config->urls->templates?>pictures/bg/siamo-alpi-head-small-1.jpg" alt="BG">
-	      <img class="absolute top-0 left-0 w-82 mt-5 ml-1.5 hover:opacity-50"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
-
-	      <div class="absolute top-10 right-30 w-2/3 flex justify-end">
-	      	<div class="flex flex-col w-2/3">
-	      		
-    		<div class="text-black" id="searchbox"></div>
-    			
-				<ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
-					<li class="inline ">Ricerca per:</li>
-					<li class="inline"><button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
-					<li class="inline pl-3">Anni</li>
-					<li class="inline pl-3">Mappa</li>
-					<li class="inline pl-3">Avanzata</li>
-				</ul>
-	      	</div>
-	      </div>
-
-	      <svg class="text-white block h-8 w-8 absolute top-10 right-10" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-	            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-	      </svg>
-	    </div>
+	    <!-- Slanted Header div -->
+	    <?php 
+	    //prima di chiamare il banner, assicurati di aver definito l'immagine
+	    $bannerBgImg = $config->urls->templates . 'pictures/head/siamo-alpi-head-small-1.jpg';
+	    include 'inc/header-banner.php' ?>
 
 	    <section>
 
-	    <!-- Grid hits -->
-	    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pb-32 bg-black">
-	      <!-- Content container -->
-	      <div class="mx-12 w-fit pb-16">
-	    	<!-- #algolia, temi -->
-	    	<div x-show="temi">
-	    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-			    	<h2 class="text-verde-sa mb">Temi</h2>
-			    	<div id="temiricerca" class="text-white"></div>
+		    <!-- Grid hits -->
+		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
+		      <!-- Content container -->
+		      <div class="mx-12 w-fit pb-16">
+		    	<!-- #algolia, temi -->
+		    	<div x-show="temi">
+		    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
+				    	<h2 class="text-verde-sa mb">Temi</h2>
+				    	<div id="temiricerca" class="text-white"></div>
+		    		</div>
+		    	</div>
+
+	    		<div class="grid grid-cols-2 pt-4">
+		    		<div id="stats" class="text-white font-serif text-h2"></div>
+		    		<div class="text-right">
+		    			<!-- griglia 1 -->
+			    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+			    		:class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
+			    		<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
+						</button>
+						<!-- griglia 2 -->
+						<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+						:class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
+						<svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
+
+						</button>
+		    		</div>
+
 	    		</div>
-	    	</div>
-
-    		<div class="grid grid-cols-2 pt-4">
-	    		<div id="stats" class="text-white font-serif text-h2"></div>
-	    		<div class="text-right">
-	    			<!-- griglia 1 -->
-		    		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-		    		:class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
-		    		<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
-					</button>
-					<!-- griglia 2 -->
-					<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-					:class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
-					<svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
-
-					</button>
+				<div class="flex flex-row gap-x-4">
+		    		<div id="clear-filter" class="text-white font-sansBold"></div>
+		    		<div id="current-refinements" class="text-white"></div>
 	    		</div>
 
-    		</div>
-			<div class="flex flex-row gap-x-4">
-	    		<div id="clear-filter" class="text-white font-sansBold"></div>
-	    		<div id="current-refinements" class="text-white"></div>
-    		</div>
+		        <div id="hits" class="pt-2 -mx-4 relative" >
+		        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
 
-	        <div id="hits" class="pt-2 -mx-4 relative" >
-	        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
+		        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+		        	  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+		        	</svg>
+		        	</a>
 
-	        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-	        	  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
-	        	</svg>
-	        	</a>
-
-	        	
-	        </div>
-	        <div id="tags" class="h-8 overflow-hidden invisible"></div>
-	      </div>	      
-	    </div>
+		        	
+		        </div>
+		        <div id="tags" class="h-8 overflow-hidden invisible"></div>
+		      </div>	      
+		    </div>
 	    </section>
 
 	    <!-- Footer div -->
@@ -402,43 +354,6 @@
 		search.start();
 
 	</script>
-
-	    			 <script>
-/*
-	    			 	// https://www.sitepoint.com/get-url-parameters-with-javascript/
-	    			 	function getUrlValues(){
-		    			 	let queryString = window.location.search;
-		    			 	let urlParams = new URLSearchParams(queryString);
-		    			 	let menuTema = urlParams.get('siamoAlpi[menu][insieme]');
-		    			 	let tags = urlParams.getAll('siamoAlpi[refinementList][tags][0]');
-		    			 	let tag  = tags[0];
-		    			 	// non riesco a capire che array e' il tags, riesco solo a prendere il primo [0] ...
-
-		    			 	// console.log(menuTema);
-		    			 	// console.log(tag);
-
-		    			 	let infoz = menuTema + ' - ' + tag;
-		    			 	return infoz;
-
-		    			};
-
-	    			 	window.onload = console.log(getUrlValues());
-
-						// https://phpcoder.tech/detect-url-change-in-javascript-without-refresh/
-	    			 	let lastUrl = window.location.href; 
-	    			 	new MutationObserver(() => {
-	    			 	  const url = window.location.href;
-	    			 	  if (url !== lastUrl) {
-	    			 	    lastUrl = url;
-	    			 	    console.log(getUrlValues());
-	    			 	    // getUrlValues();
-	    			 	  }
-	    			 	}).observe(document, {subtree: true, childList: true});
-	    			 	 
-
-	    			 	  */
-
-	    			 </script>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 

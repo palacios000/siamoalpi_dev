@@ -3,20 +3,10 @@
 
     <div class="overflow-hidden">
       <!-- Slanted Header div -->
-      <div class="slanted-br-m relative text-white h-fit">
-        <!-- Background image -->
-        <img class="object-cover overflow-hidden w-full h-full"  src="<?= $config->urls->templates?>pictures/blog/blog.jpg" alt="Old lady">
-        <!-- Logo -->
-        <a class="absolute top-0 left-0 w-82 mt-3 ml-1.5" href="#">
-            <img class=""  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
-        </a>
-
-
-        <!-- Menu Icon -->
-        <svg class="text-white block h-8 w-8 absolute top-8 right-12" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-        </svg>
-      </div>
+      <?php 
+      //prima di chiamare il banner, assicurati di aver definito l'immagine
+      $bannerBgImg = $config->urls->templates . 'pictures/blog/blog.jpg';
+      include 'inc/header-banner.php' ?>
 
       <!-- Main content div  -->
       <div class="slanted-tr-s relative pb-44 pt-1 bg-white z-0 before:-z-10">

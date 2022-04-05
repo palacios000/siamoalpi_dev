@@ -100,6 +100,9 @@ module.exports = {
       textDecorationThickness: {
         '2.5': '2.5px',
         3: '3px',
+      },
+      textUnderlineOffset: {
+        18 : '18px',
       }
     },
   },

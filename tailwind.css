@@ -92,5 +92,4 @@
 	.bottone-bianco-trasparente {
 	  @apply uppercase text-white w-fit text-sm font-sansBold tracking-widest underline decoration-4 underline-offset-8;
 	}
-
   }
