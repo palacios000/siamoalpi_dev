@@ -121,22 +121,68 @@ require 'inc/head.php'; ?>
           </div>
       </div>
 
-      <!-- Grid div -->
-      <div class="slanted-tr-m h-fit z-40 before:-z-10 mx-auto pt-2.5 pb-32 bg-black">
-          <!-- Content container -->
-          <div class="mx-12 w-fit pb-16">
-          <!-- Title -->
-          <div class="text-white text-left font-serif text-h2 pb-9">
-              <span class="text-verde-sa">130</span> immagini correlate
-          </div>
-          <!-- Picture masonry grid -->
-          <img class="mx-auto" src="http://via.placeholder.com/1336x400" alt="">
-          </div>
-
-          <!-- Plus icon -->
-          <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 25 25" xmlns="http://www.w3.5org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
           
-      </div>
+
+      <!--=============================
+      =            algolia more       =
+      ==============================-->
+      <div id="searchbox" class="hidden"></div>
+          <section>
+
+            <!-- Grid hits -->
+            <div x-data="{solofoto: true }" class="slanted-tr-m h-fit z-10 before:-z-10 mx-auto pt-2.5 pb-32 bg-black">
+              <!-- Content container -->
+              <div class="mx-12 w-fit pb-16">
+              <!-- #algolia, temi -->
+              <div x-show="temi">
+                <div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
+                  <h2 class="text-verde-sa mb">Temi</h2>
+                  <div id="temiricerca" class="text-white"></div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 pt-4">
+                <div id="stats" class="text-white font-serif text-h2"></div>
+                <div class="text-right">
+                  <!-- griglia 1 -->
+                  <button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+                  :class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
+                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
+                </button>
+                <!-- griglia 2 -->
+                <button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
+                :class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
+                <svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
+
+                </button>
+                </div>
+
+              </div>
+            <div class="flex flex-row gap-x-4">
+                <div id="clear-filter" class="text-white font-sansBold"></div>
+                <div id="current-refinements" class="text-white"></div>
+              </div>
+
+                <div id="hits" class="pt-2 -mx-4 relative" >
+                  <a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
+
+                  <svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                  </svg>
+                  </a>
+
+                  
+                </div>
+                <div id="tags" class="h-8 overflow-hidden invisible"></div>
+                <div id="filtro" class="h-8 overflow-hidden invisible"></div>
+              </div>        
+            </div>
+          </section>          
+      <!--====  End of algolia more  ====-->
+
+
+
+          
 
       <!-- La foto del giorno section -->
       <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 
@@ -214,6 +260,17 @@ require 'inc/head.php'; ?>
 	| **********              |          |               |
 */
  ?>
+
+ <!-- algolia search -->
+  <script>
+  // essenziale per farlo passare allo script algolia.js qui sotto
+   var filtro = {'temi': ['<?= $scheda->tema->first->title ?>']};
+  </script>
+  <script src="<?= $config->urls->templates?>js/algolia.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
+
+
 
 </body>
 </html>
