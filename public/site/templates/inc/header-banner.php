@@ -53,7 +53,7 @@ $blogNew = $pages->findOne("template=blog")->url;
             class="fixed inset-0 overflow-y-auto z-30" 
         >
             <!-- Overlay -->
-            <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-blu-sa bg-opacity-70 z-30"></div>
+            <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-40 z-30"></div>
 
             <!-- Panel -->
             <!-- qui sotto le stesse impostazioni/classes del body -->

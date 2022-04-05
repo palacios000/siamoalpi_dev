@@ -29,7 +29,7 @@ require 'inc/head.php'; ?>
 	      	echo "<a target='_blank' href='$edit' class='bottone-verde'>Modifica scheda</a>";
 	      } ?>
           <!-- Picture title -->
-          <h1 class="h2-sa uppercase ml-12 w-64 text-white">
+          <h1 class="h2-sa uppercase ml-12 w-81 text-white">
               <?= $scheda->title ?>
           </h1>
 
@@ -37,7 +37,7 @@ require 'inc/head.php'; ?>
           <div class="flex mx-12 mt-10 pb-14">
               <!-- Picture -->
               <div class="relative mr-6 mt-2 mb-1 bg-white">
-                  <img class="p-2.5" src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">
+                  <img class="p-2.5 h-[33rem]" src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">
                   <!-- Fix clickable area -->
                   <a class="absolute w-10 h-10 top-5 right-7 rounded-full" href="#">
                       <svg class="w-10 fill-verde-sa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" >    
