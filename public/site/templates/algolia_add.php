@@ -29,16 +29,13 @@
 	$selector = "template=gestionale_scheda, immagini.count>=1";
 
 	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 2593 eliminata
-	$selector .= ", stato_avanzamento=1111|1112";
+	$selector .= ", stato_avanzamento=1112";
 	if (!$page->counter->reset) {
 		// PRODUCTION
 		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; 
 		// TEMP
 		$selector .= ", (created|modified>=$page->timestamp) ";
-		// $selector .= ", limit=2 ";
 	}
-	// DEBUG only
-	// $selector .= ", limit=50 ";
 
 	// prepare il contenuto del json
 	$json = '';
@@ -173,13 +170,6 @@
 
 			$jsonBuild[] = $record;
 
-			// modifica status scheda da sync con sirbec
-				// non ne vedo il motivo...
-				// if ($scheda->sync->sirbec) {
-				// 	$scheda->of(false);
-				// 	$scheda->sync->sirbec = '';
-				// 	$scheda->save();
-				// }
 		}
 
 		$nSchedePronte = count($jsonBuild);
@@ -255,8 +245,9 @@
 		$page->counter->records = $nSchedePronte;
 		$page->save();
 
-		// e mandami un'email
 		if ($nSchedePronte) {
+			wire('log')->save('sync_algolia_add', "$nSchedePronte sinicronizzate");
+			// e mandami un'email, per ora
 			$mail = wireMail();
 			$mail->sendSingle(true);
 			$mail->to('admin@siamoalpi.it'); 
@@ -279,7 +270,7 @@
 
 	}
 
-
+echo count($schede);
 exit;
 
 

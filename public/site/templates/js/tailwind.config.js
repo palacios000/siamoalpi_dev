@@ -59,6 +59,7 @@ module.exports = {
         '30': '7.5rem',
         '34': '8.5rem',
         '46': '11.5rem',
+        '81': '21rem',
         '97': '28rem',
       },
       letterSpacing: {

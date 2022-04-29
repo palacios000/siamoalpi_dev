@@ -1,4 +1,4 @@
-<?php require "landing.php" ?>
+<?php require "blog_post.php" ?>
 <!-- 
 <?php //require "inc/head.php" ?>
 </head>

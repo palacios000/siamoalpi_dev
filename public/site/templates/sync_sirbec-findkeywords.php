@@ -1,4 +1,10 @@
 <?php 
+/**
+ *
+ * sperimental, non andato in porto
+ *
+ */
+
 // interrompi l'haversting quando Sirbec non mi da' piu' il resumption token
     if($page->counter->cicli >= 1 && !$page->codice){
         $page->of(false);

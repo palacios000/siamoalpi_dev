@@ -119,3 +119,48 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 			$event->return = $sanitizer->text($description) ;
 		}
 	});
+
+
+/**
+ *
+ * Rock migrations
+ *
+ */
+
+/** @var RockMigrations1 $rm */
+// $rm = $this->wire('modules')->get('RockMigrations');
+// $rm->migrate([
+//   'fields' => [
+//     'images_bg' => [
+//       'type' => 'image',
+//       'label' => 'Immagine header/sfondo',
+//     ],
+//   ],
+//   'templates' => [
+//     'blog_post' => [
+//       'fields' => [
+//         'tags',
+//         'title',
+//         'titleH1',
+//         'images_bg',
+//         'body',
+//         'images',
+//       ],
+//     ],
+//   ],
+// ]);
+
+// $rm = $this->wire('modules')->get('RockMigrations');
+// $rm->migrate([
+//   'templates' => [
+//     'basic-page' => [
+//       'fields' => [
+//         'title',
+//         'titleH1',
+//         'images_bg',
+//         'body',
+//         'images',
+//       ],
+//     ],
+//   ],
+// ]);

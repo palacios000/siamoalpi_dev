@@ -1,4 +1,12 @@
 <?php 
+
+/**
+ *
+ * interroga il database Sirbec, inviando il codice identificativo del catalogo (SIRBeC) presente nella scheda (codice inserito manualmente dall'operatore)
+ *
+ */
+
+
 // interrompi l'haversting quando Sirbec non mi da' piu' il resumption token
     if($page->counter->cicli >= 1 && !$page->codice){
         // mandami una notifica 

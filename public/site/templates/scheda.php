@@ -48,8 +48,21 @@ require 'inc/head.php'; ?>
                   </a>
               </div>
 
-              <!-- Tags list-->
+              <!-- Luogo + Data + Tags list-->
               <div class="ml-1">
+                  <!-- Luogo e data -->
+                  <?php if ($scheda->luogo->comune || $scheda->datazione->anno) {
+                    $quando = ($scheda->datazione->anno_fine) ? $scheda->datazione->anno . " - " . $scheda->datazione->anno_fine : $scheda->datazione->anno;
+                    $dove = ($scheda->luogo->localita) ? $scheda->luogo->localita . ", " . $scheda->luogo->comune : $scheda->luogo->comune;
+                    echo "
+                    <ul class='list-none h2-sa tracking-0 text-white pb-8'>
+                      <li>$quando</li>
+                      <li>$dove</li>
+                    </ul>                    
+                    ";
+                  } ?>
+
+
                   <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white">
                   <?php 
                   $urlTag = $pages->findOne("template=ricerca")->url . '?siamoAlpi[refinementList][tags][0]=';
@@ -58,9 +71,7 @@ require 'inc/head.php'; ?>
                   } ?>	
                   </ul>
 
-                  <a class="block w-fit bottone-verde mt-4" href="#">
-                          Scheda pdf
-                  </a>
+              
               </div>
           </div>
 
@@ -80,43 +91,39 @@ require 'inc/head.php'; ?>
                       <div class="p-sa pb-12 font-bold">
                           <?= $scheda->descrizione ?>
                       </div>
+
+                      <div class="h2-sa uppercase pb-6">
+                          Testimonianze
+                          <ul class="list-disc text-sm lowercase">
+                            <li>audio racconti...</li>
+                            <li>riprese video...</li>
+                          </ul>
+                      </div>
                   </div>
 
-                  <!-- Parametri tecnici -->
-                  <a href="#">
-                      <div class="flex w-full h-fit py-1.5 bg-grigio-blu-sa h2-sa uppercase items-center pl-3">
-                          Parametri tecnici
-                          <svg class="w-16 ml-auto stroke-1 pr-3" xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 65 65" fill-rule="evenodd" clip-rule="evenodd"><path stroke="black" d="M11 11v-11h1v11h11v1h-11v11h-1v-11h-11v-1h11z"/></svg>                        
-                      </div>
-                  </a>
+                  
               </div>
 
               <!-- Audio racconti side section -->
               <div class="basis-2/5 pl-13">
-                  <div class="h2-sa uppercase tracking-0">
-                      Audio racconti
-                  </div> 
-                  <div>
-                      <div class="w-[360px] h-[65px] rounded-full bg-gray-300/30 mt-9">
-                      </div>
-                      <div class="p-sa pt-3">
-                          il ricordo di <span class="font-black">Andrea Sutti</span>
-                      </div>
+                  <?php if ($scheda->autore) {
+                    echo "
+                    <div class='mb-6'>
+                      <p class='text-sm font-sansBold uppercase'>Autore</p>
+                      <p class=''>$scheda->autore</p>
+                    </div>
+                    ";
+                  } ?>
+                  <div class='mb-6'>
+                    <p class='text-sm font-sansBold uppercase'>Archivio</p>
+                    <p class=''><?= $scheda->parent->title ?></p>
                   </div>
-                  <div>
-                      <div class="w-[360px] h-[65px] rounded-full bg-gray-300/30 mt-9">
-                      </div>
-                      <div class="p-sa pt-3">
-                          il ricordo di <span class="font-black">Andrea Sutti</span>
-                      </div>
-                  </div>
-                  <div>
-                      <div class="w-[360px] h-[65px] rounded-full bg-gray-300/30 mt-9">
-                      </div>
-                      <div class="p-sa pt-3">
-                          il ricordo di <span class="font-black">Andrea Sutti</span>
-                      </div>
-                  </div>
+
+
+
+                  <a class="block w-fit bottone-verde mt-4" href="#">
+                      Scheda pdf
+                  </a>
               </div>
           </div>
       </div>

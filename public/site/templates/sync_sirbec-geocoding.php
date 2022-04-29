@@ -1,31 +1,39 @@
 <?php 
-/** Aggiorna le coordinate delle schede interrogando Google Maps
+/**
+ *
+ * Aggiorna le coordinate delle schede interrogando Google Maps
  * info qui: https://developers.google.com/maps/documentation/geocoding/requests-geocoding?hl=it#json
- *  
- * 
- * */
+ *
+ * stato_avanzamento schede: 1109 in lavorazion, 1111 approvata, 1112 esportata, 
+ */
 
 
 if (!$page->counter->stop) {  
 
     // creata apposita chiave per accedere via cronjob/server (limitata da IP)
-    $key = $keyGmapsGeolocation; // spostao in config.php
+    $key = $page->codice; 
     $googleUrl = "https://maps.googleapis.com/maps/api/geocode/";
    
     // cerca le schede
-    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1112, sync.sirbec=1, sync.geocoding!=1, sync.map_desync!=1, limit=15 ");
+    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1112, luogo.comune!='', sync.geocoding!=1, sync.map_desync!=1, limit=15");
     if (count($schede)) {
-        //echo "schede: " . count($schede);
+
+        $idSchede = '';
+        $nSchede = 0;
         foreach ($schede as $scheda) {
+
             // prendi la localita'
             $indirizzo = '';
             if ($scheda->luogo->localita) {
                 $indirizzo .= $scheda->luogo->localita . ", " ; 
-            }elseif ($scheda->luogo->comune) {
+            }
+            if ($scheda->luogo->comune) {
                 $indirizzo .= $scheda->luogo->comune . ", "; 
             }
             if ($indirizzo) {
-                $indirizzo .= " SO, Italia";
+
+
+                $indirizzo .= "SO, Italia";
                 $indirizzo = urlencode($indirizzo);
 
                 //star query
@@ -54,6 +62,10 @@ if (!$page->counter->stop) {
                         $scheda->sync->geocoding = 1;
                         $scheda->save('sync');
                         $scheda->of(true);
+
+                        //notifica
+                        $idSchede .= 'id:' . $scheda->id . ', ';
+                        $nSchede++;
                     }
                 }
             }
@@ -63,13 +75,11 @@ if (!$page->counter->stop) {
             sleep(1); 
         }
 
-    }else{
-        echo "nessuna scheda trovata <br>";
+        $messaggio .= "Aggiornato il geo tag di $nSchede schede SA: $idSchede";
+        wire('log')->save('sync_sirbec-geocoding', $messaggio);
+
     }
-}else{
-    echo "ricerca interrotta";
 }
-die()
 /* 
  # guida ####################################################################
  

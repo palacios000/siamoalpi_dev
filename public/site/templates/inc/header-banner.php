@@ -2,7 +2,8 @@
 // da sostituire poi
 $homeNew = $pages->findOne("template=home-new")->url;
 $archivioNew = $pages->findOne("template=ricerca")->url;
-$blogNew = $pages->findOne("template=blog")->url;
+$blogNew = $pages->findOne("template=blog_post")->url;
+$progettoNew = $pages->get(3299)->url;
 ?>
 
 <div x-data="{ menu: false }" class="slanted-br-m relative text-white h-fit">
@@ -70,9 +71,15 @@ $blogNew = $pages->findOne("template=blog")->url;
                     <ul class="text-right text-white h3-sa uppercase">
 
                         <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Home</a></li>
-                        <li class="my-2"><a href="" class="bg-blu-sa py-3 pl-3 pr-6 ">(Progetto)</a></li>
+                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Progetto</a></li>
                         <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
                         <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Diario</a></li>
+
+                        <?php if ($page->editable()) {
+                            echo '
+                            <li class="my-2"><a href="'. $page->editUrl .'" class="bg-verde-sa py-3 pl-3 pr-6 ">Edit</a></li>
+                            ';
+                        } ?>
                     </ul>
                 </div>
             </div>

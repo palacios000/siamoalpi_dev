@@ -1,5 +1,33 @@
-/* *** modifiche ed aggiunte da apportare a tailwind *** */
-/* questo file viene importato da tailwind.css, che si trova nel root del progetto */
+/* titoli - testi */
+    .h1-sa {
+      @apply text-h1 leading-tightest-sa tracking-04 font-serif;
+    }
+    .h2-sa {
+      @apply text-h2 leading-tight-sa tracking-04 font-serif;
+    }
+    .h3-sa {
+      @apply text-h3 leading-snug-sa tracking-01 font-serif;
+    }
+    .h4-sa {
+      @apply text-h4 leading-relaxed-sa tracking-02 font-serif;
+    }
+    .h5-sa {
+      @apply text-h5 leading-loose-sa tracking-tight font-serif;
+    }
+
+
+/* bottoni */
+
+    .bottone-verde {
+      @apply uppercase text-white bg-verde-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-blu-sa transition;
+    }
+    .bottone-blu {
+      @apply uppercase text-white bg-blu-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-verde-sa transition;
+    }
+    .bottone-bianco-trasparente {
+      @apply uppercase text-white w-fit text-sm font-sansBold tracking-widest underline decoration-4 underline-offset-8;
+    }
+
 
 /* ALGOLIA */
     /* mansory uk-kit classes per #hits */
@@ -21,7 +49,7 @@
       visibility: hidden;
     }
 
-/* Scheda-new start*/
+/* Scheda start*/
 
     .list-hash {
         /* list-style-type: '#'; */
@@ -32,4 +60,30 @@
         padding-right: 0.4rem;
     }
 
-/* Scheda-new end */
+
+
+/* article blog -- formatta il p di CKEditor  */
+    
+    article p img{
+        @apply mt-18 mb-14;
+    }
+
+    img.align_center,
+    figure.align_center{
+        @apply text-center;
+        @apply mt-18 mb-14;
+        img {
+            @apply block text-center mx-auto;
+        }
+        figcaption{
+            @apply block mt-7;
+        }
+    }
+
+    article cite{
+        @apply block h2-sa text-center mt-8 pb-14 font-serif;
+    }
+
+    
+
+    
