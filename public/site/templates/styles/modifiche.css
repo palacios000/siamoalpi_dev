@@ -49,6 +49,66 @@
       visibility: hidden;
     }
 
+    /* filtri a scomparsa */
+    /*    section#filtriAlg div.filtro:not(:first-child){
+            padding-top: 30px;
+        }*/
+
+    /* slider */
+        .rheostat-background{
+            height: 5px;
+            background-color: white;
+        }
+        .rheostat-progress{
+            height: 5px;
+            position: absolute;
+            top: 0px;
+            @apply bg-verde-sa;
+        }
+        .rheostat-handle{
+            position: relative;
+            z-index: 1;
+            width: 24px;
+            height: 24px;
+            background-color: black;
+            /*border: 2px solid #333;*/
+            border: 3px solid;
+            @apply border-verde-sa;
+            border-radius: 50%;
+            cursor: -webkit-grab;
+            cursor: grab;
+        }
+        .ais-RangeSlider .rheostat-handle {
+            margin-left: -12px;
+            top: -7px;
+        }
+        /*righe righello*/
+        .rheostat-marker {
+            margin-left: -1px;
+            position: absolute;
+            width: 1px;
+            height: 8px;
+            background-color: white;
+        }
+        /*data inzio fine*/
+        .rheostat-value{
+            color: white;
+            margin-left: -22px;
+            margin-top: 20px;
+            @apply text-sm text-verde-sa;
+        }
+        /*data sul pallino*/
+        .rheostat-tooltip{
+            margin-top: -40px;
+            margin-left: -12px;
+            color: white;
+            @apply text-sm;
+            
+        }
+        div.rheostat > div.rheostat-marker.rheostat-marker-horizontal.rheostat-marker-large:nth-of-type(2) .rheostat-value{
+            color: black;
+        }
+
 /* Scheda start*/
 
     .list-hash {

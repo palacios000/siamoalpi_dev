@@ -298,6 +298,18 @@ const search = instantsearch({
 		  }
 		}),
 
+		// slider
+		instantsearch.widgets.rangeSlider({
+		  container: '#datazione',
+		  attribute: 'datazione',
+		  min: 1860,
+		  max: 2022,
+		  pips: true,
+		  tooltips: true,
+		  step: 5
+		})
+
+
 	]);
 
 search.start();

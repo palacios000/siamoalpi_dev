@@ -1,28 +1,36 @@
 <?php require 'inc/head.php' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: false }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
 	    $bannerBgImg = $page->images_bg->first->url;
-	    include 'inc/header-banner.php' ?>
+	    include 'inc/header-banner_dev.php' ?>
 
 	    <section>
 
-		    <!-- Grid hits -->
+		    <!-- ALGOLIA -->
 		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
-		      <!-- Content container -->
-		      <div class="mx-12 w-fit pb-16">
-		    	<!-- #algolia, temi -->
-		    	<div x-show="temi">
-		    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-				    	<h2 class="text-verde-sa mb">Temi</h2>
-				    	<div id="temiricerca" class="text-white"></div>
-		    		</div>
-		    	</div>
+		      <div class="px-12 w-full pb-16">
+		    	<!-- #algolia -->
+		    	<section id="filtriAlg">		    		
+			    	<div x-show="temi" class="w-full py-4">
+			    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
+					    	<h2 class="text-verde-sa mb">Temi</h2>
+					    	<div id="temiricerca" class="text-white"></div>
+			    		</div>
+			    	</div>
+			    	<div x-show="anni" class="w-full py-4 px-16">
+			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
+					    	<h2 class="text-verde-sa mb-8">Anni</h2>
+					    	<div id="datazione" class="h-16 "></div>
+			    		</div>
+			    	</div>
+			    </section>
 
-	    		<div class="grid grid-cols-2 pt-4">
+
+	    		<div class="grid grid-cols-2 pt-4 w-full">
 		    		<div id="stats" class="text-white font-serif text-h2"></div>
 		    		<div class="text-right">
 		    			<!-- griglia 1 -->
@@ -37,23 +45,22 @@
 
 						</button>
 		    		</div>
-
 	    		</div>
-				<div class="flex flex-row gap-x-4">
+
+				<div class="flex flex-row gap-x-4 w-full">
 		    		<div id="clear-filter" class="text-white font-sansBold"></div>
 		    		<div id="current-refinements" class="text-white"></div>
 	    		</div>
 
-		        <div id="hits" class="pt-2 -mx-4 relative" >
+		        <div id="hits" class="pt-2 -mx-4 relative w-full" >
 		        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
 
 		        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
 		        	  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
 		        	</svg>
 		        	</a>
-
-		        	
 		        </div>
+
 		        <div id="tags" class="h-8 overflow-hidden invisible"></div>
 		        <div id="filtro" class="h-8 overflow-hidden invisible"></div>
 		      </div>	      
@@ -71,7 +78,7 @@
 	// essenziale per farlo passare allo script algolia.js qui sotto
 	 var filtro = {};
 	</script>
-	<script src="<?= $config->urls->templates?>js/algolia.js"></script>
+	<script src="<?= $config->urls->templates?>js/algolia_dev.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 

@@ -117,6 +117,72 @@
     button.next-button[disabled]{
       visibility: hidden;
     }
+    /* filtri a scomparsa */
+    /*    section#filtriAlg div.filtro:not(:first-child){
+            padding-top: 30px;
+        }*/
+    /* slider */
+    .rheostat-background{
+            height: 5px;
+            background-color: white;
+        }
+    .rheostat-progress{
+            height: 5px;
+            position: absolute;
+            top: 0px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(14 155 126 / var(--tw-bg-opacity));
+        }
+    .rheostat-handle{
+            position: relative;
+            z-index: 1;
+            width: 24px;
+            height: 24px;
+            background-color: black;
+            /*border: 2px solid #333;*/
+            border: 3px solid;
+            --tw-border-opacity: 1;
+            border-color: rgb(14 155 126 / var(--tw-border-opacity));
+            border-radius: 50%;
+            cursor: -webkit-grab;
+            cursor: grab;
+        }
+    .ais-RangeSlider .rheostat-handle {
+            margin-left: -12px;
+            top: -7px;
+        }
+    /*righe righello*/
+    .rheostat-marker {
+            margin-left: -1px;
+            position: absolute;
+            width: 1px;
+            height: 8px;
+            background-color: white;
+        }
+    /*data inzio fine*/
+    .rheostat-value{
+            color: white;
+            margin-left: -22px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.25rem;
+            letter-spacing: 0.01em;
+            --tw-text-opacity: 1;
+            color: rgb(14 155 126 / var(--tw-text-opacity));
+        }
+    /*data sul pallino*/
+    .rheostat-tooltip{
+            margin-top: -40px;
+            margin-left: -12px;
+            color: white;
+            font-size: 18px;
+            line-height: 1.25rem;
+            letter-spacing: 0.01em;
+            
+        }
+    div.rheostat > div.rheostat-marker.rheostat-marker-horizontal.rheostat-marker-large:nth-of-type(2) .rheostat-value{
+            color: black;
+        }
     /* Scheda start*/
     .list-hash {
         /* list-style-type: '#'; */
@@ -1108,11 +1174,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     .mb-8 {
       margin-bottom: 2rem;
 }
-    .mb-0 {
-      margin-bottom: 0px;
-}
     .mb-14 {
       margin-bottom: 3.5rem;
+}
+    .mb-0 {
+      margin-bottom: 0px;
 }
     .mr-6 {
       margin-right: 1.5rem;
@@ -1588,17 +1654,13 @@ Ensure the default browser behavior of the `hidden` attribute.
       padding-left: 4rem;
       padding-right: 4rem;
 }
-    .px-8 {
-      padding-left: 2rem;
-      padding-right: 2rem;
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
 }
     .px-10 {
       padding-left: 2.5rem;
       padding-right: 2.5rem;
-}
-    .py-4 {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
 }
     .py-3 {
       padding-top: 0.75rem;
@@ -1699,9 +1761,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .pb-3 {
       padding-bottom: 0.75rem;
 }
-    .pt-52 {
-      padding-top: 13rem;
-}
     .pb-8 {
       padding-bottom: 2rem;
 }
@@ -1788,6 +1847,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .pr-32 {
       padding-right: 8rem;
+}
+    .pt-52 {
+      padding-top: 13rem;
 }
     .pl-30 {
       padding-left: 7.5rem;
@@ -2043,14 +2105,14 @@ Ensure the default browser behavior of the `hidden` attribute.
       .md\:hidden {
             display: none;
       }
+      .md\:h-97 {
+            height: 28rem;
+      }
       .md\:h-auto {
             height: auto;
       }
       .md\:h-0 {
             height: 0px;
-      }
-      .md\:h-97 {
-            height: 28rem;
       }
       .md\:w-1\/5 {
             width: 20%;
