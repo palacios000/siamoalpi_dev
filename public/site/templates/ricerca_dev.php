@@ -76,6 +76,7 @@
 <!-- algolia search -->
 	<script>
 	// essenziale per farlo passare allo script algolia.js qui sotto
+	// qui vuoto, ma utile pe la pagina Scheda
 	 var filtro = {};
 	</script>
 	<script src="<?= $config->urls->templates?>js/algolia_dev.js"></script>
