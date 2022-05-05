@@ -1323,6 +1323,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     .h-56 {
       height: 14rem;
 }
+    .h-32 {
+      height: 8rem;
+}
     .max-h-36 {
       max-height: 9rem;
 }

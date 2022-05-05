@@ -1,7 +1,12 @@
-
 /* todo 
 random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
  */
+
+// window.maps = new google.maps.Map(document.getElementById('maps'), {
+//   center: {lat: 24.397, lng: 45.644},
+//   zoom: 8
+// });
+
 
 
 
@@ -12,10 +17,10 @@ const search = instantsearch({
 	searchClient,
 	routing: true,
 	initialUiState: {
-	    siamoAlpi: {
-	      refinementList: filtro
-	    }
-	  }
+		siamoAlpi: {
+	    	refinementList: filtro
+		}
+	}
 });
 
 
@@ -210,7 +215,6 @@ const search = instantsearch({
 		  });
 		};
 
-
 // 2. Create the custom widget
 	const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
 		renderInfiniteHits
@@ -307,10 +311,34 @@ const search = instantsearch({
 		  pips: true,
 		  tooltips: true,
 		  step: 5
-		})
+		}),
+
+		// maps
+		// non va https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/geo-search/js/
+
+		/*instantsearch.widgets.geoSearch({
+		  container: '#maps',
+		  googleReference: window.google,
+		  // Optional parameters
+		  // initialZoom: number,
+		  initialPosition: {
+		      lat: 48.864716,
+		      lng: 2.349014,
+		    },
+		  // mapOptions: object,
+		  // builtInMarker: object,
+		  // customHTMLMarker: object,
+		  // enableRefine: boolean,
+		  // enableClearMapRefinement: boolean,
+		  // enableRefineControl: boolean,
+		  // enableRefineOnMapMove: boolean,
+		  // templates: object,
+		  // cssClasses: object,
+		}),*/
 
 
 	]);
 
 search.start();
+
 

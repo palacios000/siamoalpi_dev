@@ -34,8 +34,10 @@ include 'defaultPages.php';
                 <li class="inline pl-3">
                     <button x-on:click="anni = ! anni" class="uppercase" :class="anni ? 'underline underline-offset-4' : ''">Anni</button>
                 </li>
-                <li class="inline pl-3">Mappa</li>
-                <li class="inline pl-3">Avanzata</li>
+                <li class="inline pl-3">
+                    <button x-on:click="mappa = ! mappa" class="uppercase" :class="mappa ? 'underline underline-offset-4' : ''">Mappa</button>
+                </li>
+                <!-- <li class="inline pl-3">Avanzata</li> -->
             </ul>
         </div>
     </div>

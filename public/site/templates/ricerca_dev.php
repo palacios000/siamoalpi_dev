@@ -1,7 +1,7 @@
 <?php require 'inc/head.php' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false, anni: false }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: false, mappa: false }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
@@ -25,6 +25,12 @@
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Anni</h2>
 					    	<div id="datazione" class="h-16 "></div>
+			    		</div>
+			    	</div>
+			    	<div x-show="mappa" class="w-full py-4 px-16">
+			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
+					    	<h2 class="text-verde-sa mb-8">Mappa</h2>
+					    	<div id="maps" class="h-32 bg-white"></div>
 			    		</div>
 			    	</div>
 			    </section>
@@ -74,12 +80,19 @@
 
 
 <!-- algolia search -->
+<script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8NRgU3QkGixpNGZ3xxsmQa757f_6dwMY">
+</script>
+
+<!-- <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8NRgU3QkGixpNGZ3xxsmQa757f_6dwMY">
+</script> -->
 	<script>
 	// essenziale per farlo passare allo script algolia.js qui sotto
 	// qui vuoto, ma utile pe la pagina Scheda
 	 var filtro = {};
 	</script>
-	<script src="<?= $config->urls->templates?>js/algolia_dev.js"></script>
+	<script type="module" src="<?= $config->urls->templates?>js/algolia_dev.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 

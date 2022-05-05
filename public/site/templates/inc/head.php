@@ -23,4 +23,7 @@
 		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
 		<?php } ?>
 
+
+		
+
 	</head>
