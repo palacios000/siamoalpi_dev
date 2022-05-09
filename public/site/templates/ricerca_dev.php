@@ -81,12 +81,9 @@
 
 <!-- algolia search -->
 <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8NRgU3QkGixpNGZ3xxsmQa757f_6dwMY">
+    src="https://maps.googleapis.com/maps/api/js?key=">
 </script>
 
-<!-- <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8NRgU3QkGixpNGZ3xxsmQa757f_6dwMY">
-</script> -->
 	<script>
 	// essenziale per farlo passare allo script algolia.js qui sotto
 	// qui vuoto, ma utile pe la pagina Scheda
