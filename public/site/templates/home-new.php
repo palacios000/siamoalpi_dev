@@ -53,7 +53,9 @@ if ($input->post->cerca) {
             </div>
         </div>
 
-        <!-- Album tematici section -->
+        <!--============================================
+        =            Album tematici section            =
+        =============================================-->
         <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
             <!-- Title -->
             <h2 class="h3-sa uppercase text-center">
@@ -102,7 +104,9 @@ if ($input->post->cerca) {
             </div>
         </div>
 
-        <!-- Split banner section -->
+        <!--============================
+        =            Diario            =
+        =============================-->
         <div class="pb-26 text-white bg-black">
             <!-- Grid container -->
             <div class="relative flex w-full">
@@ -130,63 +134,51 @@ if ($input->post->cerca) {
                     <img class="py-10 h-full" src="<?= $config->urls->templates?>pictures/blue-hat.jpg" alt="">
                 </div>
             </div>
-
         </div>
 
-        <!-- La foto del giorno section -->
+        <!--========================================
+        =            La foto del giorno            =
+        =========================================-->
+        <?php 
+        // da capire se serve anche nelle altre pagine e gestione cache
+        $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
+
+        if($fotoGiorno->id){ 
+            $fotoImg = $fotoGiorno->immagini->first->width(737);
+            $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
+
         <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 
-            <!-- Content container -->
             <div class="flex w-full px-16 ">
-                <!-- Lefthand side content -->
+                <!-- Content -->
                 <div class="w-1/3 mr-16">
                     <!-- Title -->
-                    <h3 class="h4-sa uppercase mb-10">
-                        La foto <br> del giorno
-                    </h3>
-
-                    <!-- Subtitle -->
-                    <h4 class="h3-sa">
-                        Il pellegrinaggio alla chiesa di Bianzone
-                    </h4>
+                    <h3 class="h4-sa uppercase mb-10">La foto <br> del giorno</h3>
+                    <h4 class="h3-sa"><?= $fotoGiorno->title ?></h4>
         
                     <!-- Separator -->
                     <span class="border-t-2 inline-block border-white w-8 h-1"></span>
         
                     <!-- Info grid -->
                     <div class="flex gap-1 p-sa mb-8 w-fit ">
-                        <!-- Qui aggiustare il separatore | -->
-                        <!-- Date -->
-                        <div class="">
-                            1970 |
-                        </div>
-                        <!-- text -->
-                        <div class="">
-                            montagna |
-                        </div>
-                        <div class="">
-                            alpi |
-                        </div>
-                        <div class="">
-                            alberi
-                        </div>
+                        <ul class="fotoGiornoTags flex flex-row gap-4">
+                        <?php foreach ($fotoGiorno->tags as $tag) {
+                            echo "<li class='inline'>$tag->title</li>"; 
+                        } ?>
+                        </ul>
                     </div>
                     
                     <!-- Button -->
-                    <a href="">
-                        <div class="bottone-verde">
-                            Sfoglia
-                        </div>
-                    </a>
+                    <a class="bottone-verde" href="<?= $fotoGiornoUrl ?>">Sfoglia</a>
                 </div>
-                <!-- Righthand content -->
+                <!-- Foto -->
                 <div class="bg-white p-3">
-                    <img src="<?= $config->urls->templates?>pictures/foto-del-giorno.jpg" alt="">
+                    <img src="<?= $fotoImg->url ?>" alt="<?= $fotoGiorno->title ?>">
                 </div>
             </div>
             <!-- Background image -->
-            <!-- Needs to be centered vertically? -->
-            <img class="absolute bottom-0 items-center w-full -z-10" src="<?= $config->urls->templates?>pictures/foto-del-giorno.jpg" alt="">
+            <img class="absolute bottom-0 items-center w-full blur-xs -z-10" src="<?= $fotoImg->url ?>" alt="Foto del Giorno">
         </div>
+        <?php } ?>
 
         <?php require 'inc/footer.php' ?>
 

@@ -1,3 +1,4 @@
+
 /* titoli - testi */
     .h1-sa {
       @apply text-h1 leading-tightest-sa tracking-04 font-serif;
@@ -15,9 +16,7 @@
       @apply text-h5 leading-loose-sa tracking-tight font-serif;
     }
 
-
 /* bottoni */
-
     .bottone-verde {
       @apply uppercase text-white bg-verde-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-blu-sa transition;
     }
@@ -27,6 +26,19 @@
     .bottone-bianco-trasparente {
       @apply uppercase text-white w-fit text-sm font-sansBold tracking-widest underline decoration-4 underline-offset-8;
     }
+
+/* homepage */
+    
+    ul.fotoGiornoTags > li{
+        position: relative;
+        }
+    ul.fotoGiornoTags > li:not(:last-child)::after{
+        content: '|';
+        position: absolute;
+        right: -12px;
+    }
+
+
 
 
 /* ALGOLIA */
@@ -124,8 +136,6 @@
         content: '#';
         padding-right: 0.4rem;
     }
-
-
 
 /* article blog -- formatta il p di CKEditor  */
     

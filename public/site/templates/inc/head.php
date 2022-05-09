@@ -23,6 +23,8 @@
 		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
 		<?php } ?>
 
+		<!-- tailwind debug -->
+		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
 		
 

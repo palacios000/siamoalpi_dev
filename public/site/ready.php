@@ -1,26 +1,32 @@
 <?php 
-// redirect users after logout to login-register page
-if(!$user->isLoggedin() && $input->get('loggedout')) {
-	$session->removeNotices();
-	$session->redirect($config->urls->root . 'registrazione'); 
-}
-
-// replace PW login form with login-register.php page
-/*$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
-	$session = $this->wire('session');
-	$config = $this->wire('config');
-	$input = $this->wire('input');
-	// inserisco la regola del get, altrimenti non mi funziona in localhost
-	// non va
-	// if (!isset($input->get->localhost)) {
+/**
+ *
+ * LOGIN 
+ * 
+ */
+	// redirect users after logout to login-register page
+	if(!$user->isLoggedin() && $input->get('loggedout')) {
+		$session->removeNotices();
 		$session->redirect($config->urls->root . 'registrazione'); 
-	// }
-});
-*/
+	}
+
+	// replace PW login form with login-register.php page
+	// !!! only for live server!!!
+	$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
+		$session = $this->wire('session');
+		$config = $this->wire('config');
+		$input = $this->wire('input');
+		$session->redirect($config->urls->root . 'registrazione'); 
+	});
 
 
+/**
+ *
+ * Gestionale Siamo Alpi
+ *
+ */
 
-/* gestionale =========================== */
+
 
 	/* backend - seleziona il tema della ricerca antropologia in base alla posizione in cui si trova la pagina. 
 	Riferimento al template "gestionale_scheda". Hook suggerito durante l'impostazione del campo pageReference "tema" del template "gestionale_tema" */
@@ -33,9 +39,7 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 	});
 
 
-
 	/* Soluzione per controllare gli eventi da generare in caso che un catalogatore salvi/modifichi pagine appartenenti ad un gruppo di lavoro a cui non appartiene'. */   
-
 
 	$wire->addHookAfter('Pages::saveReady', function($event) {
 
@@ -75,9 +79,14 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 	  	}
 
 	  }
+
+
+	  // riordina tags per Gloria e Maria
+	  if($page->template == 'gestionale_scheda') {
+	      // Sort the Page Reference field by title
+	      $page->tags->sort('name') ;
+	  }
   	});
-
-
 
 
 	/* cambia titolo colonne di listerPro -- non funziona  */
@@ -87,11 +96,17 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 	//   $field->label = "Some Very Different Title";
 	// });
 
-/* gestionale =========================== END */
 
-// SeoMaestro ### 
-	// Add the brand name after the title. 
-	// https://github.com/wanze/SeoMaestro#___renderseodatavalue
+
+
+/**
+ *
+ * SEO Maestro
+ * Add the brand name after the title. 
+ * https://github.com/wanze/SeoMaestro#___renderseodatavalue
+ *
+ */
+
 	$wire->addHookAfter('SeoMaestro::renderSeoDataValue', function (HookEvent $event) {
 		$sanitizer = $this->wire('sanitizer');
 
@@ -120,3 +135,58 @@ if(!$user->isLoggedin() && $input->get('loggedout')) {
 		}
 	});
 
+
+/**
+ *
+ * Rock migrations
+ *
+ */
+
+	/** @var RockMigrations1 $rm */
+	// $rm = $this->wire('modules')->get('RockMigrations');
+	// $rm->migrate([
+	//   'fields' => [
+	//     'images_bg' => [
+	//       'type' => 'image',
+	//       'label' => 'Immagine header/sfondo',
+	//     ],
+	//   ],
+	//   'templates' => [
+	//     'blog_post' => [
+	//       'fields' => [
+	//         'tags',
+	//         'title',
+	//         'titleH1',
+	//         'images_bg',
+	//         'body',
+	//         'images',
+	//       ],
+	//     ],
+	//   ],
+	// ]);
+
+	// $rm = $this->wire('modules')->get('RockMigrations');
+	// $rm->migrate([
+	//   'templates' => [
+	//     'basic-page' => [
+	//       'fields' => [
+	//         'title',
+	//         'titleH1',
+	//         'images_bg',
+	//         'body',
+	//         'images',
+	//       ],
+	//     ],
+	//   ],
+	// ]);
+
+
+/**
+ *
+ * PAGINE DEFAULT
+ * 1. Foto del giorno
+ *
+ */
+	// 1
+	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 2593 eliminata
+	
