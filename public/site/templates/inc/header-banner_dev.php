@@ -54,7 +54,7 @@ include 'defaultPages.php';
             aria-modal="true"
             x-id="['modal-title']"
             :aria-labelledby="$id('modal-title')"
-            class="fixed inset-0 overflow-y-auto z-30" 
+            class="fixed inset-0 overflow-y-auto z-30 h-screen pb-1" 
         >
             <!-- Overlay -->
             <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-40 z-30"></div>
@@ -73,10 +73,10 @@ include 'defaultPages.php';
                 >
                     <ul class="text-right text-white h3-sa uppercase">
 
-                        <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Home</a></li>
-                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Progetto</a></li>
-                        <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
-                        <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Diario</a></li>
+                        <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Home</a></li>
+                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Progetto</a></li>
+                        <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
+                        <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Diario</a></li>
 
                         <?php if ($page->editable()) {
                             echo '

@@ -22,7 +22,7 @@
       @apply uppercase text-white bg-verde-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-blu-sa transition;
     }
     .bottone-blu {
-      @apply uppercase text-white bg-blu-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-verde-sa transition;
+      @apply uppercase text-white bg-blu-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-verde-sa-600 transition;
     }
     .bottone-bianco-trasparente {
       @apply uppercase text-white w-fit text-sm font-sansBold tracking-widest underline decoration-4 underline-offset-8;
@@ -108,6 +108,11 @@
         div.rheostat > div.rheostat-marker.rheostat-marker-horizontal.rheostat-marker-large:nth-of-type(2) .rheostat-value{
             color: black;
         }
+
+    /* bottone torna su */
+    #tornasu svg:not(:first-child){
+        display: none;
+    }
 
 /* Scheda start*/
 

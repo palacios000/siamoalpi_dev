@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
 
     	<!-- da sostituire in production START -->
-    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     	<script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     	<!-- da sostituire in production END -->
