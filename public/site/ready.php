@@ -12,12 +12,12 @@
 
 	// replace PW login form with login-register.php page
 	// !!! only for live server!!!
-	$wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
-		$session = $this->wire('session');
-		$config = $this->wire('config');
-		$input = $this->wire('input');
-		$session->redirect($config->urls->root . 'registrazione'); 
-	});
+	// $wire->addHookBefore('ProcessLogin::buildLoginForm', function (HookEvent $event) {
+	// 	$session = $this->wire('session');
+	// 	$config = $this->wire('config');
+	// 	$input = $this->wire('input');
+	// 	$session->redirect($config->urls->root . 'registrazione'); 
+	// });
 
 
 /**

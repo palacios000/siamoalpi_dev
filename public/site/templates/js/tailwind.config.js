@@ -104,7 +104,10 @@ module.exports = {
       },
       textUnderlineOffset: {
         18 : '18px',
-      }
+      },
+      blur: {
+        xs: '1px',
+      },
     },
   },
   plugins: [ 

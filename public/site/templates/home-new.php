@@ -56,6 +56,9 @@ if ($input->post->cerca) {
         <!--============================================
         =            Album tematici section            =
         =============================================-->
+        <?php 
+        $homeTags = $pages->find("template=gestionale_variabili, parent=1092, selezione=1, images_bg.count>=1");
+        if (count($homeTags)) { ?>
         <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
             <!-- Title -->
             <h2 class="h3-sa uppercase text-center">
@@ -63,46 +66,32 @@ if ($input->post->cerca) {
             </h2>
 
             <!-- Grid section with cards -->
-            <div class="grid grid-cols-3 gap-x-0 mt-14 mb-9 mx-4">
-                <!-- Card 1 -->
-                <div class="mx-auto">
-                    <!-- Clickable picture -->
-                    <a href="#">
-                        <img class="mb-4" src="http://via.placeholder.com/385x385" alt="">
-                    </a>
-                    <!-- Tag -->
-                    <a class="h1-sa uppercase" href="">
-                        # ANNI 1970
-                    </a>
+            <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
+                <div class="swiper-wrapper grid grid-cols-3 gap-x-0 pb-18">
+                    <?php 
+                    foreach ($homeTags as $homeTag) { ?>
+                    <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
+                        <div class="mx-auto block" href="#">
+                            <div class="w-73 h-73 mb-4">
+                                <a class="cursor-col-resize">
+                                    
+                                <img class=" swiper-lazy" 
+                                data-src="<?= $homeTag->images_bg->first->size(385,385)->url ?>" alt="<?= $homeTag->title ?>">
+                                </a>
+                            </div>
+                            <a class="h1-sa uppercase mx-auto block text-center hover:underline" href="">
+                                # <?= $homeTag->title ?>
+                            </a>
+                        </div>
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+                    <?php } ?>
                 </div>
-                <!-- Card 2 -->
-                <div class="mx-auto">
-                    <!-- Clickable picture -->
-                    <a href="#">
-                        <img class="mb-4" src="http://via.placeholder.com/385x385" alt="">
-                    </a>
-                    <!-- Tag -->
-                    <a class="h1-sa uppercase" href="#">
-                        # SPORT INVERNALI
-                    </a>
-                </div>
-                <!-- Card 3 -->
-                <div class="mx-auto">
-                    <!-- Clickable picture -->
-                    <a href="#">
-                        <img class="mb-4" src="http://via.placeholder.com/385x385" alt="">
-                    </a>
-                    <!-- Tag -->
-                    <a class="h1-sa uppercase" href="#">
-                        # RIFUGI E ALPI
-                    </a>
-                </div>
-            </div>
-            <!-- Navigation? -->
-            <div class="mx-auto w-fit">
-                Navigation dots here
+                <!-- Navigation dots -->
+                <div class="swiper-pagination mx-auto w-fit "></div>
             </div>
         </div>
+        <?php } ?>
 
         <!--============================
         =            Diario            =
@@ -141,7 +130,8 @@ if ($input->post->cerca) {
         =========================================-->
         <?php 
         // da capire se serve anche nelle altre pagine e gestione cache
-        $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
+        // $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
+        $fotoGiorno = $pages->find("template=gestionale_scheda")->getRandom();
 
         if($fotoGiorno->id){ 
             $fotoImg = $fotoGiorno->immagini->first->width(737);
@@ -181,6 +171,22 @@ if ($input->post->cerca) {
         <?php } ?>
 
         <?php require 'inc/footer.php' ?>
+
+        <!-- Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+          var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            lazy: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+          });
+        </script>
 
     </div>
 

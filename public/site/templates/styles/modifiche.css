@@ -38,6 +38,26 @@
         right: -12px;
     }
 
+    /*swiper*/
+    .swiper{ 
+        --swiper-pagination-bullet-size: 22px;
+        --swiper-pagination-color: white;
+        --swiper-pagination-bullet-horizontal-gap: 6px; 
+        --swiper-pagination-bullet-inactive-opacity: 1;
+        --swiper-pagination-bullet-inactive-color: black;
+        /*
+        --swiper-pagination-bullet-active-color: white;
+        */
+    }
+    .swiper-pagination-bullet{
+        background-color: black !important;
+        border: 2px solid white;
+        &.swiper-pagination-bullet-active{
+            background-color: white !important;
+        }
+    }
+
+
 
 
 
