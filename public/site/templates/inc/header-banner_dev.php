@@ -1,6 +1,5 @@
 <?php 
-// menu pages
-include 'defaultPages.php';
+// menu pages pagine in _defaultPages.php
 ?>
 
 <div x-data="{ menu: false }" class="slanted-br-m relative text-white h-fit">

@@ -117,9 +117,7 @@
         --swiper-pagination-bullet-horizontal-gap: 6px; 
         --swiper-pagination-bullet-inactive-opacity: 1;
         --swiper-pagination-bullet-inactive-color: black;
-        /*
-        --swiper-pagination-bullet-active-color: white;
-        */
+
     }
     .swiper-pagination-bullet{
         background-color: black !important;
@@ -228,6 +226,14 @@
         margin-top: 4.5rem;
         margin-bottom: 3.5rem;
 }
+    article h1, article h2{
+        /*@extend .h3-sa; non va... */
+        padding-bottom: 2rem;
+        font-family: Morion;
+        font-size: 2.4rem;
+        line-height: 2.65rem;
+        letter-spacing: 0.01em;
+    }
     img.align_center, figure.align_center{
         text-align: center;
         margin-top: 4.5rem;
@@ -1301,14 +1307,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     .h-8{
         height: 2rem;
 }
-    .h-full{
-        height: 100%;
-}
-    .h-24{
-        height: 6rem;
-}
     .h-73{
         height: 19.2rem;
+}
+    .h-full{
+        height: 100%;
 }
     .h-1{
         height: 0.25rem;
@@ -1372,6 +1375,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .h-56{
         height: 14rem;
+}
+    .max-h-60{
+        max-height: 15rem;
 }
     .max-h-36{
         max-height: 9rem;
@@ -2036,10 +2042,6 @@ Ensure the default browser behavior of the `hidden` attribute.
         --tw-text-opacity: 1;
         color: rgb(31 41 55 / var(--tw-text-opacity));
 }
-    .text-black{
-        --tw-text-opacity: 1;
-        color: rgb(0 0 0 / var(--tw-text-opacity));
-}
     .text-blu-sa-700{
         --tw-text-opacity: 1;
         color: rgb(39 58 72 / var(--tw-text-opacity));
@@ -2051,6 +2053,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     .text-blu-scuro-sa{
         --tw-text-opacity: 1;
         color: rgb(45 63 89 / var(--tw-text-opacity));
+}
+    .text-black{
+        --tw-text-opacity: 1;
+        color: rgb(0 0 0 / var(--tw-text-opacity));
 }
     .underline{
         -webkit-text-decoration-line: underline;

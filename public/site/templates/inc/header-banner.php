@@ -1,9 +1,5 @@
 <?php 
-// da sostituire poi
-$homeNew = $pages->findOne("template=home-new")->url;
-$archivioNew = $pages->findOne("template=ricerca")->url;
-$blogNew = $pages->findOne("template=blog_post")->url;
-$progettoNew = $pages->get(3299)->url;
+// pagine in _defaultPages.php
 ?>
 
 <div x-data="{ menu: false }" class="slanted-br-m relative text-white h-fit">

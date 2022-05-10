@@ -22,11 +22,10 @@
 		<!-- algolia pre connect -->
 		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
 		<?php } ?>
+	
+		<!-- swiper homepage -->
 
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 		<!-- tailwind debug -->
 		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
-
-		
-		<!-- swiper homepage -->
-		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 	</head>

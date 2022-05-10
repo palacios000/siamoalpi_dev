@@ -62,16 +62,14 @@ require 'inc/head.php'; ?>
                     ";
                   } ?>
 
-
                   <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white">
                   <?php 
-                  $urlTag = $pages->findOne("template=ricerca")->url . '?siamoAlpi[refinementList][tags][0]=';
+                  $urlTag = $archivioPage->url . '?siamoAlpi[refinementList][tags][0]=';
                   	foreach ($scheda->tags as $tag) {
                   	echo "<li><a href='$urlTag{$tag->name}'>$tag->title</a></li>";
                   } ?>	
                   </ul>
 
-              
               </div>
           </div>
 
@@ -92,13 +90,13 @@ require 'inc/head.php'; ?>
                           <?= $scheda->descrizione ?>
                       </div>
 
-                      <div class="h2-sa uppercase pb-6">
+                      <!-- <div class="h2-sa uppercase pb-6">
                           Testimonianze
                           <ul class="list-disc text-sm lowercase">
                             <li>audio racconti...</li>
                             <li>riprese video...</li>
                           </ul>
-                      </div>
+                      </div> -->
                   </div>
 
                   
@@ -120,10 +118,9 @@ require 'inc/head.php'; ?>
                   </div>
 
 
-
-                  <a class="block w-fit bottone-verde mt-4" href="#">
+                  <!-- <a class="block w-fit bottone-verde mt-4" href="#">
                       Scheda pdf
-                  </a>
+                  </a> -->
               </div>
           </div>
       </div>
@@ -133,7 +130,7 @@ require 'inc/head.php'; ?>
       <!--=============================
       =            algolia more       =
       ==============================-->
-      <div id="searchbox" class="hidden"></div>
+        <div id="searchbox" class="hidden"></div>
           <section>
 
             <!-- Grid hits -->
@@ -185,11 +182,7 @@ require 'inc/head.php'; ?>
               </div>        
             </div>
           </section>          
-      <!--====  End of algolia more  ====-->
 
-
-
-          
 
       <!-- La foto del giorno section -->
       <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 

@@ -48,7 +48,7 @@ if ($input->post->cerca) {
                         <?= $page->body ?>
                     </div>
                     <!-- Green button -->
-                    <a href="#" class="bottone-verde block">Leggi tutto</a>
+                    <a href="<?= $progettoPage->url ?>" class="bottone-verde block">Leggi tutto</a>
                 </div>
             </div>
         </div>
@@ -56,119 +56,112 @@ if ($input->post->cerca) {
         <!--============================================
         =            Album tematici section            =
         =============================================-->
-        <?php 
-        $homeTags = $pages->find("template=gestionale_variabili, parent=1092, selezione=1, images_bg.count>=1");
-        if (count($homeTags)) { ?>
-        <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
-            <!-- Title -->
-            <h2 class="h3-sa uppercase text-center">
-                Album tematici
-            </h2>
+            <?php 
+            $homeTags = $pages->find("template=gestionale_variabili, parent=1092, selezione=1, images_bg.count>=1");
+            //$homeTags = $pages->find("template=gestionale_variabili, parent=1092, images_bg.count>=1");
+            if (count($homeTags)) { ?>
+            <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
+                <!-- Title -->
+                <h2 class="h3-sa uppercase text-center">
+                    Album tematici
+                </h2>
 
-            <!-- Grid section with cards -->
-            <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
-                <div class="swiper-wrapper grid grid-cols-3 gap-x-0 pb-18">
-                    <?php 
-                    foreach ($homeTags as $homeTag) { ?>
-                    <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
-                        <div class="mx-auto block" href="#">
-                            <div class="w-73 h-73 mb-4">
-                                <a class="cursor-col-resize">
-                                    
-                                <img class=" swiper-lazy" 
-                                data-src="<?= $homeTag->images_bg->first->size(385,385)->url ?>" alt="<?= $homeTag->title ?>">
+                <!-- Grid section with cards -->
+                <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
+                    <div class="swiper-wrapper grid grid-cols-3 gap-x-0 pb-18">
+                        <?php 
+                        foreach ($homeTags as $homeTag) { ?>
+                        <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
+                            <div class="mx-auto block" href="#">
+                                <div class="w-73 h-73 mb-4">
+                                    <a class="cursor-col-resize">
+                                        
+                                    <img class=" swiper-lazy" 
+                                    data-src="<?= $homeTag->images_bg->first->size(385,385)->url ?>" alt="<?= $homeTag->title ?>">
+                                    </a>
+                                </div>
+                                <a class="h1-sa uppercase mx-auto block text-center hover:underline" href="<?= $archivioPage->url . '?siamoAlpi[refinementList][tags][0]=' . $homeTag->name ?>">
+                                    # <?= $homeTag->title ?>
                                 </a>
                             </div>
-                            <a class="h1-sa uppercase mx-auto block text-center hover:underline" href="">
-                                # <?= $homeTag->title ?>
-                            </a>
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                         </div>
-                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        <?php } ?>
                     </div>
-                    <?php } ?>
+                    <!-- Navigation dots -->
+                    <div class="swiper-pagination mx-auto w-fit "></div>
                 </div>
-                <!-- Navigation dots -->
-                <div class="swiper-pagination mx-auto w-fit "></div>
             </div>
-        </div>
-        <?php } ?>
+            <?php } ?>
 
         <!--============================
         =            Diario            =
         =============================-->
-        <div class="pb-26 text-white bg-black">
-            <!-- Grid container -->
-            <div class="relative flex w-full">
-                <div class="writing-container inline-block flex-initial basis-3/5 py-36 pl-22 z-20 bg-verde-sa">
-                    <div class="unskew-container flex-col">
-                        <!-- Overtitle -->
-                        <div class="h4-sa mb-2 uppercase">
-                            Diario
-                        </div>
-        
-                        <!-- Title -->
-                        <h3 class="h5-sa uppercase underline underline-offset-18 decoration-4 overflow-visible">
-                            Le tradizioni siamo noi
-                        </h3>
-        
-                        <!-- Button -->
-                        <div class="bottone-blu mt-10 ml-1 mb-1">
-                            Leggi tutto
+            <?php $blogPostHome = $pages->findOne("template=blog_post, selezione=1"); ?>
+            <div class="pb-26 text-white bg-black">
+                <!-- Grid container -->
+                <div class="relative flex w-full">
+                    <div class="writing-container inline-block flex-initial basis-3/5 py-36 pl-22 z-20 bg-verde-sa">
+                        <div class="unskew-container flex-col">
+                            <div class="h4-sa mb-2 uppercase">Diario</div>
+
+                            <h3 class="h5-sa uppercase underline underline-offset-18 decoration-4 overflow-visible max-h-60"><?= $blogPostHome->title ?></h3>
+            
+                            <a href="<?= $blogPostHome->url ?>" class="block bottone-blu mt-10 ml-1 mb-1">Leggi tutto</a>
                         </div>
                     </div>
-                </div>
-    
-                <!-- Picture container -->
-                <div class="absolute h-full z-10 items-center shrink-0 basis-2/5 right-0">
-                    <img class="py-10 h-full" src="<?= $config->urls->templates?>pictures/blue-hat.jpg" alt="">
+        
+                    <!-- Picture container -->
+                    <div class="absolute h-full z-10 shrink-0 basis-2/5 right-0 flex justify-end">
+                        <img class="py-10 h-full block" src="<?= $blogPostHome->images_bg->first->size(836,654)->url ?>" alt="<?= $blogPostHome->title ?>">
+                    </div>
                 </div>
             </div>
-        </div>
 
         <!--========================================
         =            La foto del giorno            =
         =========================================-->
-        <?php 
-        // da capire se serve anche nelle altre pagine e gestione cache
-        // $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
-        $fotoGiorno = $pages->find("template=gestionale_scheda")->getRandom();
+            <?php 
+            // da capire se serve anche nelle altre pagine e gestione cache
+            $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
+            // $fotoGiorno = $pages->find("template=gestionale_scheda")->getRandom();
 
-        if($fotoGiorno->id){ 
-            $fotoImg = $fotoGiorno->immagini->first->width(737);
-            $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
+            if($fotoGiorno->id){ 
+                $fotoImg = $fotoGiorno->immagini->first->width(737);
+                $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
 
-        <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 
-            <div class="flex w-full px-16 ">
-                <!-- Content -->
-                <div class="w-1/3 mr-16">
-                    <!-- Title -->
-                    <h3 class="h4-sa uppercase mb-10">La foto <br> del giorno</h3>
-                    <h4 class="h3-sa"><?= $fotoGiorno->title ?></h4>
-        
-                    <!-- Separator -->
-                    <span class="border-t-2 inline-block border-white w-8 h-1"></span>
-        
-                    <!-- Info grid -->
-                    <div class="flex gap-1 p-sa mb-8 w-fit ">
-                        <ul class="fotoGiornoTags flex flex-row gap-4">
-                        <?php foreach ($fotoGiorno->tags as $tag) {
-                            echo "<li class='inline'>$tag->title</li>"; 
-                        } ?>
-                        </ul>
+            <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 
+                <div class="flex w-full px-16 ">
+                    <!-- Content -->
+                    <div class="w-1/3 mr-16">
+                        <!-- Title -->
+                        <h3 class="h4-sa uppercase mb-10">La foto <br> del giorno</h3>
+                        <h4 class="h3-sa"><?= $fotoGiorno->title ?></h4>
+            
+                        <!-- Separator -->
+                        <span class="border-t-2 inline-block border-white w-8 h-1"></span>
+            
+                        <!-- Info grid -->
+                        <div class="flex gap-1 p-sa mb-8 w-fit ">
+                            <ul class="fotoGiornoTags flex flex-row gap-4">
+                            <?php foreach ($fotoGiorno->tags as $tag) {
+                                echo "<li class='inline'>$tag->title</li>"; 
+                            } ?>
+                            </ul>
+                        </div>
+                        
+                        <!-- Button -->
+                        <a class="bottone-verde" href="<?= $fotoGiornoUrl ?>">Sfoglia</a>
                     </div>
-                    
-                    <!-- Button -->
-                    <a class="bottone-verde" href="<?= $fotoGiornoUrl ?>">Sfoglia</a>
+                    <!-- Foto -->
+                    <div class="bg-white p-3">
+                        <img src="<?= $fotoImg->url ?>" alt="<?= $fotoGiorno->title ?>">
+                    </div>
                 </div>
-                <!-- Foto -->
-                <div class="bg-white p-3">
-                    <img src="<?= $fotoImg->url ?>" alt="<?= $fotoGiorno->title ?>">
-                </div>
+                <!-- Background image -->
+                <img class="absolute bottom-0 items-center w-full blur-xs -z-10" src="<?= $fotoImg->url ?>" alt="Foto del Giorno">
             </div>
-            <!-- Background image -->
-            <img class="absolute bottom-0 items-center w-full blur-xs -z-10" src="<?= $fotoImg->url ?>" alt="Foto del Giorno">
-        </div>
-        <?php } ?>
+            <?php } ?>
 
         <?php require 'inc/footer.php' ?>
 
