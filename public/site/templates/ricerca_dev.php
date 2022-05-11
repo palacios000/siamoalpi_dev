@@ -12,7 +12,7 @@
 
 		    <!-- ALGOLIA -->
 		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
-		      <div class="px-12 w-full pb-16">
+		      <div class="mx-12 w-fit pb-16">
 		    	<!-- #algolia -->
 		    	<section id="filtriAlg">		    		
 			    	<div x-show="temi" class="w-full py-4">
@@ -58,7 +58,7 @@
 		    		<div id="current-refinements" class="text-white"></div>
 	    		</div>
 
-		        <div id="hits" class="pt-2 -mx-4 relative w-full" >
+		        <div id="hits" class="pt-2 -mx-4 relative" >
 		        	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block bg-verde-sa " uk-totop uk-scroll>
 		        		<svg class="h-12 w-12 hover:fill-white transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.2 23.2"><path d="M16.9 10.1l-5.3-4.7-5.3 4.7.7.7L11.2 7v10.8h.9V7.5L12 7l4.2 3.8z"/></svg>
 		        	</a>

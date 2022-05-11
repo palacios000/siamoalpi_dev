@@ -13,7 +13,7 @@
 		    <!-- Grid hits -->
 		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
 		      <!-- Content container -->
-		      <div class="mx-12 w-fit pb-16">
+		      <div class="px-12 w-fit pb-16">
 		    	<!-- #algolia, temi -->
 		    	<div x-show="temi">
 		    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">

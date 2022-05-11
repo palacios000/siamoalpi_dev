@@ -34,7 +34,7 @@
 		// PRODUCTION
 		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; 
 		// TEMP
-		$selector .= ", (created|modified>=$page->timestamp) ";
+		$selector .= ", modified>=$page->timestamp";
 	}
 
 	// prepare il contenuto del json
@@ -102,7 +102,7 @@
 
 				// datazione - sirbec dependant 
 					// per avere solo un valore faccio la media dei due anni ...
-					$annox = '';
+					$annox = '1900';
 					$anno_start = '';
 					$anno_end = '';
 					if ($scheda->datazione->anno) {
@@ -255,6 +255,9 @@
 			$mail->body("Sinicronizzate $nSchedePronte schede");
 			$mail->send();
 		}
+	}else{
+		wire('log')->save('sync_algolia_add', "$error");
+
 	}
 
 // 4. manda tutto ad algolia
@@ -270,7 +273,7 @@
 
 	}
 
-echo count($schede);
+echo "<br>" . count($schede);
 exit;
 
 
