@@ -35,17 +35,24 @@ require 'inc/head.php'; ?>
 
           <!-- Picture content container -->
           <div class="flex mx-12 mt-10 pb-14">
-              <!-- Picture -->
-              <div class="relative mr-6 mt-2 mb-1 bg-white">
-                  <img class="p-2.5 h-[33rem]" src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">
+              <!-- Picture - immagine caricata dallo script sotto-->
+              <div class="relative mr-6 mt-2 mb-1 bg-white ">
+              <div class="image">
+                <a href="" target="_blank">
+                  <img src="" alt="">
+                </a>
+              </div>
+              <div class="zoom">
+                  <img class="zoom-image" src="" alt="<?= $scheda->title ?>">
                   <!-- Fix clickable area -->
-                  <a class="absolute w-10 h-10 top-5 right-7 rounded-full" href="#">
+                  <!-- <a class="absolute w-10 h-10 top-5 right-7 rounded-full" href="#">
                       <svg class="w-10 fill-verde-sa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" >    
                           <circle viewBox="0 0 50 50" cx="25" cy="25" r="24" stroke="white" stroke-width="2" />
                           <path class="fill-white" d="M37,26H26v11h-2V26H13v-2h11V13h2v11h11V26z">
                           </path>
                       </svg>
-                  </a>
+                  </a> -->
+              </div>
               </div>
 
               <!-- Luogo + Data + Tags list-->
@@ -270,7 +277,285 @@ require 'inc/head.php'; ?>
 
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 
+<!--   <script>
+    // use your mousewheel to zoom in 🔍
 
+    console.clear();
+
+    const image = document.querySelectorAll('.image')[0];
+    const zoom = document.querySelectorAll('.zoom')[0];
+    const zoomImage = document.querySelectorAll('.zoom-image')[0];
+
+    let clearSrc;
+    let zoomLevel = 1;
+
+    const images = [
+      {
+        thumb: '<?php echo $scheda->immagini->first->height(660)->httpUrl ?>',
+        hires: '<?php echo $scheda->immagini->first->httpUrl ?>'
+      }
+    ]
+
+    // set to random image
+    let img = images[Math.floor(Math.random() * images.length)];
+
+    image.getElementsByTagName('a')[0].setAttribute('href', img.hires);
+    image.getElementsByTagName('img')[0].setAttribute('src', img.thumb);
+
+    const preloadImage = url => {
+      let img = new Image();
+      img.src = url;
+    }
+
+    preloadImage(img.hires);
+
+
+
+    const enterImage = function(e) {
+      zoom.classList.add('show', 'loading');
+      clearTimeout(clearSrc);
+      
+      let posX, posY, touch = false;
+      
+      if (e.touches) {
+        posX = e.touches[0].clientX;
+        posY = e.touches[0].clientY;
+        touch = true;
+      } else {
+        posX = e.clientX;
+        posY = e.clientY;
+      }
+      
+      touch
+        ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
+        : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
+      zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
+      
+      let originalImage = this.getElementsByTagName('a')[0].getAttribute('href');
+      
+      zoomImage.setAttribute('src', originalImage);
+      
+      // remove the loading class
+      zoomImage.onload = function() {
+        console.log('hires image loaded!');
+        setTimeout(() => {
+          zoom.classList.remove('loading');
+        }, 500);
+      }
+    }
+
+
+    const leaveImage = function() {
+      // remove scaling to prevent non-transition 
+      zoom.style.transform = null;
+      zoomLevel = 1;
+      zoom.classList.remove('show');
+      clearSrc = setTimeout(() => {
+                   zoomImage.setAttribute('src', '');
+                 }, 250);
+    }
+
+
+    const move = function(e) {
+      e.preventDefault();
+      
+      let posX, posY, touch = false;
+      
+      if (e.touches) {
+        posX = e.touches[0].clientX;
+        posY = e.touches[0].clientY;
+        touch = true;
+      } else {
+        posX = e.clientX;
+        posY = e.clientY;
+      }
+      
+      // move the zoom a little bit up on mobile (because of your fat fingers :<)
+      touch
+        ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
+        : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
+      zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
+      
+      let percX = (posX - this.offsetLeft) / this.offsetWidth,
+          percY = (posY - this.offsetTop) / this.offsetHeight;
+      
+      let zoomLeft = -percX * zoomImage.offsetWidth + (zoom.offsetWidth / 2),
+          zoomTop = -percY * zoomImage.offsetHeight + (zoom.offsetHeight / 2);
+      
+      zoomImage.style.left = `${zoomLeft}px`;
+      zoomImage.style.top = `${zoomTop}px`;
+    }
+
+
+
+    image.addEventListener('mouseover', enterImage);
+    image.addEventListener('touchstart', enterImage);
+
+    image.addEventListener('mouseout', leaveImage);
+    image.addEventListener('touchend', leaveImage);
+
+    image.addEventListener('mousemove', move);
+    image.addEventListener('touchmove', move);
+
+
+    image.addEventListener('wheel', e => {
+      e.preventDefault();
+      e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
+      
+      if (zoomLevel < 1) zoomLevel = 1;
+      if (zoomLevel > 5) zoomLevel = 5;
+      
+      console.log(`zoom level: ${zoomLevel}`);
+      zoom.style.transform = `scale(${zoomLevel})`;
+    });
+  </script>
+
+ -->
+
+<script>
+  // use your mousewheel to zoom in 🔍
+
+console.clear();
+
+const image = document.querySelectorAll('.image')[0];
+const zoom = document.querySelectorAll('.zoom')[0];
+const zoomImage = document.querySelectorAll('.zoom-image')[0];
+
+let clearSrc;
+let zoomLevel = 1;
+
+const images = [
+  {
+    thumb: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    hires: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2560&q=80'
+  }, {
+    thumb: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    hires: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2560&q=80'
+  }, {
+    thumb: 'https://images.unsplash.com/photo-1490761668535-35497054764d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    hires: 'https://images.unsplash.com/photo-1490761668535-35497054764d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2560&q=80'
+  }, {
+    thumb: 'https://images.unsplash.com/photo-1565175508370-0fff04b6bb5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    hires: 'https://images.unsplash.com/photo-1565175508370-0fff04b6bb5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2560&q=80'
+  }, {
+    thumb: 'https://images.unsplash.com/photo-1522547902298-51566e4fb383?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    hires: 'https://images.unsplash.com/photo-1522547902298-51566e4fb383?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2560&q=80'
+  }, 
+]
+
+// set to random image
+let img = images[Math.floor(Math.random() * images.length)];
+
+image.getElementsByTagName('a')[0].setAttribute('href', img.hires);
+image.getElementsByTagName('img')[0].setAttribute('src', img.thumb);
+
+const preloadImage = url => {
+  let img = new Image();
+  img.src = url;
+}
+
+preloadImage(img.hires);
+
+
+
+const enterImage = function(e) {
+  zoom.classList.add('show', 'loading');
+  clearTimeout(clearSrc);
+  
+  let posX, posY, touch = false;
+  
+  if (e.touches) {
+    posX = e.touches[0].clientX;
+    posY = e.touches[0].clientY;
+    touch = true;
+  } else {
+    posX = e.clientX;
+    posY = e.clientY;
+  }
+  
+  touch
+    ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
+    : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
+  zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
+  
+  let originalImage = this.getElementsByTagName('a')[0].getAttribute('href');
+  
+  zoomImage.setAttribute('src', originalImage);
+  
+  // remove the loading class
+  zoomImage.onload = function() {
+    console.log('hires image loaded!');
+    setTimeout(() => {
+      zoom.classList.remove('loading');
+    }, 500);
+  }
+}
+
+
+const leaveImage = function() {
+  // remove scaling to prevent non-transition 
+  zoom.style.transform = null;
+  zoomLevel = 1;
+  zoom.classList.remove('show');
+  clearSrc = setTimeout(() => {
+               zoomImage.setAttribute('src', '');
+             }, 250);
+}
+
+
+const move = function(e) {
+  e.preventDefault();
+  
+  let posX, posY, touch = false;
+  
+  if (e.touches) {
+    posX = e.touches[0].clientX;
+    posY = e.touches[0].clientY;
+    touch = true;
+  } else {
+    posX = e.clientX;
+    posY = e.clientY;
+  }
+  
+  // move the zoom a little bit up on mobile (because of your fat fingers :<)
+  touch
+    ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
+    : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
+  zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
+  
+  let percX = (posX - this.offsetLeft) / this.offsetWidth,
+      percY = (posY - this.offsetTop) / this.offsetHeight;
+  
+  let zoomLeft = -percX * zoomImage.offsetWidth + (zoom.offsetWidth / 2),
+      zoomTop = -percY * zoomImage.offsetHeight + (zoom.offsetHeight / 2);
+  
+  zoomImage.style.left = `${zoomLeft}px`;
+  zoomImage.style.top = `${zoomTop}px`;
+}
+
+
+
+image.addEventListener('mouseover', enterImage);
+image.addEventListener('touchstart', enterImage);
+
+image.addEventListener('mouseout', leaveImage);
+image.addEventListener('touchend', leaveImage);
+
+image.addEventListener('mousemove', move);
+image.addEventListener('touchmove', move);
+
+
+image.addEventListener('wheel', e => {
+  e.preventDefault();
+  e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
+  
+  if (zoomLevel < 1) zoomLevel = 1;
+  if (zoomLevel > 5) zoomLevel = 5;
+  
+  console.log(`zoom level: ${zoomLevel}`);
+  zoom.style.transform = `scale(${zoomLevel})`;
+});
+</script>
 
 </body>
 </html>

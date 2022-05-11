@@ -1,7 +1,7 @@
 <?php require 'inc/head.php' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: false, mappa: false }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
@@ -10,19 +10,33 @@
 
 	    <section>
 
-		    <!-- Grid hits -->
+		    <!-- ALGOLIA -->
 		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
-		      <!-- Content container -->
-		      <div class="px-12 w-fit pb-16">
-		    	<!-- #algolia, temi -->
-		    	<div x-show="temi">
-		    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-				    	<h2 class="text-verde-sa mb">Temi</h2>
-				    	<div id="temiricerca" class="text-white"></div>
-		    		</div>
-		    	</div>
+		      <div class="mx-12 w-fit pb-16">
+		    	<!-- #algolia -->
+		    	<section id="filtriAlg">		    		
+			    	<div x-show="temi" class="w-full py-4">
+			    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
+					    	<h2 class="text-verde-sa mb">Temi</h2>
+					    	<div id="temiricerca" class="text-white"></div>
+			    		</div>
+			    	</div>
+			    	<div x-show="anni" class="w-full py-4 px-16">
+			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
+					    	<h2 class="text-verde-sa mb-8">Anni</h2>
+					    	<div id="datazione" class="h-16 "></div>
+			    		</div>
+			    	</div>
+			    	<div x-show="mappa" class="w-full py-4 px-16">
+			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
+					    	<h2 class="text-verde-sa mb-8">Mappa</h2>
+					    	<div id="maps" class="h-32 bg-white"></div>
+			    		</div>
+			    	</div>
+			    </section>
 
-	    		<div class="grid grid-cols-2 pt-4">
+
+	    		<div class="grid grid-cols-2 pt-4 w-full">
 		    		<div id="stats" class="text-white font-serif text-h2"></div>
 		    		<div class="text-right">
 		    			<!-- griglia 1 -->
@@ -37,23 +51,19 @@
 
 						</button>
 		    		</div>
-
 	    		</div>
-				<div class="flex flex-row gap-x-4">
+
+				<div class="flex flex-row gap-x-4 w-full">
 		    		<div id="clear-filter" class="text-white font-sansBold"></div>
 		    		<div id="current-refinements" class="text-white"></div>
 	    		</div>
 
 		        <div id="hits" class="pt-2 -mx-4 relative" >
-		        	<a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
-
-		        	<svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-		        	  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
-		        	</svg>
+		        	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block bg-verde-sa " uk-totop uk-scroll>
+		        		<svg class="h-12 w-12 hover:fill-white transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.2 23.2"><path d="M16.9 10.1l-5.3-4.7-5.3 4.7.7.7L11.2 7v10.8h.9V7.5L12 7l4.2 3.8z"/></svg>
 		        	</a>
-
-		        	
 		        </div>
+
 		        <div id="tags" class="h-8 overflow-hidden invisible"></div>
 		        <div id="filtro" class="h-8 overflow-hidden invisible"></div>
 		      </div>	      
@@ -67,23 +77,22 @@
 
 
 <!-- algolia search -->
+<script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
+</script>
+<!-- <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
+</script>
+ -->
 	<script>
 	// essenziale per farlo passare allo script algolia.js qui sotto
+	// qui vuoto, ma utile pe la pagina Scheda
 	 var filtro = {};
 	</script>
-	<script src="<?= $config->urls->templates?>js/algolia.js"></script>
+	<script type="module" src="<?= $config->urls->templates?>js/algolia.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 
 
 </body>
 </html>
-
-
-<!-- 
-svg bottone +, riga troppo sottile
-<svg class="h-16 w-16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 88.9 91.5" style="enable-background:new 0 0 88.9 91.5" xml:space="preserve"><path style="fill:#fff" d="M63.5 44.2H45.6V26.3h-3.3v17.9H24.4v3.2h17.9v17.9h3.3V47.4h17.9z"/><defs><path id="a" d="M6.3 7.6h76.4V84H6.3z"/></defs><clipPath id="b"><use xlink:href="#a" style="overflow:visible"/></clipPath><path d="M44.4 83.6c20.9 0 37.8-16.9 37.8-37.8S65.3 8 44.4 8 6.7 24.9 6.7 45.8c0 20.8 16.9 37.8 37.7 37.8z" style="clip-path:url(#b);fill:none;stroke:#fff;stroke-width:.806"/></svg>
-
-rimpiazzata con heroicons
-
- -->

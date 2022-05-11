@@ -1,7 +1,15 @@
-
 /* todo 
 random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
  */
+
+window.maps = new google.maps.Map(document.getElementById('maps'), {
+  center: {
+  	lng: 9.8676338, 
+  	lat: 46.1700326,
+  },
+  zoom: 8
+});
+
 
 
 
@@ -12,10 +20,10 @@ const search = instantsearch({
 	searchClient,
 	routing: true,
 	initialUiState: {
-	    siamoAlpi: {
-	      refinementList: filtro
-	    }
-	  }
+		siamoAlpi: {
+	    	refinementList: filtro
+		}
+	}
 });
 
 
@@ -68,8 +76,8 @@ const search = instantsearch({
 								</div>
 
 							</div>
-							<div class='max-h-36 pt-3 overflow-hidden'>
-								<h2 x-show='!solofoto' class='titoloFoto text-white ml-2'>
+							<div class='max-h-36 pt-1 overflow-hidden'>
+								<h2 x-show='!solofoto' class='titoloFoto text-white text-sm ml-2'>
 									${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 								</h2>
 
@@ -171,14 +179,14 @@ const search = instantsearch({
 
 		const renderListItem = item => `
 		  <li class='uppercase inline pl-6'>
-		    ${item.label}:
+		    <span class='sr-only'>${item.label}:</span>
 		    <ul class='inline'>
 		      ${item.refinements
 		        .map(
 		          refinement =>
 		            `<li class='lowercase inline'>
+		              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
 		              ${refinement.label} 
-		              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline mb-1 h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
 		            </li>`
 		        )
 		        .join('')}
@@ -190,7 +198,7 @@ const search = instantsearch({
 		  const { items, refine, widgetParams } = renderOptions;
 
 		  widgetParams.container.innerHTML = `
-		    <ul>
+		    <ul class='mt-1'>
 		      ${items.map(renderListItem).join('')}
 		    </ul>
 		  `;
@@ -209,7 +217,6 @@ const search = instantsearch({
 		    });
 		  });
 		};
-
 
 // 2. Create the custom widget
 	const customInfiniteHits = instantsearch.connectors.connectInfiniteHits(
@@ -279,11 +286,6 @@ const search = instantsearch({
 		  attribute: 'temi',
 		}),
 
-		// https://www.algolia.com/doc/api-reference/widgets/current-refinements/js/
-		// instantsearch.widgets.currentRefinements({
-		//   container: '#current-refinements',
-		// }),
-
 		
 		// https://www.algolia.com/doc/api-reference/widgets/clear-refinements/js/
 		instantsearch.widgets.clearRefinements({
@@ -293,12 +295,47 @@ const search = instantsearch({
 		    },
 		  cssClasses: {
 		  	button: ['border', 'border-verde-sa', 'px-4', 'py-1', 'font-bold' ],
-		  	//button: ['h-4', 'w-4'],
 		  	disabledButton: 'invisible',
 		  }
 		}),
 
+		// slider
+		instantsearch.widgets.rangeSlider({
+		  container: '#datazione',
+		  attribute: 'datazione',
+
+		  pips: true,
+		  tooltips: true,
+		  step: 5
+		}),
+
+		// maps
+		// https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/geo-search/js/
+		// https://www.algolia.com/doc/api-reference/widgets/geo-search/js/
+
+		instantsearch.widgets.geoSearch({
+		  container: '#maps',
+		  googleReference: window.google,
+		  // Optional parameters
+		  // initialZoom: number,
+		  // initialPosition: {
+		  //     lat: 48.864716,
+		  //     lng: 2.349014,
+		  //   },
+		  // mapOptions: object,
+		  // builtInMarker: object,
+		  // customHTMLMarker: object,
+		  // enableRefine: boolean,
+		  // enableClearMapRefinement: boolean,
+		  // enableRefineControl: boolean,
+		  // enableRefineOnMapMove: boolean,
+		  // templates: object,
+		  // cssClasses: object,
+		}),
+
+
 	]);
 
 search.start();
+
 

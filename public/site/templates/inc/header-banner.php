@@ -1,5 +1,5 @@
 <?php 
-// pagine in _defaultPages.php
+// menu pages pagine in _defaultPages.php
 ?>
 
 <div x-data="{ menu: false }" class="slanted-br-m relative text-white h-fit">
@@ -19,7 +19,7 @@
         </button>
     </div>
 
-    <?php if ($page->template == 'ricerca'): ?>
+    <?php if ($page->template == 'ricerca_dev' || $page->template == 'ricerca'): ?>
     <div class="absolute top-10 right-30 w-2/3 flex justify-end">
         <div class="flex flex-col w-2/3">
             
@@ -27,10 +27,16 @@
             
             <ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
                 <li class="inline ">Ricerca per:</li>
-                <li class="inline"><button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button></li>
-                <li class="inline pl-3">Anni</li>
-                <li class="inline pl-3">Mappa</li>
-                <li class="inline pl-3">Avanzata</li>
+                <li class="inline">
+                    <button x-on:click="temi = ! temi" class="pl-3 uppercase" :class="temi ? 'underline underline-offset-4' : ''">Temi</button>
+                </li>
+                <li class="inline pl-3">
+                    <button x-on:click="anni = ! anni" class="uppercase" :class="anni ? 'underline underline-offset-4' : ''">Anni</button>
+                </li>
+                <li class="inline pl-3">
+                    <button x-on:click="mappa = ! mappa" class="uppercase" :class="mappa ? 'underline underline-offset-4' : ''">Mappa</button>
+                </li>
+                <!-- <li class="inline pl-3">Avanzata</li> -->
             </ul>
         </div>
     </div>
@@ -47,7 +53,7 @@
             aria-modal="true"
             x-id="['modal-title']"
             :aria-labelledby="$id('modal-title')"
-            class="fixed inset-0 overflow-y-auto z-30" 
+            class="fixed inset-0 overflow-y-auto z-30 h-screen pb-1" 
         >
             <!-- Overlay -->
             <div x-show="menu" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-40 z-30"></div>
@@ -66,10 +72,10 @@
                 >
                     <ul class="text-right text-white h3-sa uppercase">
 
-                        <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Home</a></li>
-                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Progetto</a></li>
-                        <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
-                        <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa py-3 pl-3 pr-6 ">Diario</a></li>
+                        <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Home</a></li>
+                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Progetto</a></li>
+                        <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
+                        <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Diario</a></li>
 
                         <?php if ($page->editable()) {
                             echo '

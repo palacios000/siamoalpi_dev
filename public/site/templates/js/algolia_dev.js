@@ -2,10 +2,13 @@
 random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
  */
 
-// window.maps = new google.maps.Map(document.getElementById('maps'), {
-//   center: {lat: 24.397, lng: 45.644},
-//   zoom: 8
-// });
+window.maps = new google.maps.Map(document.getElementById('maps'), {
+  center: {
+  	lng: 9.8676338, 
+  	lat: 46.1700326,
+  },
+  zoom: 8
+});
 
 
 
@@ -283,11 +286,6 @@ const search = instantsearch({
 		  attribute: 'temi',
 		}),
 
-		// https://www.algolia.com/doc/api-reference/widgets/current-refinements/js/
-		// instantsearch.widgets.currentRefinements({
-		//   container: '#current-refinements',
-		// }),
-
 		
 		// https://www.algolia.com/doc/api-reference/widgets/clear-refinements/js/
 		instantsearch.widgets.clearRefinements({
@@ -297,7 +295,6 @@ const search = instantsearch({
 		    },
 		  cssClasses: {
 		  	button: ['border', 'border-verde-sa', 'px-4', 'py-1', 'font-bold' ],
-		  	//button: ['h-4', 'w-4'],
 		  	disabledButton: 'invisible',
 		  }
 		}),
@@ -313,17 +310,18 @@ const search = instantsearch({
 		}),
 
 		// maps
-		// non va https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/geo-search/js/
+		// https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/geo-search/js/
+		// https://www.algolia.com/doc/api-reference/widgets/geo-search/js/
 
-		/*instantsearch.widgets.geoSearch({
+		instantsearch.widgets.geoSearch({
 		  container: '#maps',
 		  googleReference: window.google,
 		  // Optional parameters
 		  // initialZoom: number,
-		  initialPosition: {
-		      lat: 48.864716,
-		      lng: 2.349014,
-		    },
+		  // initialPosition: {
+		  //     lat: 48.864716,
+		  //     lng: 2.349014,
+		  //   },
 		  // mapOptions: object,
 		  // builtInMarker: object,
 		  // customHTMLMarker: object,
@@ -333,7 +331,7 @@ const search = instantsearch({
 		  // enableRefineOnMapMove: boolean,
 		  // templates: object,
 		  // cssClasses: object,
-		}),*/
+		}),
 
 
 	]);

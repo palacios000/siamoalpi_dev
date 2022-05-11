@@ -1,7 +1,7 @@
 <?php require 'inc/head.php' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false, anni: false, mappa: false }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: false, mappa: true }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
@@ -78,9 +78,12 @@
 
 <!-- algolia search -->
 <script 
-    src="https://maps.googleapis.com/maps/api/js?key=">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
 </script>
-
+<!-- <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
+</script>
+ -->
 	<script>
 	// essenziale per farlo passare allo script algolia.js qui sotto
 	// qui vuoto, ma utile pe la pagina Scheda
@@ -93,12 +96,3 @@
 
 </body>
 </html>
-
-
-<!-- 
-svg bottone +, riga troppo sottile
-<svg class="h-16 w-16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 88.9 91.5" style="enable-background:new 0 0 88.9 91.5" xml:space="preserve"><path style="fill:#fff" d="M63.5 44.2H45.6V26.3h-3.3v17.9H24.4v3.2h17.9v17.9h3.3V47.4h17.9z"/><defs><path id="a" d="M6.3 7.6h76.4V84H6.3z"/></defs><clipPath id="b"><use xlink:href="#a" style="overflow:visible"/></clipPath><path d="M44.4 83.6c20.9 0 37.8-16.9 37.8-37.8S65.3 8 44.4 8 6.7 24.9 6.7 45.8c0 20.8 16.9 37.8 37.7 37.8z" style="clip-path:url(#b);fill:none;stroke:#fff;stroke-width:.806"/></svg>
-
-rimpiazzata con heroicons
-
- -->

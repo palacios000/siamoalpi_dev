@@ -102,7 +102,7 @@
 
 				// datazione - sirbec dependant 
 					// per avere solo un valore faccio la media dei due anni ...
-					$annox = '1900';
+					$annox = '1850';
 					$anno_start = '';
 					$anno_end = '';
 					if ($scheda->datazione->anno) {
