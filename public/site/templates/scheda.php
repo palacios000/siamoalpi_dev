@@ -36,19 +36,39 @@ require 'inc/head.php'; ?>
           <!-- Picture content container -->
           <div class="flex mx-12 mt-10 pb-14">
               <div class="relative mr-6 mt-2 mb-1">
+                <div>
+                <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
+                </div>
 
-                <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">              
+              <p class="text-white text-sm mt-2">
+                <svg class='text-verde-sa h-6 w-6 inline' xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+                <a target="_blank" href="<?= $scheda->immagini->first->httpUrl ?>">clicca qui per vedere l'immagine a dimensioni originali</a>
+              </p>           
               </div>
 
               <!-- Luogo + Data + Tags list-->
-              <div class="ml-1">
+              <div class="ml-1 relative h-98">
                   <!-- Luogo e data -->
                   <?php if ($scheda->luogo->comune || $scheda->datazione->anno) {
+
                     $quando = ($scheda->datazione->anno_fine) ? $scheda->datazione->anno . " - " . $scheda->datazione->anno_fine : $scheda->datazione->anno;
+
+                    // calcola la decade
+                    $decadeDa = (floor($scheda->datazione->anno / 10)) * 10;
+                    if ($scheda->datazione->anno_fine) {
+                      $decadeA = (ceil($scheda->datazione->anno_fine / 10)) * 10;
+                    } else {
+                      $decadeA = $decadeDa + 10;
+                    }
+                    $urlSlider = $archivioPage->url . "?siamoAlpi[range][datazione]=$decadeDa%3A$decadeA" . "&showdate=1";
+
+
                     $dove = ($scheda->luogo->localita) ? $scheda->luogo->localita . ", " . $scheda->luogo->comune : $scheda->luogo->comune;
                     echo "
                     <ul class='list-none h2-sa tracking-0 text-white pb-8'>
-                      <li>$quando</li>
+                      <li><a class='hover:text-verde-sa' href='$urlSlider'>$quando</a></li>
                       <li>$dove</li>
                     </ul>                    
                     ";
@@ -61,6 +81,44 @@ require 'inc/head.php'; ?>
                   	echo "<li><a href='$urlTag{$tag->name}'>$tag->title</a></li>";
                   } ?>	
                   </ul>
+
+                  <div id="altrenote" class="absolute bottom-0 left-0 text-white text-sm">
+                    <!-- condividi -->
+                    <p class="font-sansBold uppercase">Condividi</p>
+                    <ul class="fotoGiornoTags flex flex-row gap-4">
+                      <li class="inline">email</li>
+                      <li class="inline">facebook</li>
+                    </ul>
+
+                    <!-- Separator -->
+                    <span class="border-t inline-block border-white w-8 h-1"></span>
+
+                    <!-- licenza -->
+                    <p>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="inline"
+                      >
+                        <path
+                          d="M13.392 10.4362L14.8106 9.0176C14.1031 8.38476 13.169 8 12.145 8C9.93588 8 8.14502 9.79086 8.14502 12C8.14502 14.2091 9.93588 16 12.145 16C13.2563 16 14.2617 15.5468 14.9866 14.8152L13.674 13.5026L13.4646 13.503C13.1124 13.8124 12.6506 14 12.145 14C11.0405 14 10.145 13.1046 10.145 12C10.145 10.8954 11.0405 10 12.145 10C12.6166 10 13.0501 10.1632 13.392 10.4362Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3ZM12 5C15.866 5 19 8.13401 19 12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12C5 8.13401 8.13401 5 12 5Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      Licenza
+                    </p>
+
+                    
+                  </div>
 
               </div>
           </div>

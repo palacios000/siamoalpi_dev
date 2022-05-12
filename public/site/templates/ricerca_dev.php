@@ -1,7 +1,9 @@
 <?php require 'inc/head.php' ?>
+<?php // prendi alcuni valori dal Get per mostrare i sottomenu
+$showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false, anni: false, mappa: true }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: <?= $showAnni ?>, mappa: false }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine

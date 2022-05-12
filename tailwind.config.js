@@ -62,6 +62,7 @@ module.exports = {
         '73': '19.2rem',
         '81': '21rem',
         '97': '28rem',
+        '98': '33rem',
       },
       letterSpacing: {
         '0': '0em',
