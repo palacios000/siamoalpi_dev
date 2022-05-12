@@ -157,6 +157,48 @@
 
     /* zoom immagine*/
         .image {
+          max-width: 100%;
+          cursor: none;
+        }
+        .image a {
+          cursor: none;
+        }
+        .image img {
+          max-width: 100%;
+        }
+        .zoom {
+          width: 14rem;
+          height: 14rem;
+          background: #fff;
+          border-radius: 50%;
+          position: absolute;
+          pointer-events: none;
+          transition: opacity 0s linear .25s, -webkit-transform .25s ease;
+          transition: transform .25s ease, opacity 0s linear .25s;
+          transition: transform .25s ease, opacity 0s linear .25s, -webkit-transform .25s ease;
+          opacity: 0;
+          -webkit-transform: scale(0);
+                  transform: scale(0);
+          -webkit-transform-origin: 50% 50%;
+                  transform-origin: 50% 50%;
+          overflow: hidden;
+        }
+        .zoom.show {
+          -webkit-transform: scale(1);
+                  transform: scale(1);
+          opacity: 1;
+          transition: opacity 0s linear, -webkit-transform .25s ease;
+          transition: transform .25s ease, opacity 0s linear;
+          transition: transform .25s ease, opacity 0s linear, -webkit-transform .25s ease;
+        }
+        .zoom .zoom-image {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        
+        /*
+        .image {
             max-width: 100%;
             cursor: none;
             
@@ -237,7 +279,7 @@
                 top: 0;
                 transition: opacity .25s ease;
             }
-        }
+        }*/
 
 /* article blog -- formatta il p di CKEditor  */
     

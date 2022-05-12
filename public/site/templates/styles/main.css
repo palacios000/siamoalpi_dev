@@ -223,18 +223,55 @@
     }
     /* zoom immagine*/
     .image {
-            max-width: 100%;
-            cursor: none;
+          max-width: 100%;
+          cursor: none;
         }
     .image a {
+          cursor: none;
+        }
+    .image img {
+          max-width: 100%;
+        }
+    .zoom {
+          width: 14rem;
+          height: 14rem;
+          background: #fff;
+          border-radius: 50%;
+          position: absolute;
+          pointer-events: none;
+          transition: transform .25s ease, opacity 0s linear .25s;
+          opacity: 0;
+          transform: scale(0);
+          transform-origin: 50% 50%;
+          overflow: hidden;
+        }
+    .zoom.show {
+          transform: scale(1);
+          opacity: 1;
+          transition: transform .25s ease, opacity 0s linear;
+        }
+    .zoom .zoom-image {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+    /*
+        .image {
+            max-width: 100%;
+            cursor: none;
+            
+            a {
                 cursor: none;
             }
-    .image img {
+            
+            img {
                 max-width: 100%;
                 vertical-align: middle;
                 z-index: 1;
             }
-    .zoom {
+        }
+
+        .zoom {
             width: 14rem;
             height: 14rem;
             background: #fff;
@@ -246,8 +283,8 @@
             transform: scale(0);
             transform-origin: 50% 50%;
             overflow: hidden;
-        }
-    .zoom:before {
+            
+            &:before {
                 content: '';
                 position: absolute;
                 margin: auto;
@@ -260,20 +297,22 @@
                 border-radius: 50%;
                 display: none;
             }
-    .zoom.show {
+            
+            &.show {
                 transform: scale(1);
                 opacity: 1;
                 transition: transform .25s ease, opacity 0s linear;
             }
-    .zoom.loading {
+            
+            &.loading {
                 background: transparent;
-            }
-    .zoom.loading:before {
+                
+                &:before {
                     display: block;
-                    -webkit-animation: loading .5s ease infinite alternate;
-                            animation: loading .5s ease infinite alternate;
+                    animation: loading .5s ease infinite alternate;
                 }
-    @-webkit-keyframes loading {
+                
+                @keyframes loading {
                     0% {
                         transform: scale(0.1);
                         box-shadow: inset 0 0 0 150px gold;
@@ -286,28 +325,19 @@
                         box-shadow: inset 0 0 0 0 gold;
                     }
                 }
-    @keyframes loading {
-                    0% {
-                        transform: scale(0.1);
-                        box-shadow: inset 0 0 0 150px gold;
-                    }
-                    50% {
-                        transform: scale(1);
-                        box-shadow: inset 0 0 0 140px golf;
-                    }
-                    100% {
-                        box-shadow: inset 0 0 0 0 gold;
-                    }
-                }
-    .zoom.loading .zoom-image {
+                
+                .zoom-image {
                     opacity: 0;
                 }
-    .zoom .zoom-image {
+            }
+            
+            .zoom-image {
                 position: absolute;
                 left: 0;
                 top: 0;
                 transition: opacity .25s ease;
             }
+        }*/
     /* article blog -- formatta il p di CKEditor  */
     article p img{
         margin-top: 4.5rem;
@@ -1161,12 +1191,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .right-4{
         right: 1rem;
 }
-    .top-5{
-        top: 1.25rem;
-}
-    .right-7{
-        right: 1.75rem;
-}
     .bottom-6{
         bottom: 1.5rem;
 }
@@ -1432,12 +1456,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .h-12{
         height: 3rem;
 }
-    .h-\[33rem\]{
-        height: 33rem;
-}
-    .h-10{
-        height: 2.5rem;
-}
     .h-20{
         height: 5rem;
 }
@@ -1541,9 +1559,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .w-81{
         width: 21rem;
-}
-    .w-10{
-        width: 2.5rem;
 }
     .w-82{
         width: 22rem;
@@ -1790,9 +1805,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .p-3{
         padding: 0.75rem;
-}
-    .p-2\.5{
-        padding: 0.625rem;
 }
     .p-2{
         padding: 0.5rem;
