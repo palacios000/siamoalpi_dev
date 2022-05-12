@@ -134,6 +134,14 @@
     .uk-flex-wrap-top {
       align-content: flex-start;
     }
+    .uk-animation-fade {
+      -webkit-animation-name: uk-fade;
+              animation-name: uk-fade;
+      -webkit-animation-duration: 0.8s;
+              animation-duration: 0.8s;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear;
+    }
     /*search box*/
     button.ais-SearchBox-submit svg{
       width: 25px;
@@ -192,7 +200,7 @@
             margin-top: 20px;
             font-size: 0.9rem;
             line-height: 1.25rem;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
             --tw-text-opacity: 1;
             color: rgb(14 155 126 / var(--tw-text-opacity));
         }
@@ -203,7 +211,7 @@
             color: white;
             font-size: 0.9rem;
             line-height: 1.25rem;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
             
         }
     div.rheostat > div.rheostat-marker.rheostat-marker-horizontal.rheostat-marker-large:nth-of-type(2) .rheostat-value{
@@ -222,122 +230,10 @@
         padding-right: 0.4rem;
     }
     /* zoom immagine*/
-    .image {
-          max-width: 100%;
-          cursor: none;
+    .magnify > .magnify-lens { /* overrides 200px */
+          width: 280px !important;
+          height: 280px !important;
         }
-    .image a {
-          cursor: none;
-        }
-    .image img {
-          max-width: 100%;
-        }
-    .zoom {
-          width: 14rem;
-          height: 14rem;
-          background: #fff;
-          border-radius: 50%;
-          position: absolute;
-          pointer-events: none;
-          transition: transform .25s ease, opacity 0s linear .25s;
-          opacity: 0;
-          transform: scale(0);
-          transform-origin: 50% 50%;
-          overflow: hidden;
-        }
-    .zoom.show {
-          transform: scale(1);
-          opacity: 1;
-          transition: transform .25s ease, opacity 0s linear;
-        }
-    .zoom .zoom-image {
-          position: absolute;
-          left: 0;
-          top: 0;
-        }
-    /*
-        .image {
-            max-width: 100%;
-            cursor: none;
-            
-            a {
-                cursor: none;
-            }
-            
-            img {
-                max-width: 100%;
-                vertical-align: middle;
-                z-index: 1;
-            }
-        }
-
-        .zoom {
-            width: 14rem;
-            height: 14rem;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            pointer-events: none;
-            transition: transform .25s ease, opacity 0s linear .25s, background .25s ease;
-            opacity: 0;
-            transform: scale(0);
-            transform-origin: 50% 50%;
-            overflow: hidden;
-            
-            &:before {
-                content: '';
-                position: absolute;
-                margin: auto;
-                left: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                display: none;
-            }
-            
-            &.show {
-                transform: scale(1);
-                opacity: 1;
-                transition: transform .25s ease, opacity 0s linear;
-            }
-            
-            &.loading {
-                background: transparent;
-                
-                &:before {
-                    display: block;
-                    animation: loading .5s ease infinite alternate;
-                }
-                
-                @keyframes loading {
-                    0% {
-                        transform: scale(0.1);
-                        box-shadow: inset 0 0 0 150px gold;
-                    }
-                    50% {
-                        transform: scale(1);
-                        box-shadow: inset 0 0 0 140px golf;
-                    }
-                    100% {
-                        box-shadow: inset 0 0 0 0 gold;
-                    }
-                }
-                
-                .zoom-image {
-                    opacity: 0;
-                }
-            }
-            
-            .zoom-image {
-                position: absolute;
-                left: 0;
-                top: 0;
-                transition: opacity .25s ease;
-            }
-        }*/
     /* article blog -- formatta il p di CKEditor  */
     article p img{
         margin-top: 4.5rem;
@@ -1191,12 +1087,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .right-4{
         right: 1rem;
 }
-    .bottom-6{
-        bottom: 1.5rem;
-}
-    .right-6{
-        right: 1.5rem;
-}
     .left-0{
         left: 0px;
 }
@@ -1450,14 +1340,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     .h-32{
         height: 8rem;
 }
+    .h-20{
+        height: 5rem;
+}
     .h-6{
         height: 1.5rem;
 }
     .h-12{
         height: 3rem;
-}
-    .h-20{
-        height: 5rem;
 }
     .h-screen{
         height: 100vh;
@@ -1551,17 +1441,17 @@ Ensure the default browser behavior of the `hidden` attribute.
     .w-3\/4{
         width: 75%;
 }
-    .w-6{
-        width: 1.5rem;
-}
-    .w-12{
-        width: 3rem;
-}
     .w-81{
         width: 21rem;
 }
     .w-82{
         width: 22rem;
+}
+    .w-6{
+        width: 1.5rem;
+}
+    .w-12{
+        width: 3rem;
 }
     .w-2\/3{
         width: 66.666667%;
@@ -1951,12 +1841,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .pb-0{
         padding-bottom: 0px;
 }
-    .pt-4{
-        padding-top: 1rem;
-}
-    .pt-2{
-        padding-top: 0.5rem;
-}
     .pt-14{
         padding-top: 3.5rem;
 }
@@ -1975,14 +1859,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     .pl-13{
         padding-left: 3.25rem;
 }
-    .pt-2\.5{
-        padding-top: 0.625rem;
-}
     .pb-24{
         padding-bottom: 6rem;
 }
     .pt-5{
         padding-top: 1.25rem;
+}
+    .pt-4{
+        padding-top: 1rem;
 }
     .pl-1{
         padding-left: 0.25rem;
@@ -1998,6 +1882,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .pt-6{
         padding-top: 1.5rem;
+}
+    .pt-2{
+        padding-top: 0.5rem;
 }
     .pb-1{
         padding-bottom: 0.25rem;
@@ -2088,7 +1975,7 @@ Ensure the default browser behavior of the `hidden` attribute.
     .text-sm{
         font-size: 0.9rem;
         line-height: 1.25rem;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.02em;
 }
     .text-h2{
         font-size: 1.65rem;

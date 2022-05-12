@@ -43,6 +43,7 @@ const search = instantsearch({
 			// ul.classList.add('uk-child-width-1-3', 'uk-grid');
 			ul.classList.add('grid', 'grid-cols-4');
 			ul.setAttribute("uk-grid", "masonry: true");
+			ul.setAttribute("uk-scrollspy", "cls: uk-animation-fade; target: .figurina");
 
 			// next button - mostra altre schede
 				const nextButton = document.createElement('button');
@@ -66,7 +67,7 @@ const search = instantsearch({
 				.map(
 					item =>
 						`
-						<div>
+						<div class='figurina'>
 						<a href='${item.url}'>
 						<div class='p-2'>
 							<div class='relative boder border-8 border-black hover:border-verde-sa transition-all duration-300 '>

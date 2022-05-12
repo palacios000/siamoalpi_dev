@@ -16,7 +16,7 @@ module.exports = {
       },
       fontSize: {
         sm: ['0.9rem', {
-          letterSpacing: '0.01em',
+          letterSpacing: '0.02em',
           lineHeight: '1.25rem', //25px
         }],
         base: ['1rem', {

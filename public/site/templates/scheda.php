@@ -32,24 +32,12 @@ require 'inc/head.php'; ?>
           <h1 class="h2-sa uppercase ml-12 w-81 text-white">
               <?= $scheda->title ?>
           </h1>
-
+                
           <!-- Picture content container -->
           <div class="flex mx-12 mt-10 pb-14">
-              <!-- Picture - immagine caricata dallo script sotto-->
-              <div class="relative mr-6 mt-2 mb-1 bg-white ">
-              
+              <div class="relative mr-6 mt-2 mb-1">
 
-              <div class="image">
-                <a href="<?php echo $scheda->immagini->first->httpUrl ?>" target="_blank">
-                  <img src="<?php echo $scheda->immagini->first->height(660)->httpUrl ?>" alt="">
-                </a>
-              </div>
-              <div class="zoom">
-                <img class="zoom-image" src="" alt="">
-              </div>
-
-
-              
+                <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">              
               </div>
 
               <!-- Luogo + Data + Tags list-->
@@ -134,59 +122,20 @@ require 'inc/head.php'; ?>
       <!--=============================
       =            algolia more       =
       ==============================-->
-        <div id="searchbox" class="hidden"></div>
-          <section>
+      <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
+      <div class="mx-12 w-fit pb-16">
 
-            <!-- Grid hits -->
-            <div x-data="{solofoto: true }" class="slanted-tr-m h-fit z-10 before:-z-10 mx-auto pt-2.5 pb-32 bg-black">
-              <!-- Content container -->
-              <div class="mx-12 w-fit pb-16">
-              <!-- #algolia, temi -->
-              <div x-show="temi">
-                <div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-                  <h2 class="text-verde-sa mb">Temi</h2>
-                  <div id="temiricerca" class="text-white"></div>
-                </div>
-              </div>
+          <!-- filtri / div nascosti -->
+          <div id="searchbox" class="hidden"></div>
+          <div id="maps" class="hidden"></div>
+          <div id="datazione" class="hidden"></div>
+          <div id="temiricerca" class="hidden"></div>
 
-              <div class="grid grid-cols-2 pt-4">
-                <div id="stats" class="text-white font-serif text-h2"></div>
-                <div class="text-right">
-                  <!-- griglia 1 -->
-                  <button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-                  :class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
-                  <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
-                </button>
-                <!-- griglia 2 -->
-                <button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-                :class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
-                <svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
-
-                </button>
-                </div>
-
-              </div>
-            <div class="flex flex-row gap-x-4">
-                <div id="clear-filter" class="text-white font-sansBold"></div>
-                <div id="current-refinements" class="text-white"></div>
-              </div>
-
-                <div id="hits" class="pt-2 -mx-4 relative" >
-                  <a href="#" class="absolute bottom-6 right-6 text-verde-sa inline-block" uk-totop uk-scroll>
-
-                  <svg class="fill-verde-sa h-6 w-6 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
-                  </svg>
-                  </a>
-
-                  
-                </div>
-                <div id="tags" class="h-8 overflow-hidden invisible"></div>
-                <div id="filtro" class="h-8 overflow-hidden invisible"></div>
-              </div>        
-            </div>
-          </section>          
-
+        <section id="grigliaAlg">
+          <?php include 'inc/grigliaImmagini.php' ?>
+        </section>
+      </div>
+      </div>
 
       <!-- La foto del giorno section -->
       <div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 
@@ -266,6 +215,13 @@ require 'inc/head.php'; ?>
  ?>
 
  <!-- algolia search -->
+
+           <!-- DA SISTEMARE -->
+           <script 
+               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
+           </script>
+
+
   <script>
   // essenziale per farlo passare allo script algolia.js qui sotto
    var filtro = {'temi': ['<?= $scheda->tema->first->title ?>']};
@@ -274,184 +230,11 @@ require 'inc/head.php'; ?>
 
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 
-<!--   <script>
-    // use your mousewheel to zoom in 🔍
-
-    console.clear();
-
-    const image = document.querySelectorAll('.image')[0];
-    const zoom = document.querySelectorAll('.zoom')[0];
-    const zoomImage = document.querySelectorAll('.zoom-image')[0];
-
-    let clearSrc;
-    let zoomLevel = 1;
-
-    const images = [
-      {
-        thumb: '<?php echo $scheda->immagini->first->height(660)->httpUrl ?>',
-        hires: '<?php echo $scheda->immagini->first->httpUrl ?>'
-      }
-    ]
-
-    // set to random image
-    let img = images[Math.floor(Math.random() * images.length)];
-
-    image.getElementsByTagName('a')[0].setAttribute('href', img.hires);
-    image.getElementsByTagName('img')[0].setAttribute('src', img.thumb);
-
-    const preloadImage = url => {
-      let img = new Image();
-      img.src = url;
-    }
-
-    preloadImage(img.hires);
-
-
-
-    const enterImage = function(e) {
-      zoom.classList.add('show', 'loading');
-      clearTimeout(clearSrc);
-      
-      let posX, posY, touch = false;
-      
-      if (e.touches) {
-        posX = e.touches[0].clientX;
-        posY = e.touches[0].clientY;
-        touch = true;
-      } else {
-        posX = e.clientX;
-        posY = e.clientY;
-      }
-      
-      touch
-        ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
-        : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
-      zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
-      
-      let originalImage = this.getElementsByTagName('a')[0].getAttribute('href');
-      
-      zoomImage.setAttribute('src', originalImage);
-      
-      // remove the loading class
-      zoomImage.onload = function() {
-        console.log('hires image loaded!');
-        setTimeout(() => {
-          zoom.classList.remove('loading');
-        }, 500);
-      }
-    }
-
-
-    const leaveImage = function() {
-      // remove scaling to prevent non-transition 
-      zoom.style.transform = null;
-      zoomLevel = 1;
-      zoom.classList.remove('show');
-      clearSrc = setTimeout(() => {
-                   zoomImage.setAttribute('src', '');
-                 }, 250);
-    }
-
-
-    const move = function(e) {
-      e.preventDefault();
-      
-      let posX, posY, touch = false;
-      
-      if (e.touches) {
-        posX = e.touches[0].clientX;
-        posY = e.touches[0].clientY;
-        touch = true;
-      } else {
-        posX = e.clientX;
-        posY = e.clientY;
-      }
-      
-      // move the zoom a little bit up on mobile (because of your fat fingers :<)
-      touch
-        ? zoom.style.top = `${posY - zoom.offsetHeight / 1.25}px`
-        : zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
-      zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
-      
-      let percX = (posX - this.offsetLeft) / this.offsetWidth,
-          percY = (posY - this.offsetTop) / this.offsetHeight;
-      
-      let zoomLeft = -percX * zoomImage.offsetWidth + (zoom.offsetWidth / 2),
-          zoomTop = -percY * zoomImage.offsetHeight + (zoom.offsetHeight / 2);
-      
-      zoomImage.style.left = `${zoomLeft}px`;
-      zoomImage.style.top = `${zoomTop}px`;
-    }
-
-
-
-    image.addEventListener('mouseover', enterImage);
-    image.addEventListener('touchstart', enterImage);
-
-    image.addEventListener('mouseout', leaveImage);
-    image.addEventListener('touchend', leaveImage);
-
-    image.addEventListener('mousemove', move);
-    image.addEventListener('touchmove', move);
-
-
-    image.addEventListener('wheel', e => {
-      e.preventDefault();
-      e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
-      
-      if (zoomLevel < 1) zoomLevel = 1;
-      if (zoomLevel > 5) zoomLevel = 5;
-      
-      console.log(`zoom level: ${zoomLevel}`);
-      zoom.style.transform = `scale(${zoomLevel})`;
-    });
+  <script>
+  $(document).ready(function() {
+    $('.zoom').magnify();
+  });
   </script>
-
- -->
-
-<script>
-  // use your mousewheel to zoom in 🔍
-const image = document.querySelectorAll('.image')[0];
-const zoom = document.querySelectorAll('.zoom')[0];
-const zoomImage = document.querySelectorAll('.zoom-image')[0];
-let clearSrc;
-let zoomLevel = 1;
-image.addEventListener('mouseover', function () {
-  zoom.classList.add('show');
-  clearTimeout(clearSrc);
-  let originalImage = this.getElementsByTagName('a')[0].getAttribute('href');
-  zoomImage.setAttribute('src', originalImage);
-});
-image.addEventListener('mouseout', function () {
-  // remove scaling to prevent non-transition 
-  zoom.style.transform = null;
-  zoomLevel = 1;
-  zoom.classList.remove('show');
-  clearSrc = setTimeout(() => {
-    zoomImage.setAttribute('src', '');
-  }, 250);
-});
-image.addEventListener('mousemove', function (e) {
-  let posX = e.clientX,
-  posY = e.clientY;
-  zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
-  zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
-  let percX = (posX - this.offsetLeft) / this.offsetWidth,
-  percY = (posY - this.offsetTop) / this.offsetHeight;
-  let zoomLeft = -percX * zoomImage.offsetWidth + zoom.offsetWidth / 2,
-  zoomTop = -percY * zoomImage.offsetHeight + zoom.offsetHeight / 2;
-  zoomImage.style.left = `${zoomLeft}px`;
-  zoomImage.style.top = `${zoomTop}px`;
-});
-
-image.addEventListener('wheel', e => {
-  e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
-  if (zoomLevel < 1) zoomLevel = 1;
-  if (zoomLevel > 5) zoomLevel = 5;
-  console.log(`zoom level: ${zoomLevel}`);
-  zoom.style.transform = `scale(${zoomLevel})`;
-});
-</script>
 
 </body>
 </html>
