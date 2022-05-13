@@ -15,8 +15,8 @@ module.exports = {
         boldest: '950',
       },
       fontSize: {
-        sm: ['18px', {
-          letterSpacing: '0.01em',
+        sm: ['0.9rem', {
+          letterSpacing: '0.02em',
           lineHeight: '1.25rem', //25px
         }],
         base: ['1rem', {
@@ -62,6 +62,7 @@ module.exports = {
         '73': '19.2rem',
         '81': '21rem',
         '97': '28rem',
+        '98': '33rem',
       },
       letterSpacing: {
         '0': '0em',

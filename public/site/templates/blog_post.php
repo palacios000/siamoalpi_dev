@@ -5,7 +5,7 @@
       <!-- Slanted Header div -->
       <?php 
       //prima di chiamare il banner, assicurati di aver definito l'immagine
-      $bannerBgImg = $page->images_bg->first->url;
+      $bannerBgImg = $page->images_bg->last->url;
       include 'inc/header-banner.php' ?>
 
       <!-- Main content div  -->
@@ -15,6 +15,10 @@
           <?= $page->titleH1 ?>
         </h1>
 
+        <?php if ($user->isLoggedin()) {
+          echo "<a target='_blank' href='$page->editUrl' class='bottone-verde'>Modifica post</a>";
+        } ?>
+
         <div class="px-12 2xl:px-72 lg:px-56 mx-auto">
           <article class="pt-18">
             <?= $page->body ?>
@@ -22,22 +26,14 @@
         </div>
       </div>
 
-      <!-- Grid div -->
-      <div class="slanted-tl-m h-fit z-40 before:-z-10 mx-auto pt-16 pb-32 bg-black">
-        <!-- Content container -->
-        <div class="mx-12 w-fit pb-16">
-          <!-- Title -->
-          <div class="text-white text-left font-serif text-h2 pb-9">
-            <span class="text-verde-sa">130</span> immagini correlate
-          </div>
-          <!-- Picture masonry grid -->
-          <img class="mx-auto" src="http://via.placeholder.com/1336x400" alt="">
-        </div>
 
-        <!-- Plus icon -->
-        <svg class="w-18 h-18 mx-auto" fill="white" viewBox="0 0 25 25" xmlns="http://www.w3.5org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
-        
-      </div>
+      <?php 
+      if ($page->name == "progetto") {
+        include 'foto-del-giorno.php'; 
+      } else{
+        echo "immagini correlate -- da fare";
+      }
+      ?>
 
       <!-- Footer div -->
       <?php require 'inc/footer.php' ?>

@@ -1,4 +1,4 @@
-<footer class="slanted-tr-l pb-24 pt-20 z-50 before:-z-10 relative flex bg-verde-sa text-white justify-items-end">
+<footer class="slanted-tr-l pb-24 pt-16 z-50 before:-z-10 relative flex bg-verde-sa text-white justify-items-end">
   <!-- Logo -->
   <a class="block w-fit h-fit" href="#">
     <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo Siamo Alpi">

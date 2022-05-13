@@ -26,5 +26,5 @@
     	</a>
     </div>
 
-    <div id="tags" class="h-8 overflow-hidden invisible"></div>
-    <div id="filtro" class="h-8 overflow-hidden invisible"></div>
+    <div id="tags" class="h-8 invisible"></div>
+    <div id="filtro" class="h-8 invisible"></div>

@@ -181,7 +181,7 @@
 
     img.align_center,
     figure.align_center{
-        @apply text-center;
+        @apply text-center mx-auto;
         @apply mt-18 mb-14;
         img {
             @apply block text-center mx-auto;
@@ -192,7 +192,7 @@
     }
 
     article cite{
-        @apply block h2-sa text-center mt-8 pb-14 font-serif;
+        @apply block h2-sa text-center mt-8 pb-14 font-serif not-italic;
     }
 
     
