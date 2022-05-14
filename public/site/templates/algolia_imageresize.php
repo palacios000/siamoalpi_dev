@@ -5,38 +5,48 @@
  * Script da attivare con un CronJob in modo che le immagini
  * siano pronte quando l'altro script che generea il json (sempre per algolia)
  * non debba stare a ridimensionare 1000+ immagini. In pratica riduco il load del server.
+ * 
+ * 260px: misura che utilizza ListerPro per ridimensionare le immagini, per l'anteprima di della tabella (260w per immagini verticali e 260w per immagini orizzontali)
+ * 
+ * trovo le immagini ridimensionate il larghezza 260px da lister, ovvero le immagini verticali. Se esistono, creo un'altra variante un po' pou' grande di 305px di larghezza.
+ * 
+ * (le immagini orizzontali vengono ridimensionate in altezza 260px, e non hanno bisogno di ritocchi perche la larghezza supera i 305 px). 
 */
 
 
 
-	// prepare il contenuto del json, con le schede aventi almento una immagine
-	$json = '[';
-	$schede = $pages->find("template=gestionale_scheda, limit=20, sort=random, stato_avanzamento!=2593");
-	$fotoFinalWidth = 260; // larghezza delle immagini per l'output di algolia (260 e' la variazione creata da lister (tabella) del backend) // da modificare poi con 600px?
+$schede = $pages->find("template=gestionale_scheda, limit=15, sort=random, stato_avanzamento!=2593, sync.fotoready!=1");
+$listerwidth = 260; 
+$optionsVariations = array('width' => $listerwidth);
+
+$nSchede = count($schede); 
+$idScheda = "";
+if ($nSchede >= 1) {
+	
 	foreach ($schede as $scheda) {
+		// echo  "scheda: " . $scheda->title . " id:" . $scheda->id . "<br>";
 		if (count($scheda->immagini)) {
-			
-			// immagine 
-				// check if there is our variation
-				$optionsVariations = array('width' => $fotoFinalWidth);
-				$nVariations = $scheda->immagini->first->getVariations($optionsVariations);
-				if ( count($nVariations) != 1) {
-					$newImage = $scheda->immagini->first->width($fotoFinalWidth);
 
-					// update scheda
-					$scheda->of(false);
-					$scheda->sync->fotoready = 1;
-					$scheda->save('sync');
-
-					// echo $newImage->httpUrl;
-					// echo "<br>";
-				} else{
-					// echo "scheda gia' pronta";
-					// echo "<br>";
+			foreach ($scheda->immagini as $immagine) {
+				//trovami la versione di Lister
+				$listerImage = $immagine->getVariations($optionsVariations);
+				if (count($listerImage) == 1) {
+					$immagine->width(305);
+					// echo "trovata un'immagine 260 <br>";
+					// echo $immagine->name . " immagine ridimensionata <br>";
 				}
 			}
+
+			// aggiorna il check della scheda
+			$scheda->of(false);
+			$scheda->sync->fotoready = 1;
+			$scheda->save();
+			$idScheda .= " id:$scheda->id ,"; 
+			
 		}
-	exit;
+	}
+	wire('log')->save('sync_algolia_imagersize', "$nSchede controllate: $idScheda");
+}
 
 
 ?>
