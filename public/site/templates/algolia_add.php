@@ -20,6 +20,7 @@
 
 // 0 controlla lo stopper se e' attivo, se lo e' blocca tutto
 	$error = ($page->counter->stop) ? true : false;
+	$debug = false; // non mandare il json ad algolia...
 	$jsonName = "algolia.json";
 	$filePath = $config->paths->assets . $jsonName;
 
@@ -29,7 +30,7 @@
 	$selector = "template=gestionale_scheda, immagini.count>=1";
 
 	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 2593 eliminata
-	$selector .= ", stato_avanzamento=1112";
+	$selector .= ", stato_avanzamento=1111|1112";
 	if (!$page->counter->reset) {
 		// PRODUCTION
 		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; 
@@ -55,30 +56,36 @@
 				
 				// immagine 
 					$immagineUrl = '';
-					// check if there is our variation
-					// PRODUCTION
-						/* 
-						$optionsVariations = array('width' => $fotoFinalWidth);
-						$nVariations = $scheda->immagini->first->getVariations($optionsVariations);
-						if ( count($nVariations) === 1) {
-							$immagine = $nVariations->first;
-						}else{
-							$immagine = $scheda->immagini->first->width($fotoFinalWidth);
-						}*/
+					// check if there is our variation -- riprendi il codice e vedi le note di algolia_imageresize.php  
 
-					// TEMP (list mi da' 260 per vertical e 260 orizzontali... non penso noi dovremo distinguere tra i due casi. Per ora prendo quello che c'e').
-						$nVariations = $scheda->immagini->first->getVariations();
-						if (count($nVariations) >= 1) {
-							$immagine = $nVariations->last;
-						}else{
-							$immagine = $scheda->immagini->first->width($fotoFinalWidth);
+					// PRODUCTION
+					$listerwidth = 260;
+					$horizontalImageWidth = 350;
+
+					$immagineVerticale = false; 
+					$optionsVariations = array('width' => $listerwidth);
+
+					$listerImage = $scheda->immagini->first->getVariations($optionsVariations);
+					if (count($listerImage) == 1) {
+						// se non c'e' la variante prec. creata da algolia_imageresize, mi tocca crearla ora
+						if ($scheda->sync->fotoready != 1) {
+							$scheda->immagini->first->width($horizontalImageWidth);
+							$scheda->of(false);
+							$scheda->sync->fotoready = 1;
+							$scheda->save();
 						}
+						$immagineVerticale = true;
+					}
+					if ($immagineVerticale) { // prendi la 260
+						$immagine = $scheda->immagini->first->getVariations(['width' => 350])->first;
+					}else{ // prendi la 350
+						$immagine = $scheda->immagini->first->getVariations(['height' => 260])->first;
+					}
 
 					// output HTTP URL
 						$immagineUrl = $immagine->httpUrl;	
 
-					// tell me image ratio
-						//$ratio = $immagine->width / $immagine->height;
+					// tell me image ratio .. no need
 
 				// tema & temi raggruppati
 					$temi = array();
@@ -223,11 +230,6 @@
 			fclose($algoliaJson);
 		}else{
 			echo "ERRORE!: ";
-			// /* test / DEBUG -- controlla quello che viene scritto in modo da trovare l'errore */
-			// echo $error;
-			// $algoliaJson = fopen("$filePath", "w");
-			// fwrite($algoliaJson, $json);
-			// fclose($algoliaJson);
 
 			$mail = wireMail();
 			$mail->sendSingle(true);
@@ -239,7 +241,7 @@
 	}
 
 // 3. aggiorna questa pagina
-	if (!$error) {
+	if (!$error && !$debug) {
 		$page->of(false);
 		$page->timestamp = time();
 		$page->counter->records = $nSchedePronte;
@@ -257,19 +259,17 @@
 		}
 	}else{
 		wire('log')->save('sync_algolia_add', "$error");
-
 	}
 
 // 4. manda tutto ad algolia
-	//if ($error == "pippo") { // DEBUG
-	if (!$error) {
+	if (!$error && !$debug) {
 
-	$client = \Algolia\AlgoliaSearch\SearchClient::create('NK1J7ES7IV', '15310a01b90b40aa75122bf82fec47d9');
-	$index = $client->initIndex('siamoAlpi');
+		$client = \Algolia\AlgoliaSearch\SearchClient::create('NK1J7ES7IV', '15310a01b90b40aa75122bf82fec47d9');
+		$index = $client->initIndex('siamoAlpi');
 
-	$records = json_decode(file_get_contents("$algoliaURL"), true);
+		$records = json_decode(file_get_contents("$algoliaURL"), true);
 
-	$index->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
+		$index->saveObjects($records, ['autoGenerateObjectIDIfNotExist' => true]);
 
 	}
 

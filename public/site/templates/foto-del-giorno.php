@@ -7,11 +7,9 @@
   */
 
 $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
-//$fotoGiorno = $pages->get(2634);
-
 
 if($fotoGiorno->id){ 
-    $fotoImg = $fotoGiorno->immagini->first->width(737);
+    $fotoImg = $fotoGiorno->immagini->first->height(530);
     $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
 
 	<div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60"> 

@@ -15,7 +15,7 @@ if (!$page->counter->stop) {
     $googleUrl = "https://maps.googleapis.com/maps/api/geocode/";
    
     // cerca le schede
-    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1112, luogo.comune!='', sync.geocoding!=1, sync.map_desync!=1, limit=15");
+    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1111|1112, luogo.comune!='', sync.geocoding!=1, sync.map_desync!=1, limit=15");
     if (count($schede)) {
 
         $idSchede = '';
