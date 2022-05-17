@@ -17,19 +17,19 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 		      <div class="mx-12 w-fit pb-16">
 		    	<!-- #filtri div a scomparsa -->
 		    	<section id="filtriAlg">		    		
-			    	<div x-show="temi" class="w-full py-4">
+			    	<div x-show="temi" x-transition class="w-full py-4">
 			    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
 					    	<h2 class="text-verde-sa mb">Temi</h2>
 					    	<div id="temiricerca" class="text-white"></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="anni" class="w-full py-4 px-16">
+			    	<div x-show="anni" x-transition class="w-full py-4 px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Anni</h2>
 					    	<div id="datazione" class="h-16 "></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="mappa" class="w-full py-4 px-16">
+			    	<div x-show="mappa" x-transition class="w-full py-4 px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Mappa</h2>
 					    	<div id="maps" class="h-32 bg-white"></div>

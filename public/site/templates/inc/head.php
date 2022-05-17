@@ -38,4 +38,5 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css" integrity="sha512-wzhF4/lKJ2Nc8mKHNzoFP4JZsnTcBOUUBT+lWPcs07mz6lK3NpMH1NKCKDMarjaw8gcYnSBNjjllN4kVbKedbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify-mobile.min.js" integrity="sha512-c3hGxeqPC+hyYCH6xddUy6sg5lgmXomxpN5fkhUxKPOM7OD/+M+Rj1rj02q4MOkn+PUBRGPZVNTMMrREyZS0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<?php } ?>
+
 	</head>

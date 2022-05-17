@@ -1,3 +1,10 @@
+/* menu */
+    .activePage::before{
+        content: '•';
+        padding-right: 0.4rem;
+        color: white;
+        /*@apply text-verde-sa;*/
+    }
 
 /* titoli - testi */
     .h1-sa {

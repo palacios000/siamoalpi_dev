@@ -10,7 +10,7 @@
         <img class=""  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo">
     </a>
 
-    <!-- Menu Icon -->
+    <!-- Menu Icon - Hamburger -->
     <div class="h-0" x-on:click="menu = true">
         <button type="button" x-show="!menu">
             <svg class="text-white block h-8 w-8 absolute top-8 right-12" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -65,6 +65,13 @@
                 x-on:click="menu = false"
                 class="relative min-h-screen max-w-screen-xl 2xl:max-w-screen-2xl mx-auto z-50"
             >
+                <!-- close botton -->
+                <button class="absolute top-8 right-12" x-on:click="menu = ! menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class=" h-8 w-8 stroke-current text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
                 <div
                     x-on:click.stop
                     x-trap.noscroll.inert="menu"
@@ -72,14 +79,18 @@
                 >
                     <ul class="text-right text-white h3-sa uppercase">
 
-                        <li class="my-2"><a href="<?= $homeNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Home</a></li>
-                        <li class="my-2"><a href="<?= $progettoNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Progetto</a></li>
-                        <li class="my-2"><a href="<?= $archivioNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Ricerca</a></li>
-                        <li class="my-2"><a href="<?= $blogNew ?>" class="bg-blu-sa hover:bg-verde-sa py-3 pl-3 pr-6 ">Diario</a></li>
+                        <?php foreach ($menuPages as $menuPage) {
+                            $activePage = ($page->id == $menuPage->id) ? "activePage" : "";
+                            echo "
+                            <li class='h-16 mb-2'>
+                            <a href='$menuPage->url' class='bg-blu-sa hover:bg-verde-sa transition pt-4 pb-3 pl-3 pr-6 $activePage'>$menuPage->name</a>
+                            </li>
+                            ";
+                        } ?>
 
-                        <?php if ($page->editable()) {
+                       <?php if ($page->editable()) {
                             echo '
-                            <li class="my-2"><a href="'. $page->editUrl .'" class="bg-verde-sa py-3 pl-3 pr-6 ">Edit</a></li>
+                            <li class="h-16 mb-2"><a href="'. $page->editUrl .'" class="bg-verde-sa pl-3 pr-6 ">Edit</a></li>
                             ';
                         } ?>
                     </ul>

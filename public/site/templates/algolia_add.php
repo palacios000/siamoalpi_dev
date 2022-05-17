@@ -77,9 +77,9 @@
 						$immagineVerticale = true;
 					}
 					if ($immagineVerticale) { // prendi la 260
-						$immagine = $scheda->immagini->first->getVariations(['width' => 350])->first;
+						$immagine = $scheda->immagini->first->getVariations(['width' => 350])->first();
 					}else{ // prendi la 350
-						$immagine = $scheda->immagini->first->getVariations(['height' => 260])->first;
+						$immagine = $scheda->immagini->first->getVariations(['height' => 260])->first();
 					}
 
 					// output HTTP URL

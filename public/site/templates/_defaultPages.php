@@ -11,4 +11,7 @@ $archivioPage = $pages->findOne("template=ricerca");
 $blogPage = $pages->findOne("template=blog_post");
 $progettoPage = $pages->get(3299);
 
+// le metto tutte in un array
+$menuPages = [$homePage, $archivioPage, $blogPage, $progettoPage];
+
 ?>
