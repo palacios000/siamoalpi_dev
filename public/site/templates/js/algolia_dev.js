@@ -1,14 +1,22 @@
-/* todo 
-random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
- */
+// let map;
 
-window.maps = new google.maps.Map(document.getElementById('maps'), {
-  center: {
-  	lng: 9.8676338, 
-  	lat: 46.1700326,
-  },
-  zoom: 8
-});
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById("maps"), {
+//     center: { lat: -34.397, lng: 150.644 },
+//     zoom: 8,
+//   });
+// }
+
+// window.initMap = initMap;
+
+
+// window.maps = new google.maps.Map(document.getElementById('maps'), {
+//   center: {
+//   	lng: 9.8676338, 
+//   	lat: 46.1700326,
+//   },
+//   zoom: 8
+// });
 
 
 
@@ -317,11 +325,11 @@ const search = instantsearch({
 		  container: '#maps',
 		  googleReference: window.google,
 		  // Optional parameters
-		  // initialZoom: number,
-		  // initialPosition: {
-		  //     lat: 48.864716,
-		  //     lng: 2.349014,
-		  //   },
+		  initialZoom: 12,
+		  initialPosition: {
+		      lat: 48.864716,
+		      lng: 2.349014,
+		    },
 		  // mapOptions: object,
 		  // builtInMarker: object,
 		  // customHTMLMarker: object,
@@ -339,3 +347,4 @@ const search = instantsearch({
 search.start();
 
 
+console.log(window.google);

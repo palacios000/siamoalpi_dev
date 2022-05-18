@@ -59,18 +59,23 @@
     </div>
 
     <!-- Iniziativa di.. -->
-    <div class="shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs uppercase pl-1 pr-0 mb-4">
+    <div class="shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-1 pr-0 mb-4">
       <p>Un'iniziativa di</p>
       <!-- Provincia di Sondrio e Società economica Valtellina -->
       <img class="pt-5 h-20 pr-4" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
     </div>
 
     <!-- Finanziata da -->
-    <div class="basis-2/5 2xl:basis-auto border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs uppercase pl-2 pr-5 mb-4">
+    <div class="basis-2/5 2xl:basis-auto border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-2 pr-5 mb-4">
       <p>Finanziata da</p>
       <!-- Fondazione CARIPLO Logo -->
       <img class="pt-6 h-20 mb-3" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-fondazione-cariplo.png" ?>" alt="Fondazione Cariplo">
     </div>
   </div>
+
+  <section id="credits" class="absolute bottom-14 -right-8 ">
+    <p class="text-blu-scuro-sa text-xxs tracking-03 uppercase -rotate-90">Privacy | Crediti</p>
+    
+  </section>
 
 </footer>

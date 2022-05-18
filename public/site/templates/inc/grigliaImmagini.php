@@ -21,8 +21,17 @@
 	</div>
 
     <div id="hits" class="pt-2 -mx-4 relative" >
-    	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block bg-verde-sa " uk-totop uk-scroll>
-    		<svg class="h-12 w-12 hover:fill-white transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.2 23.2"><path d="M16.9 10.1l-5.3-4.7-5.3 4.7.7.7L11.2 7v10.8h.9V7.5L12 7l4.2 3.8z"/></svg>
+    	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block" uk-totop uk-scroll>
+    		<!-- <svg class="h-12 w-12 hover:fill-white transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.2 23.2"><path d="M16.9 10.1l-5.3-4.7-5.3 4.7.7.7L11.2 7v10.8h.9V7.5L12 7l4.2 3.8z"/></svg> -->
+    		<svg class="h-10 w-10 fill-white hover:fill-verde-sa transition-all" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    			 viewBox="0 0 57.1 57.6" style="enable-background:new 0 0 57.1 57.6;" xml:space="preserve">
+	    		<g>
+	    			<path class="st0" d="M34.7,26.9l2-2l-8.1-8l-7.9,7.9l2,2l4.6-4.6v17.9h2.8V22.4L34.7,26.9z M53.5,28.5c0,13.7-11.1,24.8-24.8,24.8
+	    				S3.8,42.2,3.8,28.5S15,3.7,28.7,3.7S53.5,14.8,53.5,28.5 M56.3,28.5c0-15.2-12.4-27.7-27.7-27.7C13.4,0.8,1,13.2,1,28.5
+	    				s12.4,27.7,27.7,27.7C43.9,56.1,56.3,43.7,56.3,28.5"/>
+	    		</g>
+    		</svg>
+
     	</a>
     </div>
 

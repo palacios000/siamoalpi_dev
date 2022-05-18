@@ -18,7 +18,7 @@ const searchClient = algoliasearch('NK1J7ES7IV', '6581401b5f047688ea20ca3f5e6074
 const search = instantsearch({
 	indexName: 'siamoAlpi',
 	searchClient,
-	routing: true,
+	routing: routingUrl,
 	initialUiState: {
 		siamoAlpi: {
 	    	refinementList: filtro
@@ -41,17 +41,18 @@ const search = instantsearch({
 		if (isFirstRender) {
 			const ul = document.createElement('div');
 			// ul.classList.add('uk-child-width-1-3', 'uk-grid');
-			ul.classList.add('grid', 'grid-cols-4');
+			ul.classList.add('grid','grid-cols-1', 'md:grid-cols-3', 'lg:grid-cols-4',);
 			ul.setAttribute("uk-grid", "masonry: true");
-			ul.setAttribute("uk-scrollspy", "cls: uk-animation-fade; target: .figurina");
 
 			// next button - mostra altre schede
-				const nextButton = document.createElement('button');
-				nextButton.classList.add('next-button', 'text-white', 'p-3', 'mx-auto', 'block', 'hover:text-verde-sa', 'hover:rotate-90', 'transition');
-				nextButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width=".5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
-				nextButton.addEventListener('click', () => {
-					showMore();
-				});
+			const nextButton = document.createElement('button');
+			// nextButton.classList.add('next-button', 'text-white', 'p-3', 'mx-auto', 'block', 'hover:text-verde-sa', 'hover:rotate-90', 'transition');
+			// nextButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width=".5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
+			nextButton.classList.add('next-button', 'bottone-verde','mx-auto', 'block', 'mt-16');
+			nextButton.innerHTML = 'Mostra Altro';
+			nextButton.addEventListener('click', () => {
+				showMore();
+			});
 
 			widgetParams.container.appendChild(ul);
 			widgetParams.container.appendChild(nextButton);
@@ -67,13 +68,12 @@ const search = instantsearch({
 				.map(
 					item =>
 						`
-						<div class='figurina'>
+						<div>
 						<a href='${item.url}'>
 						<div class='p-2'>
 							<div class='relative boder border-8 border-black hover:border-verde-sa transition-all duration-300 '>
 								<img class='object-cover w-full' src='${item.immagine}'>
-								<div x-show='solofoto' class='absolute w-full h-full inset-0 px-4 py-2 text-white font-bold bg-black opacity-0 hover:opacity-70 transition duration-300 '>${instantsearch.highlight({ attribute: 'titolo', hit: item })}
-									<span class='bottone-bianco-trasparente block absolute bottom-0 left-0 p-4 opacity-100'>Scopri</span>
+								<div x-show='solofoto' class='absolute w-full h-full inset-0 px-4 py-2 text-white font-bold bg-black opacity-0 hover:opacity-70 transition duration-300 leading-5 tracking-03'>${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 								</div>
 
 							</div>
@@ -179,13 +179,13 @@ const search = instantsearch({
 		    .join(' ');
 
 		const renderListItem = item => `
-		  <li class='uppercase inline pl-6'>
+		  <li class='uppercase inline'>
 		    <span class='sr-only'>${item.label}:</span>
 		    <ul class='inline'>
 		      ${item.refinements
 		        .map(
 		          refinement =>
-		            `<li class='lowercase inline'>
+		            `<li class='lowercase inline pr-4'>
 		              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
 		              ${refinement.label} 
 		            </li>`
@@ -199,7 +199,7 @@ const search = instantsearch({
 		  const { items, refine, widgetParams } = renderOptions;
 
 		  widgetParams.container.innerHTML = `
-		    <ul class='mt-1'>
+		    <ul class='mt-2'>
 		      ${items.map(renderListItem).join('')}
 		    </ul>
 		  `;
@@ -268,7 +268,7 @@ const search = instantsearch({
 			placeholder: 'Cerca nell\'archivio',
 			cssClasses: {
 			  form: ['relative', 'h-8', 'opacity-75', 'hover:opacity-100', ],
-			  input: ['bg-neutral-100', 'rounded-full', 'pl-8', 'w-full' ],
+			  input: ['bg-neutral-100', 'rounded-full', 'pl-8', 'w-full', 'font-serif' ],
 			  submit: ['absolute', 'h-8', 'w-8', 'right-2', 'top-1.5', 'hover:fill-verde-sa', ],
 			  reset: ['absolute', 'h-8', 'w-8', 'left-2', 'top-1.5', 'hover:fill-verde-sa', 'text-center' ]
 			},
@@ -295,7 +295,7 @@ const search = instantsearch({
 		      resetLabel: 'RIMUOVI FILTRI',
 		    },
 		  cssClasses: {
-		  	button: ['border', 'border-verde-sa', 'px-4', 'py-1', 'font-bold' ],
+		  	button: ['border', 'border-verde-sa', 'px-4', 'py-1', 'text-sm', 'font-sansBold', 'tracking-widest', 'mt-1', 'hover:text-verde-sa', 'transition' ],
 		  	disabledButton: 'invisible',
 		  }
 		}),

@@ -8,6 +8,7 @@
 
 $fotoGiorno = $pages->find("template=gestionale_scheda, selezione=1")->getRandom();
 
+
 if($fotoGiorno->id){ 
     $fotoImg = $fotoGiorno->immagini->first->height(530);
     $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
@@ -26,7 +27,7 @@ if($fotoGiorno->id){
 	            <!-- Info grid -->
 	            <div class="flex gap-1 p-sa mb-8 w-fit ">
 	                <ul class="fotoGiornoTags flex flex-row gap-4">
-	                <?php foreach ($fotoGiorno->tags as $tag) {
+	                <?php foreach ($fotoGiorno->tags("limit=3") as $tag) {
 	                    echo "<li class='inline-block'>$tag->title</li>"; 
 	                } ?>
 	                </ul>

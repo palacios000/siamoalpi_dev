@@ -7,8 +7,18 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
-	    $bannerBgImg = $page->images_bg->first->url;
+	    $bannerBgImg = $page->images_bg->getRandom()->url;
 	    include 'inc/header-banner.php' ?>
+
+	    <!-- <div class="bg-white">
+	    	<?php // pagination & random display results 
+	    	if (count(parse_str($input->get('siamoAlpi')))>=1) {
+	    		echo "no GET";
+	    	}else{
+	    		echo "URL GET";
+	    	}
+	    	 ?>
+	    </div> -->
 
 	    <section>
 
@@ -17,19 +27,19 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 		      <div class="mx-12 w-fit pb-16">
 		    	<!-- #algolia -->
 		    	<section id="filtriAlg">		    		
-			    	<div x-show="temi" class="w-full py-4">
+			    	<div x-show="temi" x-transition class="w-full py-4">
 			    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
 					    	<h2 class="text-verde-sa mb">Temi</h2>
 					    	<div id="temiricerca" class="text-white"></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="anni" class="w-full py-4 px-16">
+			    	<div x-show="anni" x-transition class="w-full py-4 px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Anni</h2>
 					    	<div id="datazione" class="h-16 "></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="mappa" class="w-full py-4 px-16">
+			    	<div x-show="mappa" x-transition class="w-full py-4 px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Mappa</h2>
 					    	<div id="maps" class="h-32 bg-white"></div>
@@ -47,29 +57,20 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 		    </div>
 	    </section>
 
-	    <!-- Footer div -->
 	    <?php require 'inc/footer.php' ?>
 	  </div>
 
 
-
-<!-- algolia search -->
-<script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
-</script>
-<!-- <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
-</script>
- -->
-	<script>
-	// essenziale per farlo passare allo script algolia.js qui sotto
-	// qui vuoto, ma utile pe la pagina Scheda
-	 var filtro = {};
-	</script>
-	<script type="module" src="<?= $config->urls->templates?>js/algolia.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
+	  <!-- ### algolia search ### -->
+	  <script>
+	  // essenziale per farlo passare allo script algolia.js qui sotto
+	  // qui vuoto, ma utile pe la pagina Scheda
+	   var filtro = {};
+	   var routingUrl = true;
+	  </script>
+   	  <?php require 'inc/scripts.php' ?>
 
 
-</body>
+
+	</body>
 </html>

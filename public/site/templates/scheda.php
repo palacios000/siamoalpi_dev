@@ -1,11 +1,12 @@
 <?php 
+$schedaOK = false;
 /* Le informazioni della scheda vengono prelevate tramite il get nell'URL, impostato su Algolia */
 $schedaId = $sanitizer->int($input->get->id);
 if ($schedaId) {
 	$scheda = $pages->get($schedaId);
-	$schedaOK = true;
-}else{
-	$schedaOK = false;
+  if ($scheda->template == "gestionale_scheda") {
+  	$schedaOK = true;
+  }
 }
 
 require 'inc/head.php'; ?>
@@ -17,35 +18,36 @@ require 'inc/head.php'; ?>
       <!-- Slanted Header div -->
       <?php 
       //prima di chiamare il banner, assicurati di aver definito l'immagine
-      $bannerBgImg = $config->urls->templates . 'pictures/head/siamo-alpi-head-small-5.jpg';
+      $bannerBgImg = $page->parent->images_bg->getRandom()->url;
       include 'inc/header-banner.php' ?>
 
-
+      <?php if ($schedaOK){ ?>
       <!-- Picture div -->
       <div class="slanted-tl-sm z-20 before:-z-10 bg-black pt-14 h-fit">
 
 	      <?php if ($user->isLoggedin()) {
 	      	$edit = $config->urls->admin . "page/edit/?id=" . $scheda->id;
 	      	echo "<a target='_blank' href='$edit' class='bottone-verde'>Modifica scheda</a>";
-	      } ?>
+	      } ?>      
+          
           <!-- Picture title -->
-          <h1 class="h2-sa uppercase ml-12 w-81 text-white">
+          <h1 class="h2-sa uppercase ml-12 w-1/2 text-white">
               <?= $scheda->title ?>
           </h1>
                 
           <!-- Picture content container -->
-          <div class="flex mx-12 mt-10 pb-14">
+          <div class="flex mx-12 mt-10 pb-14 flex-col md:flex-row">
               <div class="relative mr-6 mt-2 mb-1">
                 <div>
-                <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
+                  <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
                 </div>
 
-              <p class="text-white text-sm mt-2">
-                <svg class='text-verde-sa h-6 w-6 inline' xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                </svg>
-                <a target="_blank" href="<?= $scheda->immagini->first->httpUrl ?>">Dimensioni originali</a>
-              </p>           
+                <p class="text-white text-sm mt-2 invisible lg:visible">
+                  <svg class='text-verde-sa h-6 w-6 inline' xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
+                  <a class="hover:text-verde-sa transition" target="_blank" href="<?= $scheda->immagini->first->httpUrl ?>">Dimensioni originali</a>
+                </p>           
               </div>
 
               <!-- Luogo + Data + Tags list-->
@@ -68,7 +70,7 @@ require 'inc/head.php'; ?>
                     $dove = ($scheda->luogo->localita) ? $scheda->luogo->localita . ", " . $scheda->luogo->comune : $scheda->luogo->comune;
                     echo "
                     <ul class='list-none h2-sa tracking-0 text-white pb-8'>
-                      <li><a class='hover:text-verde-sa' href='$urlSlider'>$quando</a></li>
+                      <li><a class='hover:text-verde-sa transition' href='$urlSlider'>$quando</a></li>
                       <li>$dove</li>
                     </ul>                    
                     ";
@@ -78,16 +80,21 @@ require 'inc/head.php'; ?>
                   <?php 
                   $urlTag = $archivioPage->url . '?siamoAlpi[refinementList][tags][0]=';
                   	foreach ($scheda->tags as $tag) {
-                  	echo "<li><a href='$urlTag{$tag->name}'>$tag->title</a></li>";
+                  	echo "<li><a class='hover:text-verde-sa transition' href='$urlTag{$tag->name}'>$tag->title</a></li>";
                   } ?>	
                   </ul>
 
                   <div id="altrenote" class="absolute bottom-0 left-0 text-white text-sm">
                     <!-- condividi -->
+                    <?php // make urls
+                    $soggetto = $sanitizer->entities("Condivisione URL da SiamoAlpi.it") ;
+                    $mailtoURL = "mailto:?subject=$soggetto&body=".$page->httpUrl."?id=".$schedaId;  
+                    $fbURL = "https://www.facebook.com/sharer/sharer.php?u=".$page->httpUrl."?id=".$schedaId;  
+                    ?>
                     <p class="font-sansBold uppercase">Condividi</p>
                     <ul class="fotoGiornoTags flex flex-row gap-4">
-                      <li class="inline">email</li>
-                      <li class="inline">facebook</li>
+                      <li class="inline"><a class="hover:text-verde-sa transition" href="<?= $mailtoURL ?>">email</a></li>
+                      <li class="inline"><a class="hover:text-verde-sa transition" href="<?= $fbURL ?>" target="_blank">facebook</a></li>
                     </ul>
 
                     <!-- Separator -->
@@ -119,16 +126,14 @@ require 'inc/head.php'; ?>
                           c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z"/>
                       </g>
                       </svg>
-                      <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-                        Licenza
-                      </a>
+
+                      <a class="hover:text-verde-sa transition" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licenza</a>
                     </p>
 
                   </div>
 
               </div>
           </div>
-
       </div>
 
       <!-- White div -->
@@ -159,7 +164,7 @@ require 'inc/head.php'; ?>
               </div>
 
               <!-- Audio racconti side section -->
-              <div class="basis-2/5 pl-13">
+              <div class="basis-2/5 pl-13 border-l border-black">
                   <?php if ($scheda->autore) {
                     echo "
                     <div class='mb-6'>
@@ -181,25 +186,38 @@ require 'inc/head.php'; ?>
           </div>
       </div>
 
-          
-
       <!--=============================
       =            algolia more       =
       ==============================-->
-      <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
-      <div class="mx-12 w-fit pb-16">
+      <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 pt-10 bg-black">
+        <div class="mx-12 w-fit">
 
-          <!-- filtri / div nascosti -->
-          <div id="searchbox" class="hidden"></div>
-          <div id="maps" class="hidden"></div>
-          <div id="datazione" class="hidden"></div>
-          <div id="temiricerca" class="hidden"></div>
+            <!-- filtri / div nascosti -->
+            <div id="searchbox" class="hidden"></div>
+            <div id="maps" class="hidden"></div>
+            <div id="datazione" class="hidden"></div>
+            <div id="temiricerca" class="hidden"></div>
 
-        <section id="grigliaAlg">
-          <?php include 'inc/grigliaImmagini.php' ?>
-        </section>
+          <section id="grigliaAlg">
+            <?php include 'inc/grigliaImmagini.php' ?>
+          </section>
+        </div>
       </div>
-      </div>
+
+
+
+      <?php 
+      // endif $schedaOK
+      }else{
+        echo '
+        <div class="h-48 w-full">
+        <h1 class="h2-sa uppercase mx-auto mt-16 text-white">
+            Nessuna scheda trovata, prego riprovare.
+        </h1>
+        </div>';
+      } ?>
+
+
 
       <!--========================================
       =            La foto del giorno            =
@@ -228,22 +246,19 @@ require 'inc/head.php'; ?>
 */
  ?>
 
- <!-- algolia search -->
-
-           <!-- DA SISTEMARE -->
-           <script 
-               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
-           </script>
 
 
+
+  <!-- ### algolia search ### -->
+  
   <script>
   // essenziale per farlo passare allo script algolia.js qui sotto
-   var filtro = {'temi': ['<?= $scheda->tema->first->title ?>']};
+    var filtro = {'temi': ['<?= $scheda->tema->first->title ?>']};
+    var routingUrl = false;
   </script>
-  <script src="<?= $config->urls->templates?>js/algolia.js"></script>
+  <?php require 'inc/scripts.php' ?>
 
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
-
+  <!-- magnifire zoon -->
   <script>
   $(document).ready(function() {
     $('.zoom').magnify();

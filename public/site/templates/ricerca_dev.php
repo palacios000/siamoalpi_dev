@@ -3,7 +3,7 @@
 $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	<body class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
 
-	  <div class="overflow-hidden" x-data="{ temi: false, anni: <?= $showAnni ?>, mappa: false }">
+	  <div class="overflow-hidden" x-data="{ temi: false, anni: <?= $showAnni ?>, mappa: true }">
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
@@ -53,10 +53,8 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 
 
 <!-- algolia search -->
-<script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
-</script>
-<!-- <script 
+
+<!-- <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
 </script>
  -->

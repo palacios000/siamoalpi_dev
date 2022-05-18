@@ -15,7 +15,7 @@ if ($input->post->cerca) {
         <!-- Slanted Header div -->
         <?php 
         //prima di chiamare il banner, assicurati di aver definito l'immagine
-        $bannerBgImg = $page->images_bg->first->url;
+        $bannerBgImg = $page->images_bg->getRandom()->url;
         include 'inc/header-banner.php' ?>
         
         <!-- Slanted Search div -->
@@ -31,7 +31,7 @@ if ($input->post->cerca) {
                     <div class="h2-sa w-full ">
                         <!-- copiato da Algolia search-box -->
                           <form method="post" action="<?= $archivioPage->url ?>?siamoAlpi%5Bquery%5D=" role="search" class="ais-SearchBox-form relative h-8" novalidate="">
-                            <input name="cerca" class="ais-SearchBox-input bg-neutral-100 rounded-full pl-8 w-full" type="search" placeholder="Inizia la tua ricerca" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" maxlength="512">
+                            <input name="cerca" class="ais-SearchBox-input bg-neutral-100 rounded-full pl-8 w-full h-12" type="search" placeholder="Inizia la tua ricerca" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" maxlength="512">
                             <button class="ais-SearchBox-submit absolute h-8 w-8 right-2 top-1.5 hover:fill-verde-sa" type="submit" title="Submit the search query.">
                               <svg class="ais-SearchBox-submitIcon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40"> 
                                 <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z">
@@ -91,9 +91,7 @@ if ($input->post->cerca) {
             if (count($albums)) { ?>
             <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
                 <!-- Title -->
-                <h2 class="h3-sa uppercase text-center">
-                    Album tematici
-                </h2>
+                <h2 class="h3-sa uppercase text-center">Album tematici</h2>
 
                 <!-- Grid section with cards -->
                 <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
@@ -120,7 +118,7 @@ if ($input->post->cerca) {
                         ?>
                         <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
                             <div class="mx-auto block group" >
-                                <div class="w-73 h-73 mb-4">
+                                <div class="w-73 h-73 2xl:w-80 2xl:h-80 mb-4">
                                     <a class="" href="<?= $albumUrl ?>">
                                         <div class=" boder border-8 border-black group-hover:border-verde-sa">
                                             
@@ -148,7 +146,7 @@ if ($input->post->cerca) {
             <div class="pb-26 text-white bg-black">
                 <!-- Grid container -->
                 <div class="relative flex w-full">
-                    <div class="writing-container inline-block flex-initial basis-3/5 py-36  pl-22 z-20 bg-verde-sa">
+                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] py-36  pl-22 z-20 bg-verde-sa">
                         <div class="unskew-container flex-col">
                             <div class="h4-sa mb-2 uppercase">Diario</div>
 
@@ -161,9 +159,9 @@ if ($input->post->cerca) {
                     <!-- Picture container -->
                     <div class="absolute h-full z-10 shrink-0 basis-2/5 right-0 flex justify-end">  
                         <img class="py-10 h-full block" 
-                        srcset="<?= $blogPostHome->images_bg->first->size(836,654)->url ?> 1920w,
-                        <?= $blogPostHome->images_bg->first->url ?> 1440w"
-                        sizes="(max-width: 1920px) 1920px, 1440px"
+                        srcset="<?= $blogPostHome->images_bg->first->size(836,654)->url ?> 836w,
+                        <?= $blogPostHome->images_bg->first->url ?> 1600w"
+                        sizes="(max-width: 1440px) 836px, 1600px"
                         src="<?= $blogPostHome->images_bg->first->size(836,654)->url ?>" 
                         alt="<?= $blogPostHome->title ?>">
                     </div>
@@ -195,6 +193,25 @@ if ($input->post->cerca) {
               el: ".swiper-pagination",
               clickable: true,
             },
+            breakpoints: {
+                // when window width is >= ...
+                300: {
+                  slidesPerView: 1,
+                  spaceBetween: 30
+                },
+                785: {
+                  slidesPerView: 2,
+                  spaceBetween: 30
+                },
+                1190: {
+                  slidesPerView: 3,
+                  spaceBetween: 30
+                },
+                1920: {
+                  slidesPerView: 4,
+                  spaceBetween: 20
+                }
+              }
           });
         </script>
 
