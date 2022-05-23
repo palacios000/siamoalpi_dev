@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 	<head>
-		<title>Siamo Alpi | Archivio Culturale di Valtellina e Valchiavenna</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
@@ -38,6 +37,44 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify-mobile.min.js" integrity="sha512-c3hGxeqPC+hyYCH6xddUy6sg5lgmXomxpN5fkhUxKPOM7OD/+M+Rj1rj02q4MOkn+PUBRGPZVNTMMrREyZS0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<?php } ?>
 
+
+		
+		<?php // SEO tags 
+		if (count($page->seo)) {
+			echo $page->seo;	
+		} else {
+			// sono in pagina scheda
+			echo '
+			<title>'.$scheda->title.' | siamoalpi.it</title>
+			<link rel="canonical" href="'.$page->httpUrl.'?id='.$scheda->id.'">
+			<meta property="og:title" content="'.$scheda->title.' | siamoalpi.it">
+			<meta property="og:description" content="'. $sanitizer->markupToLine($scheda->descrizione, ['entities' => true]).'">
+			<meta property="og:image" content="'.$scheda->immagini->first->httpUrl.'">
+			<meta property="og:image:type" content="image/jpeg">
+			<meta property="og:image:width" content="'.$scheda->immagini->first->width().'">
+			<meta property="og:image:height" content="'.$scheda->immagini->first->height().'">
+			<meta property="og:type" content="website">
+			<meta property="og:locale" content="it_IT">
+			<meta property="og:site_name" content="siamoalpi.it">
+			<meta property="og:url" content="'.$page->httpUrl.'?id='.$scheda->id.'">
+			<meta name="twitter:card" content="summary">
+			<script type="application/ld+json">
+			{
+			  "@context": "https://schema.org",
+			  "@type": "BreadcrumbList",
+			  "itemListElement": [
+			  {
+			    "@type": "ListItem",
+			    "position": 1,
+			    "name": "PROGETTO",
+			    "item": "'.$page->httpUrl.'?id='.$scheda->id.'"
+			  }
+			  ]
+			}
+			</script>
+			';
+		}
+		?>
 
 		<!-- tailwind debug -->
 		<!-- <script src="https://cdn.tailwindcss.com"></script> -->

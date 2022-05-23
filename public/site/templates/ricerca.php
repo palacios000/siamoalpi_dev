@@ -62,12 +62,12 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 
 
 	  <!-- ### algolia search ### -->
-	  <script>
-	  // essenziale per farlo passare allo script algolia.js qui sotto
-	  // qui vuoto, ma utile pe la pagina Scheda
-	   var filtro = {};
-	   var routingUrl = true;
-	  </script>
+		<!-- // essenziale per farlo passare allo script algolia.js qui sotto
+	  			qui vuoto, ma utile pe la pagina Scheda  -->	  
+		  <script>
+		   var filtro = {};
+		   var routingUrl = true;
+		  </script>
    	  <?php require 'inc/scripts.php' ?>
 
 

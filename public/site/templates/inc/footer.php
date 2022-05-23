@@ -74,7 +74,8 @@
   </div>
 
   <section id="credits" class="absolute bottom-14 -right-8 ">
-    <p class="text-blu-scuro-sa text-xxs tracking-03 uppercase -rotate-90">Privacy | Crediti</p>
+    <p class="text-blu-scuro-sa text-xxs tracking-03 uppercase -rotate-90">
+      <a class="text-blu-scuro-sa hover:text-white transition" href="https://www.iubenda.com/privacy-policy/99064188" target="_blank">Privacy</a> | Crediti</p>
     
   </section>
 

@@ -135,6 +135,11 @@
     form.ais-SearchBox-form [type="search"]{
         border-color: white;
     }
+    /* togli la croce reset di fianco alla lente di ingrand. search*/
+    #search-clear, 
+    input[type="search" i]::-webkit-search-cancel-button{
+        visibility: hidden;
+    }
     /* ALGOLIA */
     /* mansory uk-kit classes per #hits */
     .uk-flex-top {
@@ -300,6 +305,36 @@
         -ms-hyphens: auto;
         hyphens: auto;
     }
+    /* Blog page*/
+    .masonry-grid .post-item {
+      margin-top: 0px;
+    }
+    .post-item a {
+      text-decoration: none;
+      -webkit-text-decoration-line: none;
+              text-decoration-line: none;
+      padding-left: 0px;
+    }
+    .post-item{
+        margin: 0px;
+        -moz-column-break-inside: avoid;
+             break-inside: avoid;
+        padding-left: 0.75rem;
+        padding-right: 2.5rem;
+        padding-bottom: 2.5rem;
+}
+    .post-item > img{
+        max-height: 24rem;
+}
+    .masonry-grid{
+        margin-left: 2.25rem;
+        margin-right: 0.25rem;
+        margin-top: 3.25rem;
+        margin-bottom: 4rem;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+}
     /* Top left cut corner 2.8° */
     .slanted-tl-s {
 	position: relative;
@@ -2214,6 +2249,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     .hover\:text-verde-sa:hover{
         --tw-text-opacity: 1;
         color: rgb(14 155 126 / var(--tw-text-opacity));
+}
+    .hover\:text-white:hover{
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
 }
     .hover\:underline:hover{
         -webkit-text-decoration-line: underline;

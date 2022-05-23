@@ -2,15 +2,15 @@
 		<div id="stats" class="text-white font-serif text-h2"></div>
 		<div class="text-right">
 			<!-- due bottoni per scelta visualizzazione -->
-			
+
 			<!--NoMinify-->
     		<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-    		:class="solofoto ? 'fill-verde-sa' : 'fill-white'" >
+    		:class="solofoto ? 'fill-verde-sa' : 'fill-white hover:fill-verde-sa transition'" >
     		<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29.4 28.5"  xml:space="preserve"><rect x="1.3" y="1" width="12.2" height="12.2"/><rect x="1.3" y="15.4" width="12.2" height="12.2"/><rect x="16" y="1" width="12.2" height="12.2"/><rect x="16" y="15.4" width="12.2" height="12.2"/></svg>
 			</button>
 
 			<button x-on:click="solofoto = ! solofoto" class="h-6 w-6" 
-			:class="solofoto ? 'fill-white' : 'fill-verde-sa'" >
+			:class="solofoto ? 'fill-white hover:fill-verde-sa transition' : 'fill-verde-sa'" >
 			<svg version="1.1" id="Livello_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33.7 28.5"  xml:space="preserve"><rect x="18.2" y="1.1" width="14.5" height="8.9"/><rect x="1" y="1.1" width="14.9" height="15.6"/><rect x="1" y="18.8" width="14.9" height="8.9"/><rect x="18.2" y="12.3" width="14.5" height="15.3"/></svg>
 			</button>
 			<!--/NoMinify-->
