@@ -231,7 +231,7 @@
     
 /* Blog page*/
     
-    .masonry-grid .post-item {
+ /*   .masonry-grid .post-item {
       margin-top: 0px;
     }
 
@@ -240,14 +240,7 @@
       text-decoration-line: none;
       padding-left: 0px;
     }
+*/
 
-    .post-item  {
-        @apply break-inside-avoid pl-3 pr-10 pb-10 m-0;
-    }
     
-    .post-item > img {
-        @apply max-h-96;
-    }
-    .masonry-grid {
-        @apply ml-9 mr-1 mt-13 mb-16 w-fit; 
-    }
+

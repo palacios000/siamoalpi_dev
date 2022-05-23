@@ -40,7 +40,7 @@
 
 		
 		<?php // SEO tags 
-		if (count($page->seo)) {
+		/*if (count($page->seo)) {
 			echo $page->seo;	
 		} else {
 			// sono in pagina scheda
@@ -73,7 +73,7 @@
 			}
 			</script>
 			';
-		}
+		}*/
 		?>
 
 		<!-- tailwind debug -->
