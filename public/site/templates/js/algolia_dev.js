@@ -10,7 +10,7 @@
 // window.initMap = initMap;
 
 
-// window.maps = new google.maps.Map(document.getElementById('maps'), {
+// window.maps = new google.maps.Map(document.getElementById('maps2'), {
 //   center: {
 //   	lng: 9.8676338, 
 //   	lat: 46.1700326,

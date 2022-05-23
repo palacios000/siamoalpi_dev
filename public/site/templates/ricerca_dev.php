@@ -48,6 +48,7 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 
 	    <!-- Footer div -->
 	    <?php require 'inc/footer.php' ?>
+	    <div id="maps2"></div>
 	  </div>
 
 

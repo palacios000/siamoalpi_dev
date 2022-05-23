@@ -1,7 +1,7 @@
 <?php 
 /**
  *
- * Aggiorna lo status delle schede qualora avesse il campo Sirbec inserito manualmente da listerPro (tabella)
+ * Aggiorna lo status delle schede qualora avesse il campo Sirbec inserito manualmente da listerPro (da Maria o Gloria)
  *
  */
 

@@ -17,7 +17,7 @@
 
 
 
-$schede = $pages->find("template=gestionale_scheda, limit=15, sort=random, stato_avanzamento!=2593, sync.fotoready!=1");
+$schede = $pages->find("template=gestionale_scheda, limit=20, sort=random, stato_avanzamento!=2593, sync.fotoready!=1");
 $listerwidth = 260; 
 $optionsVariations = array('width' => $listerwidth);
 

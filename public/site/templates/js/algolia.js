@@ -268,9 +268,9 @@ const search = instantsearch({
 			placeholder: 'Cerca nell\'archivio',
 			cssClasses: {
 			  form: ['relative', 'h-8', 'opacity-75', 'hover:opacity-100', ],
-			  input: ['bg-neutral-100', 'rounded-full', 'pl-8', 'w-full', 'font-serif' ],
-			  submit: ['absolute', 'h-8', 'w-8', 'right-2', 'top-1.5', 'hover:fill-verde-sa', ],
-			  reset: ['absolute', 'h-8', 'w-8', 'left-2', 'top-1.5', 'hover:fill-verde-sa', 'text-center' ]
+			  input: ['bg-neutral-100', 'rounded-full', 'pl-8', 'w-full' ],
+			  submit: ['absolute', 'h-8', 'w-8', 'right-2', 'top-1.5', 'hover:fill-verde-sa', 'transition' ],
+			  reset: ['absolute', 'h-8', 'w-8', 'left-4', 'top-1.5', 'hover:fill-verde-sa', 'text-center' ]
 			},
 		}),
 

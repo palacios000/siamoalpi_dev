@@ -64,6 +64,9 @@ module.exports = {
         '97': '28rem',
         '98': '33rem',
       },
+      padding: {
+        '4bis': '1.2rem',
+      },
       letterSpacing: {
         '0': '0em',
         '01': '0.01em',

@@ -4,15 +4,28 @@
  * Cron impostato esecuzione una volta a settimana
 */
 
+	// settaggio manuale per cancallare tutte i dati da algolia
+	$svuotaAlgolia = false; 
+
 	$delRecords = false;
-	$eliminare = $pages->find("template=gestionale_scheda, stato_avanzamento=2593"); // 2593 = ELIMINA
+
+	if ($svuotaAlgolia) {
+		$eliminare = $pages->find("template=gestionale_scheda, limit=1"); 
+	}else{
+		$eliminare = $pages->find("template=gestionale_scheda, stato_avanzamento=2593"); // 2593 = ELIMINA
+	}
+
 	if (count($eliminare)) {
 		$delRecords = true;
 		$delRecordsArray = array();
 		foreach ($eliminare as $elimina) {
 			$delRecordsArray[] = 'sa'.$elimina->id;
-			$elimina->trash();
+			if (!$svuotaAlgolia) {
+				$elimina->trash();
+			}
 		}
+
+		//var_dump($delRecordsArray);
 	}
 
 

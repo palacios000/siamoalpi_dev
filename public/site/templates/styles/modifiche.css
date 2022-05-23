@@ -61,6 +61,11 @@
         }
     }
 
+    /*form search home*/
+    form.ais-SearchBox-form [type="search"]{
+        border-color: white;
+    }
+
 
 
 
@@ -89,6 +94,11 @@
     button.next-button:disabled,
     button.next-button[disabled]{
       visibility: hidden;
+    }
+
+    /* highlight on hits */
+    mark.ais-Highlight-highlighted{
+        @apply bg-verde-sa text-white;
     }
 
     /* filtri a scomparsa */

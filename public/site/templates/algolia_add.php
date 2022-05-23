@@ -29,8 +29,8 @@
 	// selector per trovare le schede da esportare in algolia
 	$selector = "template=gestionale_scheda, immagini.count>=1";
 
-	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 2593 eliminata
-	$selector .= ", stato_avanzamento=1111|1112";
+	// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 3338 da esportare, 2593 eliminata
+	$selector .= ", stato_avanzamento=1112|3338";
 	if (!$page->counter->reset) {
 		// PRODUCTION
 		// $selector .= ", (created|modified>=$page->timestamp), (sync.sirbec=1, sync.geocoding=1, sync.fotoready=1) "; 
@@ -38,11 +38,15 @@
 		$selector .= ", modified>=$page->timestamp";
 	}
 
+	//debug
+	// $selector .= ", limit=100";
+	// $selector .= ", datazione.anno=''";
+
+
 	// prepare il contenuto del json
 	$json = '';
 	if (!$error) {
 		$schede = $pages->find($selector);
-		$fotoFinalWidth = 260; // larghezza delle immagini per l'output di algolia (260 e' la variazione creata da lister (tabella) del backend) // da modificare poi con 600px?
 
 		$jsonBuild = array();
 
@@ -83,9 +87,14 @@
 					}
 
 					// output HTTP URL
+					if ($immagine->httpUrl) {
 						$immagineUrl = $immagine->httpUrl;	
+					}else{
+						// mi da' problemi per alcune immagini quasi quadrate... non so perche'
+						$immagine = $scheda->immagini->first->width($horizontalImageWidth);
+						$immagineUrl = $immagine->httpUrl;	
+					}
 
-					// tell me image ratio .. no need
 
 				// tema & temi raggruppati
 					$temi = array();
@@ -132,14 +141,20 @@
 						}
 					}
 
-					if ($anno_end) {
-						$annox = ($anno_start + $anno_end) / 2 ;
-					}else{
-						$annox = $anno_start;
-					}
+					if ($anno_start && $anno_start >= 1800) {
+						if ($anno_end) {
+							$annox = ($anno_start + $anno_end) / 2 ;
+						}else{
+							$annox = $anno_start;
+						}
+					} // else comparira annox default 1950
 
 				// luogo - sirbec dependant 
-					$geo = (object) array('lat'=> floatval($scheda->mappa->lat), 'lng'=> floatval($scheda->mappa->lng));
+					// se c'e' bene, altrimenti metto Sondrio
+					$latitudine = ($scheda->mappa->lat) ? $scheda->mappa->lat : '46.1700326';
+					$longitudine = ($scheda->mappa->lng) ? $scheda->mappa->lng : '9.8676338';
+
+					$geo = (object) array('lat'=> floatval($latitudine), 'lng'=> floatval($longitudine));
 					$comune = $scheda->luogo->comune;
 
 				// supporto - per forza almeno immagine

@@ -131,6 +131,10 @@
     .swiper-pagination-bullet.swiper-pagination-bullet-active{
             background-color: white !important;
         }
+    /*form search home*/
+    form.ais-SearchBox-form [type="search"]{
+        border-color: white;
+    }
     /* ALGOLIA */
     /* mansory uk-kit classes per #hits */
     .uk-flex-top {
@@ -156,6 +160,13 @@
     button.next-button[disabled]{
       visibility: hidden;
     }
+    /* highlight on hits */
+    mark.ais-Highlight-highlighted{
+        --tw-bg-opacity: 1;
+        background-color: rgb(14 155 126 / var(--tw-bg-opacity));
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+}
     /* filtri a scomparsa */
     /*    section#filtriAlg div.filtro:not(:first-child){
             padding-top: 30px;
@@ -1113,20 +1124,23 @@ Ensure the default browser behavior of the `hidden` attribute.
     .right-4{
         right: 1rem;
 }
-    .top-8{
-        top: 2rem;
+    .top-10{
+        top: 2.5rem;
 }
     .right-12{
         right: 3rem;
-}
-    .top-10{
-        top: 2.5rem;
 }
     .right-30{
         right: 7.5rem;
 }
     .top-36{
         top: 9rem;
+}
+    .top-8{
+        top: 2rem;
+}
+    .left-4{
+        left: 1rem;
 }
     .-bottom-20{
         bottom: -5rem;
@@ -2214,6 +2228,13 @@ Ensure the default browser behavior of the `hidden` attribute.
     .group:hover .group-hover\:border-verde-sa{
         --tw-border-opacity: 1;
         border-color: rgb(14 155 126 / var(--tw-border-opacity));
+}
+    .group:hover .group-hover\:transition{
+        transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
 }
     @media (min-width: 768px){
         .md\:visible{

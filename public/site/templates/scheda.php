@@ -37,7 +37,7 @@ require 'inc/head.php'; ?>
                 
           <!-- Picture content container -->
           <div class="flex mx-12 mt-10 pb-14 flex-col md:flex-row">
-              <div class="relative mr-6 mt-2 mb-1">
+              <div class="relative mr-6 mb-1">
                 <div>
                   <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
                 </div>
@@ -87,7 +87,7 @@ require 'inc/head.php'; ?>
                   <div id="altrenote" class="absolute bottom-0 left-0 text-white text-sm">
                     <!-- condividi -->
                     <?php // make urls
-                    $soggetto = $sanitizer->entities("Condivisione URL da SiamoAlpi.it") ;
+                    $soggetto = $sanitizer->entities("Condivisione URL da siamoalpi.it") ;
                     $mailtoURL = "mailto:?subject=$soggetto&body=".$page->httpUrl."?id=".$schedaId;  
                     $fbURL = "https://www.facebook.com/sharer/sharer.php?u=".$page->httpUrl."?id=".$schedaId;  
                     ?>
