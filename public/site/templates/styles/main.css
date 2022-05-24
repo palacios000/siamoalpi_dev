@@ -1858,6 +1858,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     .pb-6{
         padding-bottom: 1.5rem;
 }
+    .pr-8{
+        padding-right: 2rem;
+}
     .pb-44{
         padding-bottom: 11rem;
 }
@@ -2007,9 +2010,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .pr-14{
         padding-right: 3.5rem;
-}
-    .pr-8{
-        padding-right: 2rem;
 }
     .pr-9{
         padding-right: 2.25rem;

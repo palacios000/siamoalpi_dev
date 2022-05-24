@@ -2,13 +2,13 @@
 random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
  */
 
-window.maps = new google.maps.Map(document.getElementById('maps'), {
-  center: {
-  	lng: 9.8676338, 
-  	lat: 46.1700326,
-  },
-  zoom: 8
-});
+// window.maps = new google.maps.Map(document.getElementById('maps'), {
+//   center: {
+//   	lng: 9.8676338, 
+//   	lat: 46.1700326,
+//   },
+//   zoom: 8
+// });
 
 
 

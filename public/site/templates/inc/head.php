@@ -40,9 +40,9 @@
 
 		
 		<?php // SEO tags 
-		/*if (count($page->seo)) {
+		if (count($page->seo)) {
 			echo $page->seo;	
-		} else {
+		} elseif($page->template == "scheda") {
 			// sono in pagina scheda
 			echo '
 			<title>'.$scheda->title.' | siamoalpi.it</title>
@@ -73,7 +73,7 @@
 			}
 			</script>
 			';
-		}*/
+		}
 		?>
 
 		<!-- tailwind debug -->
