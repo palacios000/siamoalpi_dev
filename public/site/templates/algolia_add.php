@@ -20,7 +20,7 @@
 
 // 0 controlla lo stopper se e' attivo, se lo e' blocca tutto
 	$error = ($page->counter->stop) ? true : false;
-	$debug = false; // non mandare il json ad algolia...
+	$debug = true; // non mandare il json ad algolia...
 	$jsonName = "algolia.json";
 	$filePath = $config->paths->assets . $jsonName;
 

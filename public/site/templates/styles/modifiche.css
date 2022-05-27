@@ -10,10 +10,10 @@
       @apply text-h1 leading-tightest-sa tracking-04 font-serif;
     }
     .h2-sa {
-      @apply text-h2 leading-tight-sa tracking-04 font-serif;
+      @apply text-h2mobile md:text-h2 leading-tight-sa tracking-04 font-serif;
     }
     .h3-sa {
-      @apply text-h3 leading-snug-sa tracking-01 font-serif;
+      @apply text-h3mobile md:text-h3 leading-snug-sa tracking-01 font-serif;
     }
     .h4-sa {
       @apply text-h4 leading-relaxed-sa tracking-02 font-serif;
@@ -229,18 +229,31 @@
     
 
     
-/* Blog page*/
-    
- /*   .masonry-grid .post-item {
-      margin-top: 0px;
+    /* mappa google ... */
+    .ais-GeoSearch-map {
+      height: 18rem; /* You can change this height */
+    }
+    .ais-GeoSearch-control{
+        visibility: hidden;
+    }
+    /*.ais-GeoSearch-control{
+        color: white;
+        font-size: 10pt;
+    }
+    .ais-GeoSearch-control span{
+        margin-left: 10px;
+    }*/
+    .ais-GeoSearch{
+        position: relative;
     }
 
-    .post-item a {
-      text-decoration: none;
-      text-decoration-line: none;
-      padding-left: 0px;
+    .ais-GeoSearch-reset{
+        margin-left: 10px;
+        color: white;
+        background-color: black;
+        padding: 1px 10px;
+        position: absolute;
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
     }
-*/
-
-    
-

@@ -1,18 +1,17 @@
-<footer class="slanted-tr-l pb-24 pt-16 z-50 before:-z-10 relative flex bg-verde-sa text-white justify-items-end">
+<footer class="slanted-tr-l pb-24 pt-16 z-50 before:-z-10 relative flex flex-col md:flex-row bg-verde-sa text-white justify-items-end">
   <!-- Logo -->
   <a class="block w-fit h-fit" href="#">
-    <img class="w-82 ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo Siamo Alpi">
+    <img class="w-72 md:w-82 ml-0 md:ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo Siamo Alpi">
   </a>
 
   <!-- Right hand grid -->
-  <div class="flex basis-1/2 h-fit ml-auto pt-5 mr-9">
+  <div class="flex flex-col-reverse md:flex-row basis-1/2 h-fit ml-auto pt-5 mr-9 justify-end">
     <!-- Socials -->
-    <div class="mr-6">
-      <p>
-        Segui lo sviluppo del progetto sui nostri canali social
-      </p>
-      <!-- Social media Icons -->
-      <div class="flex flex-row w-fit pt-4 ">
+    <div class="mr-6 w-full md:w-2/5">
+      <p class="invisible md:visible h-0 md:h-auto">Segui lo sviluppo del progetto sui nostri canali social</p>
+      <p class="visible md:hidden h-auto md:h-0 px-6 pt-8">Segui sulle pagine social</p>
+      <!-- Icons -->
+      <div class="flex flex-row w-fit pt-4 pl-6 md:pl-0">
         <!-- Instagram -->
         <div class="rounded-full">
           <a href="https://www.instagram.com/siamoalpi/" target="_blank">
@@ -58,22 +57,27 @@
       </div>
     </div>
 
-    <!-- Iniziativa di.. -->
-    <div class="shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-1 pr-0 mb-4">
-      <p>Un'iniziativa di</p>
-      <!-- Provincia di Sondrio e Società economica Valtellina -->
-      <img class="pt-5 h-20 pr-4" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
+    <div class="flex flex-row pl-6 md:pl-0">
+      
+      <!-- Iniziativa di.. -->
+      <div class="basis-1/2 shrink-0 border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-2 pr-0 mb-4">
+        <p>Un'iniziativa di</p>
+        <!-- Provincia di Sondrio e Società economica Valtellina -->
+        <img class="pt-5 h-16 md:h-20 pr-4 mt-2 md:mt-0" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-provincia-sev.png" ?>" alt="Provincia di Sondrio, SEV">
+      </div>
+
+      <!-- Finanziata da -->
+      <div class="basis-1/2 md:basis-40 2xl:basis-auto border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-2 pr-5 mb-4">
+        <p>Finanziata da</p>
+        <!-- Fondazione CARIPLO Logo -->
+        <img class="pt-6 h-18 md:h-20 mb-3" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-fondazione-cariplo.png" ?>" alt="Fondazione Cariplo">
+      </div>
+
     </div>
 
-    <!-- Finanziata da -->
-    <div class="basis-2/5 2xl:basis-auto border-l border-blu-scuro-sa text-blu-scuro-sa text-xxs tracking-03 uppercase pl-2 pr-5 mb-4">
-      <p>Finanziata da</p>
-      <!-- Fondazione CARIPLO Logo -->
-      <img class="pt-6 h-20 mb-3" src="<?php echo $config->urls->templates . "pictures/bg-landing/loghi-fondazione-cariplo.png" ?>" alt="Fondazione Cariplo">
-    </div>
   </div>
 
-  <section id="credits" class="absolute bottom-14 -right-8 ">
+  <section id="credits" class="absolute bottom-32 md:bottom-14 -right-8 ">
     <p class="text-blu-scuro-sa text-xxs tracking-03 uppercase -rotate-90">
       <a class="text-blu-scuro-sa hover:text-white transition" href="https://www.iubenda.com/privacy-policy/99064188" target="_blank">Privacy</a> | Crediti</p>
     

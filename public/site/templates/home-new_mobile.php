@@ -19,7 +19,7 @@ if ($input->post->cerca) {
         include 'inc/header-banner.php' ?>
         
         <!-- Slanted Search div -->
-        <div class="slanted-tl-m z-20 before:-z-10 pt-6 md:pt-12 pb-12 md:pb-29 bg-verde-sa">
+        <div class="slanted-tl-m z-20 before:-z-10 pt-12 pb-12 md:pb-29 bg-verde-sa">
             <!-- Grid to contain both elements -->
             <div class="flex flex-col md:flex-row mx-auto w-full">
                 <!-- Ricerca... text -->
@@ -80,98 +80,12 @@ if ($input->post->cerca) {
                 </div>
             </div>
         </div>
-        
-        <!--============================================
-        =            Album tematici section            =
-        =============================================-->
-            <?php 
-            $albums = $pages->findOne("template=foto-del-giorno")->children();
-            
-            if (count($albums)) { ?>
-            <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
-                <!-- Title -->
-                <h2 class="h3-sa uppercase text-center">Album tematici</h2>
-
-                <!-- Grid section with cards -->
-                <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
-                    <div class="swiper-wrapper grid grid-cols-3 gap-x-0 pb-18">
-                        <?php 
-                            foreach ($albums as $album) { 
-
-                            // se tratta di un arco temporale
-                            if ($album->selezione) { 
-                                $decadeDa = $album->datazione->anno;
-                                $decadeA = $album->datazione->anno_fine;
-                                $tagsUrl = "?siamoAlpi[range][datazione]=$decadeDa%3A$decadeA" . "&showdate=1";
-                            // else e' una serie di tags
-                            }else{
-                                $albumTags = array();
-                                foreach ($album->tags as $albumTag) {
-                                    $albumTags[] =  $albumTag->name;
-                                }
-                                $siamoAlpi = array('siamoAlpi'=>array('refinementList' => array('tags' => $albumTags)));
-
-                                $tagsUrl = '?' . http_build_query($siamoAlpi);
-                            }
-                            $albumUrl = $archivioPage->url . $tagsUrl;
-                        ?>
-                        <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
-                            <div class="mx-auto block group" >
-                                <div class="w-73 h-73 2xl:w-80 2xl:h-80 mb-4">
-                                    <a class="" href="<?= $albumUrl ?>">
-                                        <div class=" boder border-8 border-black group-hover:border-verde-sa group-hover:transition">
-                                            
-                                        <img class=" swiper-lazy" 
-                                        data-src="<?= $album->images_bg->first->size(385,385)->url ?>" alt="<?= $album->title ?>">
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="h1-sa uppercase mx-auto block text-center" href="<?= $albumUrl ?>"><?= $album->title ?></a>
-                            </div>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <?php } ?>
-                    </div>
-                    <!-- Navigation dots -->
-                    <div class="swiper-pagination mx-auto w-fit "></div>
-                </div>
-            </div>
-            <?php } ?>
-
-        <!--============================
-        =            Diario            =
-        =============================-->
-            <?php $blogPostHome = $pages->findOne("template=blog_post, selezione=1"); ?>
-            <div class="pb-26 text-white bg-black">
-                <!-- Grid container -->
-                <div class="relative flex w-full">
-                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] py-36  pl-22 z-20 bg-verde-sa">
-                        <div class="unskew-container flex-col">
-                            <div class="h4-sa mb-2 uppercase">Diario</div>
-
-                            <h3 class="h5-sa uppercase underline underline-offset-18 decoration-4 overflow-visible max-h-60 pr-2 2xl:pr-80"><?= $blogPostHome->title ?></h3>
-            
-                            <a href="<?= $blogPostHome->url ?>" class="block bottone-blu mt-10 ml-1 mb-1">Leggi tutto</a>
-                        </div>
-                    </div>
-        
-                    <!-- Picture container -->
-                    <div class="absolute h-full z-10 shrink-0 basis-2/5 right-0 flex justify-end">  
-                        <img class="py-10 h-full block" 
-                        srcset="<?= $blogPostHome->images_bg->first->size(836,654)->url ?> 836w,
-                        <?= $blogPostHome->images_bg->first->url ?> 1600w"
-                        sizes="(max-width: 1440px) 836px, 1600px"
-                        src="<?= $blogPostHome->images_bg->first->size(836,654)->url ?>" 
-                        alt="<?= $blogPostHome->title ?>">
-                    </div>
-                </div>
-            </div>
 
 
         <!--========================================
         =            La foto del giorno            =
         =========================================-->
-        <?php include 'foto-del-giorno.php'; ?>
+        <?php //include 'foto-del-giorno.php'; ?>
 
 
         <?php require 'inc/footer.php' ?>

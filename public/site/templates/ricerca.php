@@ -12,11 +12,11 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 
 	    <!-- <div class="bg-white">
 	    	<?php // pagination & random display results 
-	    	if (count(parse_str($input->get('siamoAlpi')))>=1) {
+	    	/*if (count(parse_str($input->get('siamoAlpi')))>=1) {
 	    		echo "no GET";
 	    	}else{
 	    		echo "URL GET";
-	    	}
+	    	}*/
 	    	 ?>
 	    </div> -->
 
@@ -39,10 +39,10 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 					    	<div id="datazione" class="h-16 "></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="mappa" x-transition class="w-full py-4 px-16">
+			    	<div x-show="mappa" x-transition class="w-full py-4 ">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
-					    	<h2 class="text-verde-sa mb-8">Mappa</h2>
-					    	<div id="maps" class="h-32 bg-white"></div>
+					    	<h2 class="text-verde-sa mb-4">Mappa</h2>
+					    	<div id="maps" class="h-90 bg-black"></div>
 			    		</div>
 			    	</div>
 			    </section>

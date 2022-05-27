@@ -22,6 +22,41 @@ if (count($schede)) {
 
 }
 
+
+
+
+/**
+ *
+ * Sistema categorie che hanno messo a casso
+ *
+ */
+
+
+
+// cerca le schede
+// stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 
+/*$schede = $pages->find("template=gestionale_scheda, tema=2284");
+if (count($schede)) {
+    
+
+    foreach ($schede as $scheda) {
+        echo $scheda->title . " <a href='$scheda->url'>qui</a> <br>" ;
+       $scheda->of(false);
+       $scheda->tema = '';
+       $scheda->save();
+       $scheda->tema = 3532;
+       $scheda->save();
+       $scheda->tema = 3531;
+       $scheda->save();
+    }
+
+}
+
+
+*/
+
+
+
 die()
 /* 
  # guida ####################################################################

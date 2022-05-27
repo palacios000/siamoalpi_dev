@@ -11,6 +11,6 @@ $archivioPage = $pages->findOne("template=ricerca");
 $blogPage = $pages->findOne("template=blog");
 $progettoPage = $pages->get(3299);
 
-$menuPages = [$homePage, $archivioPage, $blogPage, $progettoPage];
+$menuPages = [$homePage, $progettoPage, $archivioPage, $blogPage ];
 
 ?>

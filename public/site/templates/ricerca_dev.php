@@ -7,7 +7,8 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	    <!-- Slanted Header div -->
 	    <?php 
 	    //prima di chiamare il banner, assicurati di aver definito l'immagine
-	    $bannerBgImg = $page->images_bg->first->url;
+	    // $bannerBgImg = $page->images_bg->first->url;
+	    $bannerBgImg = $config->urls->templates . "pictures/bg/siamo-alpi-head-small-1.jpg";
 	    include 'inc/header-banner_dev.php' ?>
 
 	    <section>
@@ -64,7 +65,8 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	// qui vuoto, ma utile pe la pagina Scheda
 	 var filtro = {};
 	</script>
-	<script type="module" src="<?= $config->urls->templates?>js/algolia_dev.js"></script>
+	<script type="module" src="<?= $config->urls->templates?>js/scriptjs.js"></script>
+	<!-- <script type="module" src="<?= $config->urls->templates?>js/algolia_dev.js"></script> -->
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js"></script>
 

@@ -15,70 +15,82 @@ if (!$page->counter->stop) {
     $googleUrl = "https://maps.googleapis.com/maps/api/geocode/";
    
     // cerca le schede
-    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento!=2593, luogo.comune!='', sync.geocoding!=1, sync.map_desync!=1, limit=25");
+    // non capisco "luogo.comune!='' non va " 
+    // $schede = $pages->find("template=gestionale_scheda, stato_avanzamento!=2593, luogo.comune!='', sync.geocoding!=1, sync.map_desync!=1")->getRandom(25);
+    $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1112|3338")->getRandom(20);
+    
+
+
     if (count($schede)) {
 
         $idSchede = '';
         $nSchede = 0;
         foreach ($schede as $scheda) {
 
-            // prendi la localita'
-            $indirizzo = '';
-            if ($scheda->luogo->localita) {
-                $indirizzo .= $scheda->luogo->localita . ", " ; 
-            }
-            if ($scheda->luogo->comune) {
-                $indirizzo .= $scheda->luogo->comune . ", "; 
-            }
-            if ($indirizzo) {
+            if ($scheda->luogo->comune && $scheda->sync->geocoding != 1 && $scheda->sync->map_desync != 1) { // ... i filtri del combo sopra non vanno
+                // prendi la localita'
+                $indirizzo = '';
+                if ($scheda->luogo->localita) {
+                    $indirizzo .= $scheda->luogo->localita . ", " ; 
+                }
+                if ($scheda->luogo->comune) {
+                    $indirizzo .= $scheda->luogo->comune . ", "; 
+                }
+                if ($indirizzo) {
 
+                    $indirizzo .= "SO, Italia";
+                    $indirizzo = urlencode($indirizzo);
 
-                $indirizzo .= "SO, Italia";
-                $indirizzo = urlencode($indirizzo);
+                    //star query
+                    $query = "{$googleUrl}json?address={$indirizzo}&key={$key}";
 
-                //star query
-                $query = "{$googleUrl}json?address={$indirizzo}&key={$key}";
+                    $f = file_get_contents("$query", false);
+                    $json = json_decode($f);
 
-                $f = file_get_contents("$query", false);
-                $json = json_decode($f);
+                    if ($json) {
+                        foreach ($json as $records) {
+                            foreach ($records as $results) {
+                                $address = $results->formatted_address;
+                                $lat = $results->geometry->location->lat;
+                                $lng = $results->geometry->location->lng;
+                            }
 
-                if ($json) {
-                    foreach ($json as $records) {
-                        foreach ($records as $results) {
-                            $address = $results->formatted_address;
-                            $lat = $results->geometry->location->lat;
-                            $lng = $results->geometry->location->lng;
                         }
+                        // aggiorna scheda
+                        if ($lat && $lng) {
+                            $scheda->of(false);
+                            $scheda->mappa->address = $address;
+                            $scheda->save('mappa');
+                            $scheda->mappa->lat = $lat;
+                            $scheda->mappa->lng = $lng;
+                            $scheda->save('mappa'); // non so perche' ma devo salvare due volte ...
+                            $scheda->sync->geocoding = 1;
+                            $scheda->save('sync');
+                            $scheda->of(true);
 
-                    }
-                    // aggiorna scheda
-                    if ($lat && $lng) {
-                        $scheda->of(false);
-                        $scheda->mappa->address = $address;
-                        $scheda->save('mappa');
-                        $scheda->mappa->lat = $lat;
-                        $scheda->mappa->lng = $lng;
-                        $scheda->save('mappa'); // non so perche' ma devo salvare due volte ...
-                        $scheda->sync->geocoding = 1;
-                        $scheda->save('sync');
-                        $scheda->of(true);
-
-                        //notifica
-                        $idSchede .= 'id:' . $scheda->id . ', ';
-                        $nSchede++;
+                            //notifica
+                            $idSchede .= 'id:' . $scheda->id . ', ';
+                            $nSchede++;
+                        }
                     }
                 }
-            }
-            // echo "lat:$lat - long: $lng"; // lat:46.146413 - long: 9.5717867
+                // echo "lat:$lat - long: $lng"; // lat:46.146413 - long: 9.5717867
 
-            // halt for X seconds for every loop
-            sleep(1); 
+                // halt for X seconds for every loop
+                sleep(1); 
+
+                //echo "scheda troata da FILTRO: $scheda->id (" . $scheda->luogo->comune .")<br>"; 
+            }
+            //echo "scheda trovata: " . $scheda->id ."<br>"; 
+
         }
 
         $messaggio .= "Aggiornato il geo tag di $nSchede schede SA: $idSchede";
         wire('log')->save('sync_sirbec-geocoding', $messaggio);
 
     }
+
+    //echo count($schede);
 }
 /* 
  # guida ####################################################################

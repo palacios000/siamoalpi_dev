@@ -19,15 +19,15 @@ if ($input->post->cerca) {
         include 'inc/header-banner.php' ?>
         
         <!-- Slanted Search div -->
-        <div class="slanted-tl-m z-20 before:-z-10 pt-6 md:pt-12 pb-12 md:pb-29 bg-verde-sa">
+        <div class="slanted-tl-m z-20 before:-z-10 pt-12 pb-29 bg-verde-sa">
             <!-- Grid to contain both elements -->
-            <div class="flex flex-col md:flex-row mx-auto w-full">
+            <div class="flex mx-auto w-full">
                 <!-- Ricerca... text -->
-                <div class="h2-sa w-52 shrink-0 text-left md:text-center mr-34 ml-6 md:ml-32 text-white">
+                <div class="h2-sa w-52 shrink-0 text-center mr-34 ml-32 text-white">
                     Ricerca tra oltre 12300 immagini e documenti
                 </div>
                 <!-- Search bar -->
-                <div class="w-full flex text-gray-800 h-16 text-right ml-4 mr-11 mt-6 md:mt-2 pr-11 md:pr-0">
+                <div class="w-full flex text-gray-800 h-16 text-right ml-4 mr-11 mt-2">
                     <div class="h2-sa w-full ">
                         <!-- copiato da Algolia search-box -->
                           <form method="get" action="<?= $archivioPage->url ?>" role="search" class="ais-SearchBox-form relative h-8" novalidate="">
@@ -59,20 +59,21 @@ if ($input->post->cerca) {
                               </svg>
                             </span>
                           </form>
+
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- White slanted section -->
-        <div class="slanted-tr-s z-30 before:-z-10 h-fit pt-10 md:pt-16 pb-32 bg-white">
-            <div class="flex flex-col md:flex-row w-full">
-                <h1 class="h3-sa uppercase shrink-0 w-full md:w-76 ml-6 md:ml-12 mr-34 pr-6 md:pr-0 ">
+        <div class="slanted-tr-s z-30 before:-z-10 h-fit pt-16 pb-32 bg-white">
+            <div class="flex w-full">
+                <h1 class="h3-sa uppercase shrink-0 w-76 ml-12 mr-34 ">
                     <?= $page->titleH1 ?>
                 </h1>
-                <div class="mr-0 md:mr-34 px-6 md:px-0 pt-8 md:pt-0">
+                <div class="mr-34 ">
                     <!-- Text -->
-                    <div class="mb-6">
+                    <div class="p-sa mb-6">
                         <?= $page->body ?>
                     </div>
                     <!-- Green button -->
@@ -80,7 +81,7 @@ if ($input->post->cerca) {
                 </div>
             </div>
         </div>
-        
+
         <!--============================================
         =            Album tematici section            =
         =============================================-->
@@ -166,7 +167,6 @@ if ($input->post->cerca) {
                     </div>
                 </div>
             </div>
-
 
         <!--========================================
         =            La foto del giorno            =

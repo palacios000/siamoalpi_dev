@@ -1,4 +1,6 @@
+	<!-- Gmaps API -->
 
+	
 	<!-- algolia search -->
 	<script type="module" src="<?= $config->urls->templates?>js/algolia.js"></script>
 

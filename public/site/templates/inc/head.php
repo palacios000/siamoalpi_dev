@@ -3,16 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" />
+		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css?v=<?= time() ?>" />
 		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
 
     	<!-- Alpine -->
     	<script defer src="https://unpkg.com/@alpinejs/focus@3.10.2/dist/cdn.min.js"></script>
 		<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
 
-    	<!-- Gmaps API -->
-    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
+    	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
     	</script>
+
 
 
 		<?php if ($page->template != 'home-new'){ ?>
@@ -40,6 +40,7 @@
 
 		
 		<?php // SEO tags 
+		/*
 		if (count($page->seo)) {
 			echo $page->seo;	
 		} elseif($page->template == "scheda") {
@@ -73,7 +74,7 @@
 			}
 			</script>
 			';
-		}
+		}*/
 		?>
 
 		<!-- tailwind debug -->

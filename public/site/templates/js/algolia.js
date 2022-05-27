@@ -2,16 +2,6 @@
 random... https://discourse.algolia.com/t/how-to-randomly-display-hits-on-the-searches-initial-load/10363
  */
 
-// window.maps = new google.maps.Map(document.getElementById('maps'), {
-//   center: {
-//   	lng: 9.8676338, 
-//   	lat: 46.1700326,
-//   },
-//   zoom: 8
-// });
-
-
-
 
 const searchClient = algoliasearch('NK1J7ES7IV', '6581401b5f047688ea20ca3f5e6074fd');
 
@@ -318,20 +308,26 @@ const search = instantsearch({
 		  container: '#maps',
 		  googleReference: window.google,
 		  // Optional parameters
-		  // initialZoom: number,
-		  // initialPosition: {
-		  //     lat: 48.864716,
-		  //     lng: 2.349014,
-		  //   },
-		  // mapOptions: object,
+		  initialZoom: 16,
+		  initialPosition: {
+		      lat: 48.864716,
+		      lng: 2.349014,
+		    },
+		  mapOptions: {
+            mapTypeId: window.google.maps.MapTypeId.TERRAIN,
+          },
 		  // builtInMarker: object,
 		  // customHTMLMarker: object,
 		  // enableRefine: boolean,
-		  // enableClearMapRefinement: boolean,
+		  enableClearMapRefinement: true,
 		  // enableRefineControl: boolean,
-		  // enableRefineOnMapMove: boolean,
+		  // enableRefineOnMapMove: false,
 		  // templates: object,
 		  // cssClasses: object,
+		  templates: {
+		  	  reset: 'Reimposta zoom mappa',
+		      HTMLMarker: '<svg class="w-12 h-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 42.7 68" style="enable-background:new 0 0 42.7 68;" xml:space="preserve"><style type="text/css">.st0{clip-path:url(#SVGID_2_);fill:#009879;}</style><g><defs><rect id="SVGID_1_" x="5" y="6" width="32.6" height="56"/></defs><clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  style="overflow:visible;"/></clipPath><path class="st0" d="M21.3,6C12.3,6,5,13.2,5,22c0,8,6,14.6,13.8,15.8v21.8c0,1.4,1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5V37.8	C31.6,36.6,37.7,30,37.7,22C37.5,13.2,30.3,6,21.3,6z"/></g></svg>',
+		    },
 		}),
 
 
