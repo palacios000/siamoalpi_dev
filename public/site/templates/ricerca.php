@@ -39,12 +39,12 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 					    	<div id="datazione" class="h-16 "></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="mappa" x-transition class="w-full py-4 ">
+			    	<!-- <div x-show="mappa" x-transition class="w-full py-4 ">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-4">Mappa</h2>
 					    	<div id="maps" class="h-90 bg-black"></div>
 			    		</div>
-			    	</div>
+			    	</div> -->
 			    </section>
 
 
@@ -67,6 +67,7 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 		  <script>
 		   var filtro = {};
 		   var routingUrl = true;
+		   var lemmaRisultati = 'risultati'; 
 		  </script>
    	  <?php require 'inc/scripts.php' ?>
 

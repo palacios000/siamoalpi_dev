@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- tailwind debug -->
+		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+		
+
 		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css?v=<?= time() ?>" />
 		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
 
@@ -10,8 +15,6 @@
     	<script defer src="https://unpkg.com/@alpinejs/focus@3.10.2/dist/cdn.min.js"></script>
 		<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
 
-    	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
-    	</script>
 
 
 
@@ -22,6 +25,8 @@
 
 			<!-- algolia pre connect -->
 			<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
+	    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
+	    	</script>
 		<?php } ?>
 	
 		<!-- swiper homepage -->
@@ -77,6 +82,5 @@
 		}*/
 		?>
 
-		<!-- tailwind debug -->
-		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
 	</head>

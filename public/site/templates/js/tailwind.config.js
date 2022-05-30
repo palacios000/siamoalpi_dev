@@ -41,7 +41,11 @@ module.exports = {
         'h2mobile': ['1.55rem', {
           letterSpacing: '0.04rem',
           lineHeight: '1.95rem',          
-        }]
+        }],
+        'h3mobile': ['2.2rem', {
+          letterSpacing: '0.01rem',
+          lineHeight: '1.65rem',          
+        }],
       },
       fontFamily: {
         'sans': ['Moderat-Light'],

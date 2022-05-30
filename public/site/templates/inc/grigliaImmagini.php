@@ -17,13 +17,22 @@
 		</div>
 	</div>
 
+	<?php if ($page->template == "ricerca") { ?>
+		<div x-show="mappa" x-transition class="w-full py-4 ">
+    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
+		    	<h2 class="text-verde-sa mb-4">Mappa</h2>
+		    	<div id="maps" class="h-90 bg-black"></div>
+    		</div>
+    	</div>
+	<?php } ?>
+
 	<div class="flex flex-row gap-x-4 w-full">
 		<div id="clear-filter" class="text-white font-sansBold"></div>
 		<div id="current-refinements" class="text-white"></div>
 	</div>
 
     <div id="hits" class="pt-2 -mx-4 relative" >
-    	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block" uk-totop uk-scroll>
+    	<a id="tornasu" href="#" class="absolute bottom-2 right-4 inline-block invisible md:visible" uk-totop uk-scroll>
     		<!-- <svg class="h-12 w-12 hover:fill-white transition-all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.2 23.2"><path d="M16.9 10.1l-5.3-4.7-5.3 4.7.7.7L11.2 7v10.8h.9V7.5L12 7l4.2 3.8z"/></svg> -->
     		<svg class="h-10 w-10 fill-white hover:fill-verde-sa transition-all" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     			 viewBox="0 0 57.1 57.6" xml:space="preserve">

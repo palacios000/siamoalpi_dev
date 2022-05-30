@@ -39,7 +39,10 @@ require 'inc/head.php'; ?>
           <div class="flex mx-12 mt-10 pb-14 flex-col md:flex-row">
               <div class="relative mr-6 mb-1">
                 <div>
-                  <img src="<?= $scheda->immagini->first->height(660)->url ?>" class="zoom" data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
+                  <!-- mobile -->
+                  <img class="h-auto md:h-0 visible md:invisible" src="<?= $scheda->immagini->first->height(660)->url ?>"  data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
+                  <!-- medium (zoom) -->
+                  <img class="zoom h-0 md:h-auto invisible md:visible" src="<?= $scheda->immagini->first->height(660)->url ?>"  data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
                 </div>
 
                 <p class="text-white text-sm mt-2 invisible lg:visible">
@@ -67,7 +70,7 @@ require 'inc/head.php'; ?>
                     $urlSlider = $archivioPage->url . "?siamoAlpi[range][datazione]=$decadeDa%3A$decadeA" . "&showdate=1";
 
 
-                    $dove = ($scheda->luogo->localita) ? $scheda->luogo->localita . ", " . $scheda->luogo->comune : $scheda->luogo->comune;
+                    $dove = ($scheda->luogo->localita) ? $scheda->luogo->comune . ", " . $scheda->luogo->localita : $scheda->luogo->comune;
                     echo "
                     <ul class='list-none h2-sa tracking-0 text-white pb-8'>
                       <li><a class='hover:text-verde-sa transition' href='$urlSlider'>$quando</a></li>
@@ -76,7 +79,7 @@ require 'inc/head.php'; ?>
                     ";
                   } ?>
 
-                  <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white">
+                  <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white pb-8">
                   <?php 
                   $urlTag = $archivioPage->url . '?siamoAlpi[refinementList][tags][0]=';
                   	foreach ($scheda->tags as $tag) {
@@ -84,7 +87,7 @@ require 'inc/head.php'; ?>
                   } ?>	
                   </ul>
 
-                  <div id="altrenote" class="absolute bottom-0 left-0 text-white text-sm">
+                  <div id="altrenote" class="text-white text-sm">
                     <!-- condividi -->
                     <?php // make urls
                     $soggetto = $sanitizer->entities("Condivisione URL da siamoalpi.it") ;
@@ -256,6 +259,7 @@ require 'inc/head.php'; ?>
     <script>
       var filtro = {'temi': ['<?= $scheda->tema->first->title ?>']};
       var routingUrl = false;
+      var lemmaRisultati = 'immagini correlate'; //risultati
     </script>
   <?php require 'inc/scripts.php' ?>
 

@@ -20,7 +20,7 @@
 
 // 0 controlla lo stopper se e' attivo, se lo e' blocca tutto
 	$error = ($page->counter->stop) ? true : false;
-	$debug = true; // non mandare il json ad algolia...
+	$debug = false; // non mandare il json ad algolia...
 	$jsonName = "algolia.json";
 	$filePath = $config->paths->assets . $jsonName;
 
@@ -151,8 +151,8 @@
 
 				// luogo - sirbec dependant 
 					// se c'e' bene, altrimenti metto Sondrio
-					$latitudine = ($scheda->mappa->lat) ? $scheda->mappa->lat : '46.1700326';
-					$longitudine = ($scheda->mappa->lng) ? $scheda->mappa->lng : '9.8676338';
+					$latitudine = ($scheda->sync->geocoding || $scheda->mappa->map_desync) ? $scheda->mappa->lat : '46.1700326';
+					$longitudine = ($scheda->sync->geocoding || $scheda->mappa->map_desync) ? $scheda->mappa->lng : '9.8676338';
 
 					$geo = (object) array('lat'=> floatval($latitudine), 'lng'=> floatval($longitudine));
 					$comune = $scheda->luogo->comune;

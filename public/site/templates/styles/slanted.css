@@ -149,12 +149,14 @@
     }
 
     /* Home slanted split div */
+    /* apply only for medium and up */
+    @media (min-width: 640px) {
+        .writing-container {
+            transform: skew(-8deg) translateX(-1.2rem);
+            transform-origin: top left;
+        }
 
-    .writing-container {
-        transform: skew(-8deg) translateX(-1.2rem);
-        transform-origin: top left;
-    }
-
-    .unskew-container {
-        transform: skew(8deg) translateX(1.2rem);
+        .unskew-container {
+            transform: skew(8deg) translateX(1.2rem);
+        }
     }

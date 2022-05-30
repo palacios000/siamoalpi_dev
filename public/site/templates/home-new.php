@@ -65,7 +65,7 @@ if ($input->post->cerca) {
         </div>
 
         <!-- White slanted section -->
-        <div class="slanted-tr-s z-30 before:-z-10 h-fit pt-10 md:pt-16 pb-32 bg-white">
+        <div class="slanted-tr-s z-30 before:-z-10 h-fit pt-10 md:pt-16 pb-12 md:pb-32 bg-white">
             <div class="flex flex-col md:flex-row w-full">
                 <h1 class="h3-sa uppercase shrink-0 w-full md:w-76 ml-6 md:ml-12 mr-34 pr-6 md:pr-0 ">
                     <?= $page->titleH1 ?>
@@ -88,12 +88,12 @@ if ($input->post->cerca) {
             $albums = $pages->findOne("template=foto-del-giorno")->children();
             
             if (count($albums)) { ?>
-            <div class="slanted-tl-l z-40 before:-z-10 pt-10 pb-18 bg-black text-white">
+            <div class="slanted-tl-l z-40 before:-z-10 pt-8 md:pt-10 pb-6 md:pb-18 bg-black text-white">
                 <!-- Title -->
-                <h2 class="h3-sa uppercase text-center">Album tematici</h2>
+                <h2 class="h3-sa uppercase text-center px-6 md:px-0">Album tematici</h2>
 
                 <!-- Grid section with cards -->
-                <div class="swiper mySwiper mt-14 mb-9 mx-4 w-[95%] pb-18">
+                <div class="swiper mySwiper mt-8 md:mt-14 mb-0 md:mb-9 mx-4 w-[95%] pb-18">
                     <div class="swiper-wrapper grid grid-cols-3 gap-x-0 pb-18">
                         <?php 
                             foreach ($albums as $album) { 
@@ -117,7 +117,7 @@ if ($input->post->cerca) {
                         ?>
                         <div class="mx-auto swiper-slide w-73 flex flex-col justify-center">
                             <div class="mx-auto block group" >
-                                <div class="w-73 h-73 2xl:w-80 2xl:h-80 mb-4">
+                                <div class="w-auto md:w-73 h-auto md:h-73 2xl:w-80 2xl:h-80 mb-4 px-6 md:px-0">
                                     <a class="" href="<?= $albumUrl ?>">
                                         <div class=" boder border-8 border-black group-hover:border-verde-sa group-hover:transition">
                                             
@@ -142,21 +142,29 @@ if ($input->post->cerca) {
         =            Diario            =
         =============================-->
             <?php $blogPostHome = $pages->findOne("template=blog_post, selezione=1"); ?>
+            <div class="slanted-tr-l z-50 before:-z-10 bg-verde-sa h-5 md:h-0 visible md:invisible "><!-- slanted for mobile only --></div>
             <div class="pb-26 text-white bg-black">
                 <!-- Grid container -->
-                <div class="relative flex w-full">
-                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] py-36  pl-22 z-20 bg-verde-sa">
+                <div class="relative flex w-full flex-col md:flex-row">
+                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] py-6 md:py-16 md:py-36 pl-6 md:pl-22 pr-6 md:pr-0 z-20 bg-verde-sa">
                         <div class="unskew-container flex-col">
-                            <div class="h4-sa mb-2 uppercase">Diario</div>
+                            <div class="h4-sa mb-0 md:mb-2 uppercase">Diario</div>
 
-                            <h3 class="h5-sa uppercase underline underline-offset-18 decoration-4 overflow-visible max-h-60 pr-2 2xl:pr-80"><?= $blogPostHome->title ?></h3>
+                            <h3 class="h5-sa uppercase underline underline-offset-4 md:underline-offset-18 decoration-2 md:decoration-4 overflow-visible max-h-60 pr-2 2xl:pr-80"><?= $blogPostHome->title ?></h3>
             
-                            <a href="<?= $blogPostHome->url ?>" class="block bottone-blu mt-10 ml-1 mb-1">Leggi tutto</a>
+                            <a href="<?= $blogPostHome->url ?>" class="block bottone-blu mt-6 md:mt-10 ml-0 md:ml-1 mb-6 md:mb-1">Leggi tutto</a>
+
+                            <!-- Picture container sm: -->
+                            <div class="visible md:invisible h-auto md:h-0 ">  
+                                <img class="" 
+                                src="<?= $blogPostHome->images_bg->first->width(350)->url ?>" 
+                                alt="<?= $blogPostHome->title ?>">
+                            </div>
                         </div>
                     </div>
         
-                    <!-- Picture container -->
-                    <div class="absolute h-full z-10 shrink-0 basis-2/5 right-0 flex justify-end">  
+                    <!-- Picture container md: -->
+                    <div class="invisible md:visible absolute h-0 md:h-full z-10 shrink-0 basis-2/5 right-0 flex justify-end">  
                         <img class="py-10 h-full block" 
                         srcset="<?= $blogPostHome->images_bg->first->size(836,654)->url ?> 836w,
                         <?= $blogPostHome->images_bg->first->url ?> 1600w"
@@ -166,6 +174,8 @@ if ($input->post->cerca) {
                     </div>
                 </div>
             </div>
+                <!-- <div class="slanted-tl-m z-50 before:-z-10 bg-verde-sa h-5 md:h-0 visible md:invisible "></div> non va-->
+
 
 
         <!--========================================

@@ -35,8 +35,8 @@
             
             <div class="text-black" id="searchbox"></div>
             
-            <ul class="py-4 text-sm text-right pr-4 uppercase font-sansBold">
-                <li class="inline ">Ricerca per:</li>
+            <ul class="py-4 text-sm text-left md:text-right pr-4 uppercase font-sansBold">
+                <li class="inline w-0 md:w-auto invisible md:visible">Ricerca per:</li>
                 <li class="inline pl-3">
                     <button x-on:click="temi = ! temi" class="uppercase hover:underline underline-offset-4" :class="temi ? 'underline underline-offset-4' : ''">Temi</button>
                 </li>
@@ -46,7 +46,7 @@
                 <li class="inline pl-3">
                     <button x-on:click="mappa = ! mappa" class="uppercase hover:underline underline-offset-4" :class="mappa ? 'underline underline-offset-4' : ''">Mappa</button>
                 </li>
-                <!-- <li class="inline pl-3">Avanzata</li> -->
+                <!-- <li class="inline-blok pl-3">Avanzata</li> -->
             </ul>
         </div>
     </div>
