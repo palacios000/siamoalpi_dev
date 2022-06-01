@@ -71,6 +71,10 @@ const search = instantsearch({
 								<h2 x-show='!solofoto' class='titoloFoto text-white text-sm ml-2'>
 									${instantsearch.highlight({ attribute: 'titolo', hit: item })}
 								</h2>
+								<!-- mobile only -->
+								<h2 class='titoloFoto text-white text-sm ml-2 visible md:hidden'>
+									${instantsearch.highlight({ attribute: 'titolo', hit: item })}
+								</h2>
 
 							</div>
 						</div>
@@ -98,12 +102,12 @@ const search = instantsearch({
 	  widgetParams.container.querySelector('ul').innerHTML = items
 	    .map(
 	      item => `
-	        <li class='inline'>
+	        <li class='md:inline'>
 	          <a
 	            href="${createURL(item.value)}"
 	            data-value="${item.value}"
 	          >
-	            <span class="${item.isRefined ? 'underline underline-offset-4' : ''}">${item.label}</span> <span class='text-verde-sa px-1'>${item.count}</span> <span class='px-1'>/</span>
+	            <span class="${item.isRefined ? 'underline underline-offset-4' : ''}">${item.label}</span> <span class='text-verde-sa px-1'>${item.count}</span> <span class='px-1 invisible md:visible'>/</span>
 	          </a>
 	        </li>
 	      `
@@ -175,7 +179,7 @@ const search = instantsearch({
 		      ${item.refinements
 		        .map(
 		          refinement =>
-		            `<li class='lowercase inline pr-4'>
+		            `<li class='lowercase md:inline pr-4'>
 		              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
 		              ${refinement.label} 
 		            </li>`

@@ -11,18 +11,17 @@
 			<!-- Main content div  -->
 			<div class="slanted-tr-s relative pb-24 pt-1 bg-white z-0 before:-z-10">
 				<!-- Title -->
-				<h1 class="h5-sa 2xl:text-h6 uppercase underline underline-offset-2 pl-12 2xl:pl-24 pt-12 pb-5 w-3/5 underline-offset-8">
+				<h1 class="h5-sa 2xl:text-h6 uppercase underline underline-offset-4 md:underline-offset-8 pl-6 md:pl-12 2xl:pl-24 pr-6 md:pr-0 pt-12 pb-5 w-full md:w-3/5 ">
 					<?= $page->titleH1 ?>
 				</h1>
 
-				<!-- condivi button -->
-				<div class="absolute top-12 right-6 text-sm border-t border-black">
-				  <!-- condividi -->
-				  <?php // make urls
+			    <!-- condividi -->
+				<?php // make urls
 				  $soggetto = $sanitizer->entities("Condivisione URL da siamoalpi.it") ;
 				  $mailtoURL = "mailto:?subject=$soggetto&body=".$page->httpUrl;  
 				  $fbURL = "https://www.facebook.com/sharer/sharer.php?u=".$page->httpUrl;  
-				  ?>
+				?>
+				<div class="absolute top-12 right-6 text-sm border-t border-black invisible md:visible">
 				  <p class="font-sansBold uppercase text-right mt-2.5">Condividi</p>
 				  <ul class="fotoGiornoTags flex flex-row gap-4">
 				    <li class="inline"><a class="hover:text-verde-sa transition" href="<?= $mailtoURL ?>">email</a></li>
@@ -35,10 +34,22 @@
 					echo "<a target='_blank' href='$page->editUrl' class='bottone-verde'>Modifica post</a>";
 				} ?>
 
-				<div class="px-12 2xl:px-72 lg:px-56 mx-auto">
-					<article class="pt-18">
+				<div class="px-6 md:px-12 2xl:px-72 lg:px-56 mx-auto">
+					<article class="pt-8 md:pt-18">
 						<?= $page->body ?>
 					</article>
+
+					<!-- condividi mobile -->
+					<div class="visible md:hidden mt-16">
+						<div class="text-sm border-t border-black">
+						  <p class="font-sansBold uppercase mt-2.5">Condividi</p>
+						  <ul class="fotoGiornoTags flex flex-row gap-4">
+						    <li class="inline"><a class="hover:text-verde-sa transition" href="<?= $mailtoURL ?>">email</a></li>
+						    <li class="inline"><a class="hover:text-verde-sa transition" href="<?= $fbURL ?>" target="_blank">facebook</a></li>
+						  </ul>
+						</div>
+					</div>
+
 					<div>
 						<a href="<?= $page->parent->url ?>" class="bottone-verde block mx-auto mt-14 mb-8">Vai a Diario</a>
 					</div>

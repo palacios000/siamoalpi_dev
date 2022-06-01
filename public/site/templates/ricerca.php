@@ -23,17 +23,17 @@ $showAnni = ($input->get->showdate == 1) ? 'true' : 'false' ?>
 	    <section>
 
 		    <!-- ALGOLIA -->
-		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 bg-black">
-		      <div class="mx-12 w-fit pb-16">
+		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto md:pb-32 bg-black">
+		      <div class="mx-6 md:mx-12 w-fit md:pb-16">
 		    	<!-- #algolia -->
 		    	<section id="filtriAlg">		    		
 			    	<div x-show="temi" x-transition class="w-full py-4">
-			    		<div class="w-3/4 mx-auto text-h1 font-serif uppercase text-center">
-					    	<h2 class="text-verde-sa mb">Temi</h2>
-					    	<div id="temiricerca" class="text-white"></div>
+			    		<div class="md:w-3/4 mx-auto text-h1 font-serif uppercase ">
+					    	<h2 class="text-verde-sa text-center">Temi</h2>
+					    	<div id="temiricerca" class="text-white md:text-center"></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="anni" x-transition class="w-full py-4 px-16">
+			    	<div x-show="anni" x-transition class="w-full py-4 px-6 md:px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-8">Anni</h2>
 					    	<div id="datazione" class="h-16 "></div>

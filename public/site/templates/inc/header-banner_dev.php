@@ -2,7 +2,7 @@
 // menu pages pagine in _defaultPages.php
 ?>
 
-<div x-data="{ menu: false }" class="slanted-br-m relative text-white h-fit">
+<div x-data="{ menu: true }" class="slanted-br-m relative text-white h-fit">
     <!-- Background image -->
     <img class="object-cover overflow-hidden w-full h-full"  src="<?= $bannerBgImg ?>" alt="">
     <!-- Logo -->
@@ -77,14 +77,18 @@
                     x-trap.noscroll.inert="menu"
                     class="absolute h-auto w-auto right-0 top-36 z-30"
                 >
-                    <ul class="text-right text-white h3-sa uppercase">
+                    <ul class="text-white h3-sa uppercase ">
 
                         <?php foreach ($menuPages as $menuPage) {
                             $activePage = ($page->id == $menuPage->id) ? "activePage" : "";
                             echo "
-                            <li class='h-16 mb-2'>
-                            <a href='$menuPage->url' class='bg-blu-sa hover:bg-verde-sa transition pt-4 pb-3 pl-3 pr-6 $activePage'>$menuPage->name</a>
+                            
+                                <li class='h-18 p-4 bg-blu-sa hover:bg-verde-sa transition float-right'>
+
+                                <a href='$menuPage->url' class='s$activePage'>$menuPage->name</a>
+                                
                             </li>
+                            <span class='clear-both block'></span>
                             ";
                         } ?>
 
@@ -97,5 +101,6 @@
                 </div>
             </div>
         </div>
+        <span class="h-[4.55rem]"></span>
 
 </div>

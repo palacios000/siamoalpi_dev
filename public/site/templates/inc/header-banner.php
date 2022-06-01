@@ -97,9 +97,10 @@
                             foreach ($menuPages as $menuPage) {
                             $activePage = ($page->id == $menuPage->id) ? "activePage" : "";
                             echo "
-                            <li class='h-16 mb-2'>
-                            <a href='$menuPage->url' class='bg-blu-sa hover:bg-verde-sa transition pt-4bis pb-3 pl-3 pr-6 $activePage'>$menuPage->name</a>
+                            <li class='h-18 p-5.7 md:p-4 bg-blu-sa hover:bg-verde-sa transition float-right'>
+                                <a href='$menuPage->url' class='$activePage'>$menuPage->name</a>
                             </li>
+                            <span class='clear-both block'></span>
                             ";
                         } ?>
 

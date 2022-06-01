@@ -1,6 +1,6 @@
-	<div class="grid grid-cols-2 pt-4 w-full">
+	<div class="grid grid-cols-1 md:grid-cols-2 pt-4 w-full">
 		<div id="stats" class="text-white font-serif text-h2"></div>
-		<div class="text-right">
+		<div class="text-right invisible md:visible h-0 md:h-auto">
 			<!-- due bottoni per scelta visualizzazione -->
 
 			<!--NoMinify-->
@@ -26,7 +26,7 @@
     	</div>
 	<?php } ?>
 
-	<div class="flex flex-row gap-x-4 w-full">
+	<div class="flex flex-col md:flex-row gap-x-4 w-full">
 		<div id="clear-filter" class="text-white font-sansBold"></div>
 		<div id="current-refinements" class="text-white"></div>
 	</div>

@@ -142,11 +142,11 @@ if ($input->post->cerca) {
         =            Diario            =
         =============================-->
             <?php $blogPostHome = $pages->findOne("template=blog_post, selezione=1"); ?>
-            <div class="slanted-tr-l z-50 before:-z-10 bg-verde-sa h-5 md:h-0 visible md:invisible "><!-- slanted for mobile only --></div>
-            <div class="pb-26 text-white bg-black">
+            <div class="slanted-tr-l z-50 before:-z-10 bg-verde-sa h-6 md:h-0 visible md:invisible "><!-- slanted for mobile only --></div>
+            <div class="pb-0 md:pb-26 z-30 text-white bg-black">
                 <!-- Grid container -->
                 <div class="relative flex w-full flex-col md:flex-row">
-                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] py-6 md:py-16 md:py-36 pl-6 md:pl-22 pr-6 md:pr-0 z-20 bg-verde-sa">
+                    <div class="writing-container inline-block flex-initial basis-3/5 2xl:basis-[62%] pt-0 md:pt-36 pb-0 md:pb-36 pl-6 md:pl-22 pr-6 md:pr-0 z-20 bg-verde-sa">
                         <div class="unskew-container flex-col">
                             <div class="h4-sa mb-0 md:mb-2 uppercase">Diario</div>
 
@@ -174,7 +174,7 @@ if ($input->post->cerca) {
                     </div>
                 </div>
             </div>
-                <!-- <div class="slanted-tl-m z-50 before:-z-10 bg-verde-sa h-5 md:h-0 visible md:invisible "></div> non va-->
+            <div class="slanted_a-tl-l z-20 after:-z-10 h-9 md:h-0 visible md:invisible bg-verde-sa"><!-- slanted for mobile only --></div>
 
 
 

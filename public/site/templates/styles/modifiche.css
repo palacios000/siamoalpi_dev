@@ -159,8 +159,8 @@
         }
         /*data sul pallino*/
         .rheostat-tooltip{
-            margin-top: -40px;
-            margin-left: -12px;
+            margin-top: -35px;
+            margin-left: -3px;
             color: white;
             @apply text-sm -rotate-45;
             

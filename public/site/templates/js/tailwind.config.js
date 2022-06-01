@@ -10,9 +10,10 @@ module.exports = {
       screens: {
         '2xl': '1920px',
         'xl': '1440px',
-      },
-      fontWeight: {
-        boldest: '950',
+        // defaults
+        // 'sm': '640px',
+        // 'md': '768px',
+        // 'lg': '1024px',
       },
       fontSize: {
         sm: ['0.9rem', {
@@ -31,21 +32,34 @@ module.exports = {
           letterSpacing: '0.015em',
           lineHeight: '1.75rem',
         }], 
-        'h2': '1.65rem', //33px
-        'h3': '2.4rem', //48px
-        'h4': '3.1rem', //62px
-        'h5': '4.7rem', //94px
+        'h2': '1.65rem', 
+        'h3': '2.4rem', 
+        'h4': '3.1rem', 
+        'h5': '4.7rem', 
         'h6': ['5rem',{
           lineHeight: '6rem',
         }],
-        'h2mobile': ['1.55rem', {
-          letterSpacing: '0.04rem',
-          lineHeight: '1.95rem',          
-        }],
-        'h3mobile': ['2.2rem', {
-          letterSpacing: '0.01rem',
-          lineHeight: '1.65rem',          
-        }],
+        'h2mobile': '1.55rem',
+        'h3mobile': '2.2rem'
+      },
+      //tracking
+      letterSpacing: {
+        '0': '0em',
+        '01': '0.01em',
+        '02': '0.02em',
+        '03': '0.03em',
+        '04': '0.04em',
+        '05': '0.05em',
+      },
+      //leading
+      lineHeight: {
+        'tightest-sa': '1.9rem', 
+        'tightest1-sa': '1.95rem', 
+        'tight-sa': '2rem', 
+        'snug-sa': '2.65rem', 
+        'relaxed-sa': '3.15rem', 
+        'loose-sa': '5.25rem', 
+        'l235-sa': '2.35rem', 
       },
       fontFamily: {
         'sans': ['Moderat-Light'],
@@ -74,14 +88,7 @@ module.exports = {
       padding: {
         '4bis': '1.2rem',
       },
-      letterSpacing: {
-        '0': '0em',
-        '01': '0.01em',
-        '02': '0.02em',
-        '03': '0.03em',
-        '04': '0.04em',
-        '05': '0.05em',
-      },
+
       width: {
         '76': '19rem',
         '82': '22rem',
@@ -99,14 +106,7 @@ module.exports = {
       rotate:{
         '270': '270deg',
       },
-      lineHeight: {
-        //New custom line heights
-        'tightest-sa': '1.9rem', //38px
-        'tight-sa': '2rem', //40px
-        'snug-sa': '2.65rem', //53px
-        'relaxed-sa': '3.15rem', //63px
-        'loose-sa': '5.25rem', //105px
-      },
+
       translate: {
         '5/6': '83.333333%',
       },

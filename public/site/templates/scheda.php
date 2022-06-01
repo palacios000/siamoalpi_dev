@@ -31,21 +31,22 @@ require 'inc/head.php'; ?>
 	      } ?>      
           
           <!-- Picture title -->
-          <h1 class="h2-sa uppercase ml-12 w-1/2 text-white">
+          <h1 class="h2-sa uppercase ml-6 md:ml-12 md:w-1/2 text-white">
               <?= $scheda->title ?>
           </h1>
                 
           <!-- Picture content container -->
-          <div class="flex mx-12 mt-10 pb-14 flex-col md:flex-row">
-              <div class="relative mr-6 mb-1">
+          <div class="flex mx-6 md:mx-12 mt-4 md:mt-10 pb-6 md:pb-14 flex-col md:flex-row">
+              <div class="relative md:mr-6 md:mb-1">
                 <div>
                   <!-- mobile -->
-                  <img class="h-auto md:h-0 visible md:invisible" src="<?= $scheda->immagini->first->height(660)->url ?>"  data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
+                  <img class="h-auto md:h-0 visible md:hidden" src="<?= $scheda->immagini->first->height(660)->url ?>"  data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">  
+                  <div class="zoom"></div> 
                   <!-- medium (zoom) -->
                   <img class="zoom h-0 md:h-auto invisible md:visible" src="<?= $scheda->immagini->first->height(660)->url ?>"  data-magnify-src="<?= $scheda->immagini->first->url ?>" alt="<?= $scheda->title ?>">   
                 </div>
 
-                <p class="text-white text-sm mt-2 invisible lg:visible">
+                <p class="text-white text-sm mt-2 invisible lg:visible h-0 md:h-auto">
                   <svg class='text-verde-sa h-6 w-6 inline' xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                   </svg>
@@ -54,7 +55,7 @@ require 'inc/head.php'; ?>
               </div>
 
               <!-- Luogo + Data + Tags list-->
-              <div class="ml-1 relative h-98">
+              <div class="ml-1 relative h-auto md:h-98 pb-8 md:pb-0">
                   <!-- Luogo e data -->
                   <?php if ($scheda->luogo->comune || $scheda->datazione->anno) {
 
@@ -143,9 +144,9 @@ require 'inc/head.php'; ?>
 
       <!-- White div -->
       <div class="bg-white">
-          <div class="flex pt-16 px-10 pb-46">
+          <div class="flex pt-16 px-6 md:px-10 pb-12 md:pb-46 flex-col md:flex-row">
               <!-- Left section -->
-              <div class="basis-3/5 pr-20 mr-3">
+              <div class="md:basis-3/5 pr-20 mr-3">
                   <!-- Text section -->
                   <div class="pl-2">
                       <div class="h2-sa uppercase pb-6">
@@ -169,7 +170,7 @@ require 'inc/head.php'; ?>
               </div>
 
               <!-- Audio racconti side section -->
-              <div class="basis-2/5 pl-13 border-l border-black">
+              <div class="md:basis-2/5 pl-6 md:pl-13 border-l border-black">
                   <?php if ($scheda->autore) {
                     echo "
                     <div class='mb-6'>
@@ -195,7 +196,7 @@ require 'inc/head.php'; ?>
       =            algolia more       =
       ==============================-->
       <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto pb-32 pt-10 bg-black">
-        <div class="mx-12 w-fit">
+        <div class="mx-6 md:mx-12 w-fit">
 
             <!-- filtri / div nascosti -->
             <div id="searchbox" class="hidden"></div>

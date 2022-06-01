@@ -11,11 +11,11 @@
       <!-- Masonry grid container-->
       <div class="slanted-tl-s pb-10 mr-10 bg-black text-white z-0 before:-z-10 h-fit">
         <!-- Title -->
-        <h1 class="h2-sa text-white uppercase pt-8 ml-auto mr-8 md:w-1/2 lg:w-1/3 w-fit text-right"><?= $page->titleH1 ?></h1>
+        <h1 class="h2-sa text-white uppercase pt-8 ml-6 md:ml-auto mr-8 w-auto md:w-1/2 lg:w-1/3  md:text-right"><?= $page->titleH1 ?></h1>
 
         <!-- Masonry grid with Uikit -->
-        <div class="px-8 mt-13 mb-16 w-full" >
-          <div class="grid grid-cols-2 gap-8" uk-grid="masonry: true">
+        <div class="px-6 md:px-8 mt-13 mb-16 w-full" >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8" uk-grid="masonry: true">
             <!-- PHP code to iteratively print blog posts -->
             <?php 
               $counter = 0;
