@@ -85,10 +85,6 @@ module.exports = {
         '97': '28rem',
         '98': '33rem',
       },
-      padding: {
-        '4bis': '1.2rem',
-      },
-
       width: {
         '76': '19rem',
         '82': '22rem',

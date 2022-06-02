@@ -258,4 +258,5 @@
         bottom: 1.25rem;
         left: 50%;
         transform: translateX(-50%);
+        @apply font-sansBold uppercase border border-verde-sa text-sm tracking-widest;
     }

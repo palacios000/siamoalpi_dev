@@ -57,28 +57,75 @@ require 'inc/head.php'; ?>
               <!-- Luogo + Data + Tags list-->
               <div class="ml-1 relative h-auto md:h-98 pb-8 md:pb-0">
                   <!-- Luogo e data -->
-                  <?php if ($scheda->luogo->comune || $scheda->datazione->anno) {
+                  <?php 
+                  $urlSlider = '';
+                  $urlMap = '';
+                  if ($scheda->luogo->comune || $scheda->datazione->anno) {
 
-                    $quando = ($scheda->datazione->anno_fine) ? $scheda->datazione->anno . " - " . $scheda->datazione->anno_fine : $scheda->datazione->anno;
+                    echo "<ul class='list-none h2-sa tracking-0 text-white pb-8'>";
 
-                    // calcola la decade
-                    $decadeDa = (floor($scheda->datazione->anno / 10)) * 10;
-                    if ($scheda->datazione->anno_fine) {
-                      $decadeA = (ceil($scheda->datazione->anno_fine / 10)) * 10;
-                    } else {
-                      $decadeA = $decadeDa + 10;
+                    // datazione
+                    if ($scheda->datazione->anno) {
+                      
+                      $quando = ($scheda->datazione->anno_fine) ? $scheda->datazione->anno . " - " . $scheda->datazione->anno_fine : $scheda->datazione->anno;
+
+                      // calcola la decade
+                      $decadeDa = (floor($scheda->datazione->anno / 10)) * 10;
+                      if ($scheda->datazione->anno_fine) {
+                        $decadeA = (ceil($scheda->datazione->anno_fine / 10)) * 10;
+                      } else {
+                        $decadeA = $decadeDa + 10;
+                      }
+                      $urlSlider = $archivioPage->url . "?siamoAlpi[range][datazione]=$decadeDa%3A$decadeA" . "&showdate=1";
+
+                      echo "<li><a class='hover:text-verde-sa transition' href='$urlSlider'>$quando</a></li>";
                     }
-                    $urlSlider = $archivioPage->url . "?siamoAlpi[range][datazione]=$decadeDa%3A$decadeA" . "&showdate=1";
+
+                    // comune con geo
+                    if ($scheda->luogo->comune) {
+                      // nome paese, frazione
+                      $dove = ($scheda->luogo->localita) ? $scheda->luogo->comune . ", " . $scheda->luogo->localita : $scheda->luogo->comune;
+
+                      // geo lat lng bounding box
+                      if ($scheda->mappa->lat && $scheda->mappa->lng) {
+                        /** mappa geo ref
+                         * 
+                          | NW | ==== N ====    |    |
+                          | O  | scheda lat/lng | E  |
+                          |    | ==== S ====    | SE |
+
+                        valori presi da bounding box mappa
+                            |            |        lat        |        lng        |
+                            |============|===================|===================|
+                            | A          |   46.225749197894 |   10.155965810791 |
+                            | B          |  46.1401764406245 |  9.81710625268557 |
+                            |            |                   |                   |
+                            | differenza | 0.085572757269482 | 0.338859558105469 |
+                            |            |                   |                   |
+                            | meta'      | 0.042786378634741 | 0.169429779052734 |
+                         */
+                        $halfLat = 0.042786378634741;
+                        $halfLng = 0.169429779052734;
+
+                        $boxNW_lat = $scheda->mappa->lat + $halfLat;
+                        $boxSE_lng = $scheda->mappa->lng - $halfLng;
+                        //
+                        $boxSE_lat = $scheda->mappa->lat - $halfLat;
+                        $boxNW_lng = $scheda->mappa->lng + $halfLng;
+
+                        // https://siamoalpi.it/archivio/?siamoAlpi%5BgeoSearch%5D%5BboundingBox%5D=46.225749197894%2C10.155965810791043%2C46.140176440624515%2C9.817106252685575
+                        $urlMap = $archivioPage->url . "?siamoAlpi[geoSearch][boundingBox]={$boxNW_lat}%2C{$boxNW_lng}%2C{$boxSE_lat}%2C{$boxSE_lng}" . "&showmap=1";
+                        echo "<li><a class='hover:text-verde-sa transition' href='$urlMap'>$dove</a></li>";
+                      }else{
+                        echo "<li>$dove</li>";
+                      }
+
+                    }
 
 
-                    $dove = ($scheda->luogo->localita) ? $scheda->luogo->comune . ", " . $scheda->luogo->localita : $scheda->luogo->comune;
-                    echo "
-                    <ul class='list-none h2-sa tracking-0 text-white pb-8'>
-                      <li><a class='hover:text-verde-sa transition' href='$urlSlider'>$quando</a></li>
-                      <li>$dove</li>
-                    </ul>                    
-                    ";
-                  } ?>
+                    echo "</ul>";
+                  } 
+                  ?>
 
                   <ul class="list-hash list-inside uppercase h1-sa tracking-0 text-white pb-8">
                   <?php 
@@ -250,6 +297,9 @@ require 'inc/head.php'; ?>
 	| valutazione_estetica    | PageRef  |               |
 	| **********              |          |               |
 */
+
+
+
  ?>
 
 
