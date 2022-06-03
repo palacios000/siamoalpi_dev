@@ -17,15 +17,6 @@
 		</div>
 	</div>
 
-	<?php if ($page->template == "ricerca") { ?>
-		<div x-show="mappa" x-transition class="w-full py-4 ">
-    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
-		    	<h2 class="text-verde-sa mb-4">Mappa</h2>
-		    	<div id="maps" class="h-90 bg-black"></div>
-    		</div>
-    	</div>
-	<?php } ?>
-
 	<div class="flex flex-col md:flex-row gap-x-4 w-full">
 		<div id="clear-filter" class="text-white font-sansBold"></div>
 		<div id="current-refinements" class="text-white"></div>

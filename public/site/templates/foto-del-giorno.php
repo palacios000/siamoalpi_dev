@@ -13,7 +13,7 @@ if($fotoGiorno->id){
     $fotoImg = $fotoGiorno->immagini->first->height(530);
     $fotoGiornoUrl = $pages->findOne("template=scheda")->url . "?id=" . $fotoGiorno->id; ?>
 
-	<div class="relative overflow-hidden text-white pt-18 pb-46 bg-black/60 bg-cover bg-center bg-blend-darken" style="background-image: url('<?= $fotoImg->url ?>')"> 
+	<div class="relative overflow-hidden text-white pt-26 md:pt-18 pb-34 md:pb-46 bg-black/60 bg-cover bg-center bg-blend-darken" style="background-image: url('<?= $fotoImg->url ?>')"> 
 	    <div class="flex w-full px-6 md:px-16 flex-col md:flex-row justify-end">
 	        <!-- Content -->
 	        <div class="w-full md:w-1/2 mr-0 md:mr-8">

@@ -35,18 +35,18 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 					    	<div id="temiricerca" class="text-white md:text-center"></div>
 			    		</div>
 			    	</div>
-			    	<div x-show="anni" x-transition class="w-full py-4 px-6 md:px-16">
+			    	<div x-show="anni" x-transition class="w-full md:py-4 md:px-16">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
-					    	<h2 class="text-verde-sa mb-8">Anni</h2>
+					    	<h2 class="text-verde-sa mb-10">Anni</h2>
 					    	<div id="datazione" class="h-16 "></div>
 			    		</div>
 			    	</div>
-			    	<!-- <div x-show="mappa" x-transition class="w-full py-4 ">
+			    	<div x-show="mappa" x-transition class="w-full py-4 ">
 			    		<div class="mx-auto text-h1 font-serif uppercase text-center ">
 					    	<h2 class="text-verde-sa mb-4">Mappa</h2>
 					    	<div id="maps" class="h-90 bg-black"></div>
 			    		</div>
-			    	</div> -->
+			    	</div>
 			    </section>
 
 

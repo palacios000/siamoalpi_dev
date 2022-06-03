@@ -65,6 +65,7 @@ module.exports = {
         'sans': ['Moderat-Light'],
         'sansBold': ['Moderat-Bold'],
         'serif': ['Morion'],
+        'serifBold': ['Morion-Semibold'],
       },
       spacing: {
         '5.7': '1.4em',

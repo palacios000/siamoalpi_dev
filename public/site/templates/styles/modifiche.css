@@ -7,13 +7,13 @@
       @apply text-h2mobile md:text-h2 leading-tightest1-sa md:leading-tight-sa tracking-04 font-serif;
     }
     .h3-sa {
-      @apply text-h3mobile md:text-h3 leading-tight-sa md:leading-snug-sa tracking-01 font-serif;
+      @apply text-h3mobile md:text-h3 leading-10 md:leading-snug-sa tracking-01 font-serif;
     }
     .h4-sa {
       @apply text-h2mobile md:text-h4 leading-normal md:leading-relaxed-sa tracking-02 font-serif;
     }
     .h5-sa {
-      @apply text-h3mobile md:text-h5 leading-l235-sa md:leading-loose-sa tracking-tight font-serif;
+      @apply text-h3 md:text-h5 leading-snug-sa md:leading-loose-sa tracking-01 md:tracking-tight font-serif;
     }
 
 
@@ -143,12 +143,14 @@
             top: -7px;
         }
         /*righe righello*/
-        .rheostat-marker {
-            margin-left: -1px;
-            position: absolute;
-            width: 1px;
-            height: 8px;
-            background-color: white;
+        @media (min-width: 640px) {
+            .rheostat-marker {
+                margin-left: -1px;
+                position: absolute;
+                width: 1px;
+                height: 8px;
+                background-color: white;
+            }
         }
         /*data inzio fine*/
         .rheostat-value{
@@ -198,6 +200,9 @@
     article p img{
         @apply mt-18 mb-14;
     }
+    article p a{
+        @apply font-sansBold hover:underline;
+    }
     article h1, article h2{
         /*@extend .h3-sa; non va... */
         @apply text-h3 leading-snug-sa tracking-01 font-serif pb-8;
@@ -209,17 +214,30 @@
     img.align_center,
     figure.align_center{
         @apply text-center mx-auto;
-        @apply mt-18 mb-14;
+        @apply mt-18;
         img {
             @apply block text-center mx-auto;
         }
+        a img{
+            @apply border-8 border-white hover:border-verde-sa hover:opacity-70 transition;
+        }
         figcaption{
             @apply block mt-7;
+            font-size: 80%;
         }
+    }
+    figure.align_center{
+        @apply mb-14;
+    }
+    img.align_center{
+        @apply mb-7;
     }
 
     article cite{
         @apply block h2-sa text-center mt-8 pb-14 font-serif not-italic;
+        a{
+            @apply font-serifBold hover:underline;
+        }
     }
 
     /*generale*/

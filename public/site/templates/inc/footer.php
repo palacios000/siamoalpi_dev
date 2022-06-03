@@ -1,7 +1,7 @@
 <footer class="slanted-tr-l pb-24 pt-16 z-50 before:-z-10 relative flex flex-col md:flex-row bg-verde-sa text-white justify-items-end">
   <!-- Logo -->
   <a class="block w-fit h-fit" href="#">
-    <img class="w-81 md:w-82 ml-0 md:ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg" alt="Logo Siamo Alpi">
+    <img class="w-96 md:w-82 ml-0 md:ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg" alt="Logo Siamo Alpi">
   </a>
 
   <!-- Right hand grid -->

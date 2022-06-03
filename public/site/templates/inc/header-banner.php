@@ -15,7 +15,7 @@
                 onmouseover="this.src='<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco-opacita.svg';"
                 onmouseout="this.src='<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg';">
                 <!-- mobile -->
-                <img class="visible md:invisible w-32 m-2"  
+                <img class="visible md:invisible w-32 mx-2 mt-4"  
                 src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-mobile.svg " alt="Logo Siamo Alpi">
             </a>
         </div>
@@ -97,7 +97,7 @@
                             foreach ($menuPages as $menuPage) {
                             $activePage = ($page->id == $menuPage->id) ? "activePage" : "";
                             echo "
-                            <li class='h-18 p-5.7 md:p-4 bg-blu-sa hover:bg-verde-sa transition float-right'>
+                            <li class='h-18 p-4 md:p-5.7 md:p-4 bg-blu-sa hover:bg-verde-sa transition float-right'>
                                 <a href='$menuPage->url' class='$activePage'>$menuPage->name</a>
                             </li>
                             <span class='clear-both block'></span>

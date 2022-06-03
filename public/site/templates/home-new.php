@@ -150,7 +150,7 @@ if ($input->post->cerca) {
                         <div class="unskew-container flex-col">
                             <div class="h4-sa mb-0 md:mb-2 uppercase">Diario</div>
 
-                            <h3 class="h5-sa uppercase underline underline-offset-4 md:underline-offset-18 decoration-2 md:decoration-4 overflow-visible max-h-60 pr-2 2xl:pr-80"><?= $blogPostHome->title ?></h3>
+                            <h3 class="text-h3mobile md:text-h5 leading-l235-sa md:leading-loose-sa tracking-tight font-serif uppercase underline underline-offset-4 md:underline-offset-18 decoration-2 md:decoration-4 overflow-visible max-h-60 pr-2 2xl:pr-80"><?= $blogPostHome->title ?></h3>
             
                             <a href="<?= $blogPostHome->url ?>" class="block bottone-blu mt-6 md:mt-10 ml-0 md:ml-1 mb-6 md:mb-1">Leggi tutto</a>
 

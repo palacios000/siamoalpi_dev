@@ -23,7 +23,7 @@
     .h3-sa{
         font-family: Morion;
         font-size: 2.2rem;
-        line-height: 2rem;
+        line-height: 2.5rem;
         letter-spacing: 0.01em;
 }
     @media (min-width: 768px){
@@ -50,9 +50,9 @@
 }
     .h5-sa{
         font-family: Morion;
-        font-size: 2.2rem;
-        line-height: 2.35rem;
-        letter-spacing: -0.025em;
+        font-size: 2.4rem;
+        line-height: 2.65rem;
+        letter-spacing: 0.01em;
 }
     @media (min-width: 768px){
         .h5-sa{
@@ -60,6 +60,9 @@
         }
         .h5-sa{
                 line-height: 5.25rem;
+        }
+        .h5-sa{
+                letter-spacing: -0.025em;
         }
 }
     /* bottoni */
@@ -239,12 +242,14 @@
             top: -7px;
         }
     /*righe righello*/
-    .rheostat-marker {
-            margin-left: -1px;
-            position: absolute;
-            width: 1px;
-            height: 8px;
-            background-color: white;
+    @media (min-width: 640px) {
+            .rheostat-marker {
+                margin-left: -1px;
+                position: absolute;
+                width: 1px;
+                height: 8px;
+                background-color: white;
+            }
         }
     /*data inzio fine*/
     .rheostat-value{
@@ -294,6 +299,13 @@
         margin-top: 4.5rem;
         margin-bottom: 3.5rem;
 }
+    article p a{
+        font-family: Moderat-Bold;
+}
+    article p a:hover{
+        -webkit-text-decoration-line: underline;
+                text-decoration-line: underline;
+}
     article h1, article h2{
         /*@extend .h3-sa; non va... */
         padding-bottom: 2rem;
@@ -310,7 +322,6 @@
         margin-right: auto;
         text-align: center;
         margin-top: 4.5rem;
-        margin-bottom: 3.5rem;
 }
     img.align_center img, figure.align_center img{
         margin-left: auto;
@@ -318,9 +329,33 @@
         display: block;
         text-align: center;
 }
+    img.align_center a img, figure.align_center a img{
+        border-width: 8px;
+        --tw-border-opacity: 1;
+        border-color: rgb(255 255 255 / var(--tw-border-opacity));
+        transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+}
+    img.align_center a img:hover, figure.align_center a img:hover{
+        --tw-border-opacity: 1;
+        border-color: rgb(14 155 126 / var(--tw-border-opacity));
+        opacity: 0.7;
+}
     img.align_center figcaption, figure.align_center figcaption{
         margin-top: 1.75rem;
         display: block;
+}
+    img.align_center figcaption,figure.align_center figcaption{
+            font-size: 80%;
+        }
+    figure.align_center{
+        margin-bottom: 3.5rem;
+}
+    img.align_center{
+        margin-bottom: 1.75rem;
 }
     article cite{
         margin-top: 2rem;
@@ -340,6 +375,13 @@
         article cite{
                 line-height: 2rem;
         }
+}
+    article cite a{
+        font-family: Morion-Semibold;
+}
+    article cite a:hover{
+        -webkit-text-decoration-line: underline;
+                text-decoration-line: underline;
 }
     /*generale*/
     h1, h2, h3, p{
@@ -1196,8 +1238,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     .top-12{
         top: 3rem;
 }
-    .right-6{
-        right: 1.5rem;
+    .right-12{
+        right: 3rem;
 }
     .top-0{
         top: 0px;
@@ -1235,6 +1277,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     .top-6{
         top: 1.5rem;
 }
+    .right-6{
+        right: 1.5rem;
+}
     .top-28{
         top: 7rem;
 }
@@ -1243,9 +1288,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .top-8{
         top: 2rem;
-}
-    .right-12{
-        right: 3rem;
 }
     .top-10{
         top: 2.5rem;
@@ -1325,9 +1367,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .clear-both{
         clear: both;
 }
-    .m-2{
-        margin: 0.5rem;
-}
     .mx-auto{
         margin-left: auto;
         margin-right: auto;
@@ -1347,6 +1386,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     .-mx-4{
         margin-left: -1rem;
         margin-right: -1rem;
+}
+    .mx-2{
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
 }
     .mr-10{
         margin-right: 2.5rem;
@@ -1413,6 +1456,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
     .mb-14{
         margin-bottom: 3.5rem;
+}
+    .mb-10{
+        margin-bottom: 2.5rem;
 }
     .mt-4{
         margin-top: 1rem;
@@ -1619,8 +1665,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     .w-6{
         width: 1.5rem;
 }
-    .w-81{
-        width: 21rem;
+    .w-96{
+        width: 24rem;
 }
     .w-12{
         width: 3rem;
@@ -1912,12 +1958,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     .p-3{
         padding: 0.75rem;
 }
-    .p-5\.7{
-        padding: 1.4em;
-}
-    .p-5{
-        padding: 1.25rem;
-}
     .p-4{
         padding: 1rem;
 }
@@ -2007,11 +2047,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     .pt-10{
         padding-top: 2.5rem;
 }
-    .pt-18{
-        padding-top: 4.5rem;
+    .pt-26{
+        padding-top: 6.5rem;
 }
-    .pb-46{
-        padding-bottom: 11.5rem;
+    .pb-34{
+        padding-bottom: 8.5rem;
 }
     .pb-12{
         padding-bottom: 3rem;
@@ -2199,6 +2239,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     .leading-none{
         line-height: 1;
 }
+    .leading-l235-sa{
+        line-height: 2.35rem;
+}
     .leading-5{
         line-height: 1.25rem;
 }
@@ -2251,8 +2294,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     .decoration-2{
         text-decoration-thickness: 2px;
 }
+    .decoration-1{
+        text-decoration-thickness: 1px;
+}
     .underline-offset-4{
         text-underline-offset: 4px;
+}
+    .underline-offset-8{
+        text-underline-offset: 8px;
 }
     .antialiased{
         -webkit-font-smoothing: antialiased;
@@ -2555,8 +2604,14 @@ Ensure the default browser behavior of the `hidden` attribute.
         .md\:bg-opacity-40{
                 --tw-bg-opacity: 0.4;
         }
+        .md\:p-5\.7{
+                padding: 1.4em;
+        }
         .md\:p-4{
                 padding: 1rem;
+        }
+        .md\:p-5{
+                padding: 1.25rem;
         }
         .md\:px-8{
                 padding-left: 2rem;
@@ -2574,6 +2629,10 @@ Ensure the default browser behavior of the `hidden` attribute.
                 padding-left: 0px;
                 padding-right: 0px;
         }
+        .md\:py-4{
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+        }
         .md\:px-10{
                 padding-left: 2.5rem;
                 padding-right: 2.5rem;
@@ -2586,6 +2645,9 @@ Ensure the default browser behavior of the `hidden` attribute.
         }
         .md\:pt-18{
                 padding-top: 4.5rem;
+        }
+        .md\:pb-46{
+                padding-bottom: 11.5rem;
         }
         .md\:pt-12{
                 padding-top: 3rem;
@@ -2629,9 +2691,6 @@ Ensure the default browser behavior of the `hidden` attribute.
         .md\:pb-0{
                 padding-bottom: 0px;
         }
-        .md\:pb-46{
-                padding-bottom: 11.5rem;
-        }
         .md\:pl-13{
                 padding-left: 3.25rem;
         }
@@ -2647,12 +2706,22 @@ Ensure the default browser behavior of the `hidden` attribute.
         .md\:text-h4{
                 font-size: 3.1rem;
         }
+        .md\:text-h5{
+                font-size: 4.7rem;
+        }
         .md\:text-8xl{
                 font-size: 5.5rem;
                 line-height: 1.1em;
         }
         .md\:leading-relaxed-sa{
                 line-height: 3.15rem;
+        }
+        .md\:leading-loose-sa{
+                line-height: 5.25rem;
+        }
+        .md\:underline{
+                -webkit-text-decoration-line: underline;
+                        text-decoration-line: underline;
         }
         .md\:decoration-4{
                 text-decoration-thickness: 4px;
