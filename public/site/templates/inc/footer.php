@@ -77,9 +77,51 @@
 
   </div>
 
-  <section id="credits" class="absolute bottom-32 md:bottom-14 -right-8 ">
+  <section x-data="{ credits: false }" id="credits" class="absolute bottom-32 md:bottom-14 -right-8 ">
     <p class="text-blu-scuro-sa text-xxs tracking-03 uppercase -rotate-90">
-      <a class="text-blu-scuro-sa hover:text-white transition" href="https://www.iubenda.com/privacy-policy/99064188" target="_blank">Privacy</a> | Crediti</p>
+      <a class="cursor-help text-blu-scuro-sa hover:text-white transition" href="https://www.iubenda.com/privacy-policy/99064188" target="_blank">Privacy</a> |
+      <a class="cursor-help text-blu-scuro-sa hover:text-white transition" x-on:click="credits = true">Crediti</a></p>
+
+
+      <!-- Modal AlpineJS-->
+          <div
+              x-show="credits"
+              style="display: none"
+              x-on:keydown.escape.prevent.stop="credits = false"
+              role="dialog"
+              aria-modal="true"
+              x-id="['modal-title']"
+              :aria-labelledby="$id('modal-title')"
+              class="fixed inset-0 overflow-y-auto z-30 h-screen pb-1" 
+          >
+              <!-- Overlay -->
+              <div x-show="credits" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-60  z-30"></div>
+
+              <!-- Panel -->
+              <!-- qui sotto le stesse impostazioni/classes del body -->
+              <div
+                  x-show="credits" x-transition
+                  x-on:click="credits = false"
+                  class="relative min-h-screen max-w-screen-xl 2xl:max-w-screen-2xl mx-auto z-50"
+              >
+                  <!-- close botton -->
+
+                  <div
+                      
+                      class="relative bg-blu-sa h-auto w-auto right-0 top-24 md:top-36 z-30 mx-auto w-fit p-8 pb-12"
+                  >
+                    <button class="absolute top-2 right-2" x-on:click="credits = ! credits" >
+                        <svg xmlns="http://www.w3.org/2000/svg" class=" h-8 w-8 stroke-current text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                  <span class="clear-both"></span>
+                  <p class="h2-sa underline underline-offset-8 pt-4 mb-6 ">Crediti</p>
+                  <?= $homePageFooter->descrizione ?>
+                  </div>
+              </div>
+          </div>
+
     
   </section>
 

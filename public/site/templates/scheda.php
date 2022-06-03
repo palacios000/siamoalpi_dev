@@ -193,14 +193,14 @@ require 'inc/head.php'; ?>
       <div class="bg-white">
           <div class="flex pt-16 px-6 md:px-10 pb-12 md:pb-46 flex-col md:flex-row">
               <!-- Left section -->
-              <div class="md:basis-3/5 pr-20 mr-3">
+              <div class="md:basis-3/5 md:pr-20">
                   <!-- Text section -->
                   <div class="pl-2">
                       <div class="h2-sa uppercase pb-6">
                           Descrizione
                       </div>
   
-                      <div class="p-sa pb-12 font-bold">
+                      <div class="pb-12 font-bold">
                           <?= $scheda->descrizione ?>
                       </div>
 
