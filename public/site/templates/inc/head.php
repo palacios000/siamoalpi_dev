@@ -25,8 +25,7 @@
 
 			<!-- algolia pre connect -->
 			<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
-	    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds">
-	    	</script>
+	    	
 		<?php } ?>
 	
 		<!-- swiper homepage -->

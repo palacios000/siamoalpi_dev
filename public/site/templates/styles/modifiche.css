@@ -250,31 +250,27 @@
 
     
     /* mappa google ... */
-    .ais-GeoSearch-map {
-      height: 18rem; /* You can change this height */
-    }
-    .ais-GeoSearch-control{
-        visibility: hidden;
-    }
-    /*.ais-GeoSearch-control{
-        color: white;
-        font-size: 10pt;
-    }
-    .ais-GeoSearch-control span{
-        margin-left: 10px;
-    }*/
-    .ais-GeoSearch{
-        position: relative;
-    }
+        /*.ais-GeoSearch-map {
+          height: 18rem; 
+        }
+        .ais-GeoSearch-control{
+            visibility: hidden;
+        }
+        .ais-GeoSearch{
+            position: relative;
+        }
 
-    .ais-GeoSearch-reset{
-        margin-left: 10px;
-        color: white;
-        background-color: black;
-        padding: 1px 10px;
-        position: absolute;
-        bottom: 1.25rem;
-        left: 50%;
-        transform: translateX(-50%);
-        @apply font-sansBold uppercase border border-verde-sa text-sm tracking-widest;
-    }
+        .ais-GeoSearch-reset{
+            margin-left: 10px;
+            color: white;
+            background-color: black;
+            padding: 1px 10px;
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            @apply font-sansBold uppercase border border-verde-sa text-sm tracking-widest;
+        }*/
+        #maps{
+            height: 22rem;
+        }
