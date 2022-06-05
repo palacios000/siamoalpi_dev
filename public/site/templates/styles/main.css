@@ -413,6 +413,8 @@
         }*/
     #maps{
             height: 22rem;
+            width: 100%;
+            border-radius: 25px;
         }
     /* Top left cut corner 2.8° */
     .slanted-tl-s {

@@ -273,4 +273,6 @@
         }*/
         #maps{
             height: 22rem;
+            width: 100%;
+            border-radius: 25px;
         }

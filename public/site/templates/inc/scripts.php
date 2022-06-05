@@ -9,14 +9,16 @@
 
 	
 	<!-- Gmaps API -->
-<!-- 	<script>
+	<!-- 
+		obergine: #023e58 replaced with #0d376b  
 
-		  map = new google.maps.Map(document.getElementById("maps"), {
-		    center: { lat: 46.1700326, lng: 9.8676338 },
-		    zoom: 9,
-		  });
+	Maps API
+	* style: https://mapstyle.withgoogle.com/
+	* https://developers.google.com/maps/documentation/javascript/overview
+	Marker: https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions.clickable
+		
+	-->
 
-	</script> -->
 
 	<script>
 	      var map;
@@ -92,20 +94,11 @@
 		      	    ]
 		      	  },
 		      	  {
-		      	    "featureType": "landscape.man_made",
-		      	    "elementType": "geometry.stroke",
-		      	    "stylers": [
-		      	      {
-		      	        "color": "#334e87"
-		      	      }
-		      	    ]
-		      	  },
-		      	  {
 		      	    "featureType": "landscape.natural",
 		      	    "elementType": "geometry",
 		      	    "stylers": [
 		      	      {
-		      	        "color": "#023e58"
+		      	        "color": "#233f62"
 		      	      }
 		      	    ]
 		      	  },
@@ -159,7 +152,7 @@
 		      	    "elementType": "labels.text.fill",
 		      	    "stylers": [
 		      	      {
-		      	        "color": "#3C7680"
+		      	        "color": "#3c7680"
 		      	      }
 		      	    ]
 		      	  },
@@ -201,6 +194,7 @@
 		      	  },
 		      	  {
 		      	    "featureType": "road.arterial",
+		      	    "elementType": "labels",
 		      	    "stylers": [
 		      	      {
 		      	        "visibility": "off"
@@ -326,24 +320,45 @@
 		      	],
 		      	{name: 'Backup-dati'});
 
-	      	var cabiate = {lat: 46.1700326, lng: 9.8676338};
+	      	var sondrio = {lat: 46.1700326, lng: 9.8676338};
 
 	        var map = new google.maps.Map(document.getElementById('maps'), {
-	          center: cabiate,
+	          center: sondrio,
 	          zoom: 9,
-	          // mapTypeControlOptions: {
-           //        mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-           //                'styled_map']
-           //      }
-	        });
+	          streetViewControl: false,
+	          fullscreenControl: false,
+	          zoomControl: false,
+	          scaleControl: false,
+	          mapTypeControl: false,
 
-	        // non va bene var logo = '<?php echo $config->urls->templates ?>styles/images/logo-Wbg.png';
+	        });
 
 	        var marker = new google.maps.Marker({
-	        	position: cabiate, 
-
-	        	map: map
+	        	position: sondrio, 
+	        	map: map,
+	        	clickable: true,
+	        	url: 'http://www.google.com/',
+	        	// animation: google.maps.Animation.DROP,
+	        	label: {
+				      text: "4545",
+				      color: "black",
+				      fontSize: "16px",
+				      fontWeight: "bold",
+				      fontFamily: "Moderat-Bold",
+			      },
+	        	icon: {
+    	        path: google.maps.SymbolPath.CIRCLE,
+    	        scale: 22,
+    	        // fillColor: "#0E9B7E",
+    	        fillColor: "yellow",
+    	        fillOpacity: 1,
+    	        strokeWeight: 0,
+	        	},
 	        });
+
+	        google.maps.event.addListener(marker, 'click', function() {
+	              window.location.href = 'http://www.google.com/';
+	            });
 
 	        map.mapTypes.set('styled_map', styledMapType);
 	                map.setMapTypeId('styled_map');
