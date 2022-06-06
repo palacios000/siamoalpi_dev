@@ -390,17 +390,16 @@
         hyphens: auto;
     }
     /* mappa google ... */
-    /*.ais-GeoSearch-map {
-          height: 18rem; 
+    .ais-GeoSearch-map {
+          height: 1rem; 
         }
-        .ais-GeoSearch-control{
+    .ais-GeoSearch-control{
             visibility: hidden;
         }
-        .ais-GeoSearch{
+    .ais-GeoSearch{
             position: relative;
         }
-
-        .ais-GeoSearch-reset{
+    .ais-GeoSearch-reset{
             margin-left: 10px;
             color: white;
             background-color: black;
@@ -409,12 +408,23 @@
             bottom: 1.25rem;
             left: 50%;
             transform: translateX(-50%);
-            @apply font-sansBold uppercase border border-verde-sa text-sm tracking-widest;
-        }*/
+            border-width: 1px;
+            --tw-border-opacity: 1;
+            border-color: rgb(14 155 126 / var(--tw-border-opacity));
+            font-family: Moderat-Bold;
+            font-size: 0.9rem;
+            line-height: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
     #maps{
             height: 22rem;
             width: 100%;
             border-radius: 25px;
+        }
+    #algoliaMap{
+            height: 2rem;
+            width: 100%;
         }
     /* Top left cut corner 2.8° */
     .slanted-tl-s {

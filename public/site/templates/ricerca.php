@@ -68,6 +68,8 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 	  			qui vuoto, ma utile pe la pagina Scheda  -->	  
 		  <script>
 		   var filtro = {};
+		   // var filtro = {'ente': ['Biblioteca comunale &quot;Libero Della Briotta&quot; di Ponte in Valtellina']};
+		   // var filtro = {'ente': ['Biblioteca comunale di Chiesa in Valmalenco']};
 		   var routingUrl = true;
 		   var lemmaRisultati = 'risultati'; 
 		  </script>

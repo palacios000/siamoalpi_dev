@@ -5,8 +5,6 @@
  *
  */
 
-
-
 // cerca le schede
 // stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 
 $schede = $pages->find("template=gestionale_scheda, stato_avanzamento=1111, codice_esportato!='', limit=30");
@@ -22,6 +20,20 @@ if (count($schede)) {
 
 }
 
+/**
+ *
+ * Aggiungi il numero di schede pronte (esportate) alla pagina Ente, 
+ *
+ */
+
+
+$enti = $pages->find("template=gestionale_ente");
+foreach ($enti as $ente) {
+    $esportate = count($ente->children("template=gestionale_scheda, stato_avanzamento=1112"));
+    $ente->of(false);
+    $ente->counter->records = $esportate;
+    $ente->save();
+}
 
 
 
@@ -30,8 +42,6 @@ if (count($schede)) {
  * Sistema categorie che hanno messo a casso
  *
  */
-
-
 
 // cerca le schede
 // stato_avanzamento: 1109 in lavorazion, 1111 approvata, 1112 esportata, 

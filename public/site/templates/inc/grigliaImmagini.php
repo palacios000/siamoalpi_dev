@@ -39,3 +39,7 @@
 
     <div id="tags" class="h-8 invisible"></div>
     <div id="filtro" class="h-8 invisible"></div>
+    <div id="ente" class="h-8 invisible"></div>
+
+    <!-- mappa Google per Algolia -->
+    <div id="algoliaMap" class="h-8"></div>

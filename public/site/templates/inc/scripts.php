@@ -1,5 +1,6 @@
 
-	
+		  <script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
+	    </script>
 	<!-- algolia search -->
 	<script type="module" src="<?= $config->urls->templates?>js/algolia.js"></script>
 
@@ -19,8 +20,8 @@
 		
 	-->
 
-
-	<script>
+		
+		<script>
 	      var map;
 	      function initMap() {
 
@@ -333,28 +334,33 @@
 
 	        });
 
-	        var marker = new google.maps.Marker({
-	        	position: sondrio, 
-	        	map: map,
-	        	clickable: true,
-	        	url: 'http://www.google.com/',
-	        	// animation: google.maps.Animation.DROP,
-	        	label: {
-				      text: "4545",
-				      color: "black",
-				      fontSize: "16px",
-				      fontWeight: "bold",
-				      fontFamily: "Moderat-Bold",
-			      },
-	        	icon: {
-    	        path: google.maps.SymbolPath.CIRCLE,
-    	        scale: 22,
-    	        // fillColor: "#0E9B7E",
-    	        fillColor: "yellow",
-    	        fillOpacity: 1,
-    	        strokeWeight: 0,
-	        	},
-	        });
+	        <?php //iniziamo il pastishe php+js
+	        $enti = $pages->find("template=gestionale_ente, limit=1");
+	        foreach ($enti as $ente) {
+	        	echo "
+		        var marker = new google.maps.Marker({
+		        	position: {lat: ".$ente->mappa->lat.", lng: ".$ente->mappa->lng." }, 
+		        	map: map,
+		        	clickable: true,
+		        	url: '',
+		        	label: {
+					      text: '{$ente->counter->records}',
+					      color: 'black',
+					      fontSize: '16px',
+					      fontWeight: 'bold',
+					      fontFamily: 'Moderat-Bold',
+				      },
+		        	icon: {
+	    	        path: google.maps.SymbolPath.CIRCLE,
+	    	        scale: 22,
+	    	        // fillColor: '#0E9B7E',
+	    	        fillColor: 'yellow',
+	    	        fillOpacity: 1,
+	    	        strokeWeight: 0,
+		        	},
+		        });
+						";
+	        } ?>
 
 	        google.maps.event.addListener(marker, 'click', function() {
 	              window.location.href = 'http://www.google.com/';
@@ -363,9 +369,8 @@
 	        map.mapTypes.set('styled_map', styledMapType);
 	                map.setMapTypeId('styled_map');
 	      }
-	    </script>
+	  </script>
+
 	    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhKDtx78Vhbm05-9TDb_ra93TQEYC78NY&callback=initMap"
 	    async defer></script>
  -->
-	    <script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap">
-	    </script>

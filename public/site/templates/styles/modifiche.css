@@ -250,8 +250,8 @@
 
     
     /* mappa google ... */
-        /*.ais-GeoSearch-map {
-          height: 18rem; 
+        .ais-GeoSearch-map {
+          height: 1rem; 
         }
         .ais-GeoSearch-control{
             visibility: hidden;
@@ -270,9 +270,13 @@
             left: 50%;
             transform: translateX(-50%);
             @apply font-sansBold uppercase border border-verde-sa text-sm tracking-widest;
-        }*/
+        }
         #maps{
             height: 22rem;
             width: 100%;
             border-radius: 25px;
+        }
+        #algoliaMap{
+            height: 2rem;
+            width: 100%;
         }
