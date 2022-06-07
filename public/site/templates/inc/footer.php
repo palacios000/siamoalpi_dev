@@ -1,13 +1,13 @@
 <footer class="slanted-tr-l pb-24 pt-16 z-50 before:-z-10 relative flex flex-col md:flex-row bg-verde-sa text-white justify-items-end">
   <!-- Logo -->
-  <a class="block w-fit h-fit" href="#">
-    <img class="w-96 md:w-82 ml-0 md:ml-1"  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg" alt="Logo Siamo Alpi">
+  <a class="block w-fit h-fit mx-auto" href="#">
+    <img class="w-96 md:w-82 ml-0 md:ml-1 "  src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg" alt="Logo Siamo Alpi">
   </a>
 
   <!-- Right hand grid -->
-  <div class="flex flex-col-reverse md:flex-row basis-1/2 h-fit ml-auto pt-5 mr-9 justify-end">
+  <div class="flex flex-col-reverse lg:flex-row lg:basis-1/2 h-fit lg:ml-auto pt-5 mr-9 justify-end">
     <!-- Socials -->
-    <div class="mr-6 w-full md:w-2/5">
+    <div class="mr-6 w-full lg:w-2/5">
       <p class="invisible md:visible h-0 md:h-auto">Segui lo sviluppo del progetto sui nostri canali social</p>
       <p class="visible md:hidden h-auto md:h-0 px-6 pt-8">Segui sulle pagine social</p>
       <!-- Icons -->

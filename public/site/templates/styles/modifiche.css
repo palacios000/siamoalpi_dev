@@ -27,6 +27,9 @@
     .bottone-bianco-trasparente {
       @apply uppercase text-white w-fit text-sm font-sansBold tracking-widest underline decoration-4 underline-offset-8;
     }
+    .bottone-verde_pagine-interne {
+      @apply uppercase text-white bg-verde-sa w-fit px-3.5 py-3 text-sm font-sansBold tracking-widest hover:bg-blu-sa transition block mx-auto my-8;
+    }
 
 /* homepage */
     
@@ -200,7 +203,7 @@
     article p img{
         @apply mt-18 mb-14;
     }
-    article p a{
+    article p a:not(.bottone-verde_pagine-interne){
         @apply font-sansBold hover:underline;
     }
     article h1, article h2{
@@ -240,7 +243,13 @@
         }
     }
 
-    /*generale*/
+    /*articolo per pagine interne*/
+    body.interne article h1,
+    body.interne article h2{
+        @apply mt-8;
+    }
+
+/*generale*/
     h1, h2, h3, p{
         -webkit-hyphens: auto;
         -ms-hyphens: auto;
@@ -249,7 +258,7 @@
     
 
     
-    /* mappa google ... */
+/* mappa google ... */
         .ais-GeoSearch-map {
           height: 1rem; 
         }
@@ -277,6 +286,6 @@
             border-radius: 25px;
         }
         #algoliaMap{
-            height: 2rem;
+            height: 1rem;
             width: 100%;
         }

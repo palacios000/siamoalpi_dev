@@ -1,5 +1,5 @@
 <?php require 'inc/head.php' ?>
-	<body id="blog_post" class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 " >
+	<body id="blog_post" class="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto bg-black/80 <?= $page->parent->title ?>" >
 
 		<div class="overflow-hidden">
 			<!-- Slanted Header div -->
@@ -17,7 +17,7 @@
 
 			    <!-- condividi -->
 				<?php // make urls
-				if ($page->name != 'progetto') {
+				if ($page->parent->name == 'diario') {
 				  $soggetto = $sanitizer->entities("Condivisione URL da siamoalpi.it") ;
 				  $mailtoURL = "mailto:?subject=$soggetto&body=".$page->httpUrl;  
 				  $fbURL = "https://www.facebook.com/sharer/sharer.php?u=".$page->httpUrl;  
@@ -41,8 +41,8 @@
 						<?= $page->body ?>
 					</article>
 
-					<!-- condividi mobile -->
-					<?php if ($page->name != 'progetto') { ?>
+					<!-- condividi mobile + bottone "diario"  -->
+					<?php if ($page->parent->name == 'diario') { ?>
 					<div class="visible md:hidden mt-16">
 						<div class="text-sm border-t border-black">
 						  <p class="font-sansBold uppercase mt-2.5">Condividi</p>
@@ -52,17 +52,17 @@
 						  </ul>
 						</div>
 					</div>
-					<?php } ?>
 
 					<div>
 						<a href="<?= $page->parent->url ?>" class="bottone-verde block mx-auto mt-14 mb-8">Vai a Diario</a>
 					</div>
+					<?php } ?>
 				</div>
 			</div>
 
 
 			<?php 
-			if ($page->name == "progetto") {
+			if ($page->name == "progetto" || $page->parent->name == 'interno') {
 				include 'foto-del-giorno.php'; 
 			}else{ ?>
 

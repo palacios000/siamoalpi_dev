@@ -10,7 +10,7 @@
         <div class="absolute top-0 left-0  mt-3 ml-1.5">
             <a href="<?= $homeNew ?>">
                 <!-- desktop -->
-                <img class="invisible md:visible w-0 md:w-82 "  
+                <img class="invisible md:visible w-0 md:w-60 lg:w-82 "  
                 src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo Siamo Alpi"
                 onmouseover="this.src='<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco-opacita.svg';"
                 onmouseout="this.src='<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg';">
@@ -35,8 +35,8 @@
             
             <div class="text-black" id="searchbox"></div>
             
-            <ul class="py-4 text-sm text-left md:text-right pr-4 uppercase font-sansBold">
-                <li class="inline w-0 md:w-auto invisible md:visible">Ricerca per:</li>
+            <ul class="py-4 text-sm text-left md:text-right pr-4 uppercase font-sansBold relative">
+                <li class="inline overflow-hidden w-0 md:w-auto invisible md:visible absolute right-0 top-0 md:static">Ricerca per:</li>
                 <li class="inline pl-3">
                     <button x-on:click="temi = ! temi" class="uppercase hover:underline underline-offset-4" :class="temi ? 'underline underline-offset-4' : ''">Temi</button>
                 </li>

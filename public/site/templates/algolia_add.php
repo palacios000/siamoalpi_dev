@@ -109,7 +109,7 @@
 				// tags
 					$tags = array();
 						foreach ($scheda->tags as $tag) {
-							$tags[] = $tag->title;
+							$tags[] = strtolower($tag->title);
 						}
 
 				// valutazione
@@ -181,6 +181,7 @@
 					$record['immagine'] = $immagineUrl;
 					$record['supporto'] = $supporto;
 					$record['url'] = 'https://siamoalpi.it/archivio/scheda/?id='.$scheda->id ;
+					$record['zona'] = 'area '.$scheda->parent->display_name;
 					$record['ente'] = $scheda->parent->title;
 					$record['temi'] = $temi ;
 					$record['insieme'] = $temi_insieme ;

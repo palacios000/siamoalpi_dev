@@ -24,7 +24,7 @@ if ($input->post->cerca) {
             <div class="flex flex-col md:flex-row mx-auto w-full">
                 <!-- Ricerca... text -->
                 <div class="h2-sa w-52 shrink-0 text-left md:text-center mr-34 ml-6 md:ml-32 text-white">
-                    Ricerca tra oltre 12300 immagini e documenti
+                    Ricerca tra oltre <?php echo count($pages->find("template=gestionale_scheda, stato_avanzamento=1112")) ?> immagini e documenti
                 </div>
                 <!-- Search bar -->
                 <div class="w-full flex text-gray-800 h-16 text-right ml-4 mr-11 mt-6 md:mt-2 pr-11 md:pr-0">
@@ -193,12 +193,14 @@ if ($input->post->cerca) {
         <!-- Swiper JS -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        <!-- Initialize Swiper -->
+        <!-- Initialize Swiper // https://swiperjs.com/swiper-api -->
         <script>
           var swiper = new Swiper(".mySwiper", {
             slidesPerView: 3,
             spaceBetween: 30,
             lazy: true,
+            loop: true,
+            autoplay: true,
             pagination: {
               el: ".swiper-pagination",
               clickable: true,

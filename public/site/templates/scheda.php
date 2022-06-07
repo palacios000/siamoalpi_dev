@@ -115,6 +115,7 @@ require 'inc/head.php'; ?>
 
                         // https://siamoalpi.it/archivio/?siamoAlpi%5BgeoSearch%5D%5BboundingBox%5D=46.225749197894%2C10.155965810791043%2C46.140176440624515%2C9.817106252685575
                         $urlMap = $archivioPage->url . "?siamoAlpi[geoSearch][boundingBox]={$boxNW_lat}%2C{$boxNW_lng}%2C{$boxSE_lat}%2C{$boxSE_lng}";
+                        $urlMap .= "&presso=" . urlencode($scheda->luogo->comune);
                         echo "<li><a class='underline underline-offset-8 decoration-1 hover:text-verde-sa transition' href='$urlMap'>$dove</a></li>";
                       }else{
                         echo "<li>$dove</li>";

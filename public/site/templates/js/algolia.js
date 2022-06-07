@@ -173,13 +173,13 @@ const search = instantsearch({
 		    .join(' ');
 
 		const renderListItem = item => `
-		  <li class='uppercase inline'>
+		  <li class='inline'>
 		    <span class='sr-only'>${item.label}:</span>
 		    <ul class='inline'>
 		      ${item.refinements
 		        .map(
 		          refinement =>
-		            `<li class='lowercase md:inline pr-4'>
+		            `<li class=' md:inline pr-4'>
 		              <button ${createDataAttribtues(refinement)}><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6 fill-verde-sa stroke-black hover:fill-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
 		              ${refinement.label} 
 		            </li>`
@@ -282,8 +282,8 @@ const search = instantsearch({
 		}),
 
 		instantsearch.widgets.refinementList({
-		  container: '#ente',
-		  attribute: 'ente',
+		  container: '#zona',
+		  attribute: 'zona',
 		}),
 
 		

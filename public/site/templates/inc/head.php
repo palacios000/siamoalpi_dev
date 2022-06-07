@@ -44,7 +44,7 @@
 
 		
 		<?php // SEO tags 
-		/*
+		
 		if (count($page->seo)) {
 			echo $page->seo;	
 		} elseif($page->template == "scheda") {
@@ -78,7 +78,7 @@
 			}
 			</script>
 			';
-		}*/
+		}
 		?>
 
 
