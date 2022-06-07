@@ -236,7 +236,7 @@
         @apply mb-7;
     }
 
-    article cite{
+    body#blog_post article p cite{
         @apply block h2-sa text-center mt-8 pb-14 font-serif not-italic;
         a{
             @apply font-serifBold hover:underline;

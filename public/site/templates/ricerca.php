@@ -12,16 +12,6 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 	    $bannerBgImg = $page->images_bg->getRandom()->url;
 	    include 'inc/header-banner.php' ?>
 
-	    <!-- <div class="bg-white">
-	    	<?php // pagination & random display results 
-	    	/*if (count(parse_str($input->get('siamoAlpi')))>=1) {
-	    		echo "no GET";
-	    	}else{
-	    		echo "URL GET";
-	    	}*/
-	    	 ?>
-	    </div> -->
-
 	    <section>
 
 		    <!-- ALGOLIA -->
@@ -64,7 +54,6 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 
 
 	  <!-- ### algolia search ### -->
-		<!-- // essenziale per farlo passare allo script algolia.js qui sotto -->	  
 		<?php if ($input->get->presso){
 			$fraseRisulati = "risultati presso &laquo;" .$sanitizer->text(urldecode($input->get->presso)) . "&raquo;";
 		} else {
@@ -74,10 +63,7 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 
 		<script>
 		   var filtro = {};
-		   // var filtro = {'ente': ['Biblioteca comunale &quot;Libero Della Briotta&quot; di Ponte in Valtellina']};
-		   // var filtro = {'ente': ['Biblioteca comunale di Chiesa in Valmalenco']};
 		   var routingUrl = true;
-
 		   var lemmaRisultati = "<?= $fraseRisulati ?>"; 
 		</script>
    	  <?php require 'inc/scripts.php' ?>
@@ -452,10 +438,10 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 	   	  	        	icon: {
 	   	      	        path: google.maps.SymbolPath.CIRCLE,
 	   	      	        scale: $diametro,
-	   	      	        // fillColor: '#0E9B7E',
-	   	      	        fillColor: 'yellow',
+	   	      	        fillColor: 'white',
 	   	      	        fillOpacity: 1,
-	   	      	        strokeWeight: 0,
+	   	      	        strokeWeight: 3,
+	   	      	        strokeColor: '#0E9B7E',
 	   	  	        	},
 	   	  	        });
 	   	  					";

@@ -1,6 +1,6 @@
 
 	<!-- Gmaps API -->
-	<script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap"></script>
+	<script  defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrz6wL-ik3qZC1ntwgCo8MptNZTiefds&callback=initMap"></script>
 	
 	<!-- algolia search -->
 	<script type="module" src="<?= $config->urls->templates?>js/algolia.js"></script>
