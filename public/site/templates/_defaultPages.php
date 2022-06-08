@@ -6,7 +6,7 @@ $progettoNew = $pages->get(3299)->url;
 
 
 // da sitemare poi
-$homePage = $pages->findOne("template=home-new");
+$homePage = $pages->findOne("template=home");
 $homePageFooter = $pages->get("/");
 $archivioPage = $pages->findOne("template=ricerca");
 $blogPage = $pages->findOne("template=blog");

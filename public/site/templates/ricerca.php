@@ -16,7 +16,7 @@ $showMappa = ($input->get->showmap == 1) ? 'true' : 'false';
 
 		    <!-- ALGOLIA -->
 		    <div x-data="{solofoto: true }" class="slanted-tl-m h-fit z-10 before:-z-10 mx-auto md:pb-32 bg-black">
-		      <div class="mx-6 md:mx-12 w-fit md:pb-16">
+		      <div class="mx-6 md:mx-12 md:pb-16">
 		    	<!-- #algolia -->
 		    	<section id="filtriAlg">		    		
 			    	<div x-show="temi" x-transition class="w-full py-4">

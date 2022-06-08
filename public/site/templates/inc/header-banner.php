@@ -8,7 +8,7 @@
     
     <!-- Logo -->
         <div class="absolute top-0 left-0  mt-3 ml-1.5">
-            <a href="<?= $homeNew ?>">
+            <a href="<?= $homePage->url ?>">
                 <!-- desktop -->
                 <img class="invisible md:visible w-0 md:w-60 lg:w-82 "  
                 src="<?= $config->urls->templates?>pictures/logo/siamo-alpi-bianco.svg " alt="Logo Siamo Alpi"

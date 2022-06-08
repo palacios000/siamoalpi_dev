@@ -8,7 +8,8 @@
 		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 		
 
-		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css?v=<?= time() ?>" />
+		<link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.min.css" />
+		<!-- <link rel="stylesheet" href="<?= $config->urls->templates?>styles/main.css" /> -->
 		<link rel="shortcut icon" href="<?= $config->urls->templates?>pictures/favicon.png" />
 
     	<!-- Alpine -->
@@ -16,17 +17,13 @@
 		<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
 
 
+		<!-- algolia -->
+		<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
 
-
-		<?php if ($page->template != 'home-new'){ ?>
-			<!-- algolia -->
-			<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
-
-			<!-- algolia pre connect -->
-			<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
+		<!-- algolia pre connect -->
+		<link crossorigin href="https://NK1J7ES7IV-dsn.algolia.net" rel="preconnect" />
 	    	
-		<?php } ?>
 	
 		<!-- swiper homepage -->
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -41,11 +38,10 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify-mobile.min.js" integrity="sha512-c3hGxeqPC+hyYCH6xddUy6sg5lgmXomxpN5fkhUxKPOM7OD/+M+Rj1rj02q4MOkn+PUBRGPZVNTMMrREyZS0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<?php } ?>
 
-
 		
 		<?php // SEO tags 
 		
-		if (count($page->seo)) {
+		if ($page->seo->meta->title) {
 			echo $page->seo;	
 		} elseif($page->template == "scheda") {
 			// sono in pagina scheda
